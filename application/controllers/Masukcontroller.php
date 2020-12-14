@@ -12,11 +12,59 @@ class Masukcontroller extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Login';
-		$this->load->view('templetes/masuk_header', $data);
-		$this->load->view('masuk/login');
-		$this->load->view('templetes/masuk_footer');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
+		if($this->form_validation->run() == false){
+
+			$data['title'] = 'Login';
+			$this->load->view('templetes/masuk_header', $data);
+			$this->load->view('masuk/login');
+			$this->load->view('templetes/masuk_footer');
+		} else {
+			$this->_login();
+		}
+	}
+
+	private function _login()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		$akun = $this->db->get_where('akun', ['email' => $email])->row_array();
+
+			//jika user ada
+		if ($akun) {
+				// jika user aktif
+			if ($akun['is_active'] == 1) {
+				//cek password
+				if (password_verify($password, $akun['password'])) {
+					$data = [
+						'email' => $akun['email'],
+						'role_id' => $akun['role_id']
+					];
+
+					$this->session->set_userdata($data);
+					redirect('akun');
+
+
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+						Wrong password! </div>');
+					redirect('Masukcontroller');
+				}
+
+			} else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					This email has not been activated! </div>');
+				redirect('Masukcontroller');
+			}
+			
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+				Email is not registered! </div>');
+			redirect('Masukcontroller');
+		}
 	}
 
 	public function registration()
@@ -34,10 +82,10 @@ class Masukcontroller extends CI_Controller {
 			$this->load->view('templetes/masuk_footer');
 		} else {
 			$data = [
-				'name' => $this->input->post('name'),
-				'email' => $this->input->post('email'),
+				'name' => htmlspecialchars($this->input->post('name', true)),
+				'email' =>  htmlspecialchars($this->input->post('email', true)),
 				'image' => 'default.jpg',
-				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				'role_id' => 2,
 				'is_active' => 1,
 				'date_create' => time()
@@ -48,5 +96,14 @@ class Masukcontroller extends CI_Controller {
 				A Congratulation! Your account has ben created. Please Login</div>');
 			redirect('Masukcontroller');
 		}
+	}
+
+	public function logout()
+	{
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('role_id');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			You have been logout! </div>');
+		redirect('Masukcontroller');
 	}
 }

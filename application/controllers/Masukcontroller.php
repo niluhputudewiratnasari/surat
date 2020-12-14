@@ -45,7 +45,12 @@ class Masukcontroller extends CI_Controller {
 					];
 
 					$this->session->set_userdata($data);
-					redirect('akun');
+					if ($akun['role_id'] == 1) {
+						redirect('admin');
+					} else{
+						redirect('akun');
+					}
+					
 
 
 				} else {

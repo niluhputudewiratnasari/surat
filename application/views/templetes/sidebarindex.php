@@ -1,10 +1,10 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-hospital"></i>
+            <i class="fas fa-building"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Dinas Kesehatan</div>
     </a>
@@ -52,13 +52,13 @@
                     <?php else : ?>
                         <li class="nav-item">
                         <?php endif; ?>   
-                        <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                        <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
                             <i class="<?= $sm['icon']; ?>"></i>
                             <span><?= $sm['title']; ?></span></a>
                         </li>
                     <?php endforeach; ?>
 
-                    <hr class="sidebar-divider">
+                    <hr class="sidebar-divider mt-3">
 
                 <?php endforeach; ?>
 

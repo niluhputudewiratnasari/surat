@@ -111,4 +111,10 @@ class Masukcontroller extends CI_Controller {
 			You have been logout! </div>');
 		redirect('Masukcontroller');
 	}
+
+	public function blocked()
+	{
+		$this->load->view('masuk/blocked');
+
+	}
 }

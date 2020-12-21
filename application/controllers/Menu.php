@@ -2,7 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Menu extends CI_Controller {
-
+	public function __construct()
+	{
+		parent::__construct();
+		is_logged_in();
+		
+	}
 
 	public function index()
 	{
@@ -58,5 +63,13 @@ class Menu extends CI_Controller {
 				New sub menu added! </div>');
 			redirect('menu/submenu');
 		}
+	}
+
+	public function hapus($id)
+	{
+		$this->Menu_model->hapusSubMenu($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Sub menu has delete!! </div>');
+		redirect('menu/submenu');
 	}
 }

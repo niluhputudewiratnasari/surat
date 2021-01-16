@@ -36,14 +36,8 @@
             </table>
          </div>
       </div>
-
-
-
    </div>
-   <!-- /.container-fluid -->
-
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="newRoleModal" tabindex="-1" role="dialog" aria-labelledby="newRoleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -55,7 +49,7 @@
 			<form action="<?= base_url('admin/role'); ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="text" class="form-control" id="role" name="tole" placeholder="Role name">
+						<input type="text" class="form-control" id="role" name="role" placeholder="Role name">
 					</div>
 				</div>
 				<div class="modal-footer">

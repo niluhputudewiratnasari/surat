@@ -106,11 +106,43 @@ class Masukcontroller extends CI_Controller {
 			];
 
 			$this->db->insert('akun', $data);
+
+			//$this->_sendEmail();
+
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 				A Congratulation! Your account has ben created. Please Login</div>');
 			redirect('Masukcontroller');
 		}
 	}
+
+	// public function _sendEmail()
+	// {
+	// 	$config = [
+	// 		'protocol' => 'smtp',
+	// 		'smtp_host' => 'ssl://smtp.googleemail.com',
+	// 		'smtp_user' => 'dewiiratnas12@gmail.com',
+	// 		'smtp_pass' => '@Santana00',
+	// 		'smtp_port' => 465,
+	// 		'mailtype' => 'html',
+	// 		'charset' => 'utf-8',
+	// 		'newline' => "\r\n"
+	// 	];
+
+	// 	$this->load->library('email', $config);
+
+	// 	$this->email->from('dewiiratnas12@gmail.com', 'DewiRatnas');
+	// 	$this->email->to('putudewiratna12@gmail.com');
+	// 	$this->email->subject('Testing');
+	// 	$this->email->message('Hellow world');
+
+	// 	if($this->email->send()){
+	// 		return true;
+	// 	} else {
+	// 		echo $this->email->print_debugger();
+	// 		die;
+	// 	}
+	
+	// }
 
 	public function logout()
 	{

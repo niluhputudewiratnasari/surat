@@ -25,8 +25,8 @@
    							<th scope="row"><?= $i; ?></th>
    							<td><?= $m['menu']; ?></td>
    							<td>
-   								<a href="" class="badge badge-success">Edit</a>
-   								<a href="" class="badge badge-danger">Delete</a>
+   								<a href="<?= base_url(); ?>menu/edit/<?= $m['id'];?>" class="badge badge-success">Edit</a>
+   								<a href="<?= base_url(); ?>menu/hapus/<?= $m['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
    							</td>
    						</tr>
    						<?php $i++; ?>
@@ -35,14 +35,8 @@
    			</table>
    		</div>
    	</div>
-
-
-
    </div>
-   <!-- /.container-fluid -->
-
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="newMenuModal" tabindex="-1" role="dialog" aria-labelledby="newMenuModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">

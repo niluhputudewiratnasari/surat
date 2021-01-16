@@ -15,7 +15,7 @@
 
                                     <?= $this->session->flashdata('message');  ?>
 
-                                    <form class="user" method="post" action="?<?= base_url('masukcontroller'); ?>">
+                                    <form class="user" method="post" action="<?= base_url('masukcontroller'); ?>">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                             id="email" name="email" 
@@ -33,9 +33,7 @@
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    
                                     <div class="text-center">
                                         <a class="small" href="<?= base_url('masukcontroller/registration'); ?>">Create an Account!</a>
                                     </div>

@@ -26,12 +26,20 @@ class Admin extends CI_Controller {
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
 		$data['role'] = $this->db->get('akun_role')->result_array();
+		$this->form_validation->set_rules('role', 'Role', 'required');
 
-		$this->load->view('templetes/headerindex', $data);
-		$this->load->view('templetes/sidebarindex', $data);
-		$this->load->view('templetes/topbarindex', $data);
-		$this->load->view('admin/role', $data);
-		$this->load->view('templetes/footerindex');
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('admin/role', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->db->insert('akun_role', ['role' => $this->input->post('role')]);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+				New menu added! </div>');
+			redirect('admin/role');
+		}
 	}
 	public function roleAccess($role_id)
 	{

@@ -6,7 +6,7 @@ class Menu extends CI_Controller {
 	{
 		parent::__construct();
 		is_logged_in();
-		
+		$this->load->model('menu_model');
 	}
 
 	public function index()
@@ -63,13 +63,46 @@ class Menu extends CI_Controller {
 				New sub menu added! </div>');
 			redirect('menu/submenu');
 		}
+
+	}
+	public function hapus($id = '')
+	{
+		$this->menu_model->hapusdata($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('menu/index');
+	}
+	public function edit($id = '')
+	{
+		$data['title'] = 'Menu Management';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+
+		$data['menu'] = $this->db->get('akun_menu')->result_array();
+		$this->form_validation->set_rules('menu', 'Menu', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('menu/editmenu', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->db->insert('akun_menu', ['menu' => $this->input->post('menu')]);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+				New menu added! </div>');
+			redirect('menu');
+		}
+		$this->menu_model->satuData($id);
 	}
 
-	public function hapus($id)
+	public function proses_edit()
 	{
-		$this->Menu_model->hapusSubMenu($id);
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Sub menu has delete!! </div>');
-		redirect('menu/submenu');
+		$input_id = $this->input->post('id');
+		$data = array(
+			'menu' => $this->input->post('menu') 
+		);
+
+		$this->menu_model->simpanEdit($input_id, $data);
+		redirect('menu/index');
 	}
+
 }

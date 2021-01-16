@@ -15,9 +15,18 @@ class Menu_model extends CI_Model
 		return $this->db->query($query)->result_array();
 	}
 
-	public function hapusSubMenu($id)
+	public function hapusdata($id)
 	{
 		$this->db->where('id', $id);
-		$this->db->delete('akun_sub_menu');
+		return $this->db->delete('akun_menu');
+
+	}
+	public function satuData($id)
+	{
+		return $this->db->where(['menu' => $id])->get('akun_menu')->row_object();
+	}
+	public function simpanEdit($input_id, $data)
+	{
+		$this->db->where(['menu' => $input_id])->update('akun_menu', $data);
 	}
 }

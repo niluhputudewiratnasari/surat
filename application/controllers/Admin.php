@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		is_logged_in();
+		$this->load->model('admin_model');
 	}
 
 	public function index()
@@ -79,6 +80,11 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 			Access change! </div>');
 	}
-
+	public function hapus($id = '')
+	{
+		$this->admin_model->hapusdata($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('admin/role');
+	}
 
 }

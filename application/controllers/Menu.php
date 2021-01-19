@@ -65,6 +65,13 @@ class Menu extends CI_Controller {
 		}
 
 	}
+
+	public function hapussub($id = '')
+	{
+		$this->menu_model->hapusdataSub($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('menu/submenu');
+	}
 	public function hapus($id = '')
 	{
 		$this->menu_model->hapusdata($id);
@@ -92,12 +99,14 @@ class Menu extends CI_Controller {
 			redirect('menu');
 		}
 		$this->menu_model->satuData($id);
+		$this->load->view('menu/editmenu', $data);
 	}
 
 	public function proses_edit()
 	{
 		$input_id = $this->input->post('id');
 		$data = array(
+			'id' => $this->input->post('id') ,
 			'menu' => $this->input->post('menu') 
 		);
 

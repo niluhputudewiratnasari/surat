@@ -41,7 +41,7 @@
              <td><?= $sm['is_active']; ?></td>
              <td>
               <a href="" class="badge badge-success">Edit</a>
-              <a href="<?= base_url(); ?> menu/hapus/<?= $sm['id']; ?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+              <a href="<?= base_url(); ?>menu/hapussub/<?= $sm['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
            </td>
         </tr>
         <?php $i++; ?>

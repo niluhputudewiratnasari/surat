@@ -27,7 +27,7 @@
    							<td>
                            <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-warning">Akses</a>
                            <a href="" class="badge badge-success">Edit</a>
-                           <a href="" class="badge badge-danger">Delete</a>
+                           <a href="<?= base_url(); ?>admin/hapus/<?= $r['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
                         </td>
                      </tr>
                      <?php $i++; ?>

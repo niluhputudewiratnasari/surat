@@ -13,10 +13,10 @@ class Surat extends CI_Controller {
 	{
 		$data['title'] = 'Surat Masuk';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
-		$this->load->model('Surat_model', 'nama_klasifikasi');
+		$this->load->model('Surat_model', 'surat');
 
-		$data['index'] = $this->nama_klasifikasi->getSurat();
-		$data['nomor_surat'] = $this->db->get('surat_masuk')->result_array();
+		$data['nomor_surat'] = $this->surat->getSurat();
+		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
 
 		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
 		$this->form_validation->set_rules('perihal', 'Perihal', 'required');

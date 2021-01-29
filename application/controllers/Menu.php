@@ -78,6 +78,12 @@ class Menu extends CI_Controller {
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('menu/index');
 	}
+	public function hapusklas($id = '')
+	{
+		$this->menu_model->hapusdataKlas($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('menu/klasifikasi');
+	}
 	public function edit($id = '')
 	{
 		$data['title'] = 'Menu Management';
@@ -113,5 +119,35 @@ class Menu extends CI_Controller {
 		$this->menu_model->simpanEdit($input_id, $data);
 		redirect('menu/index');
 	}
+	public function klasifikasi()
+	{
+		$data['title'] = 'Klasifikasi';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
+		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+
+		$this->form_validation->set_rules('klasifikasi', 'Kode Klasifikasi', 'required');
+		$this->form_validation->set_rules('nama_klasifikasi', 'Nama Klasifikasi', 'required');
+		$this->form_validation->set_rules('uraian', 'Uraian', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('menu/klasifikasi', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$data = [
+				'klasifikasi' => $this->input->post('klasifikasi'),
+				'nama_klasifikasi' => $this->input->post('nama_klasifikasi'),
+				'uraian' => $this->input->post('uraian')
+			];
+
+			$this->db->insert('kode_klasifikasi', $data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+				Klasifikasi berhasil ditambah! </div>');
+			redirect('menu/klasifikasi');
+		}
+
+	}
 }

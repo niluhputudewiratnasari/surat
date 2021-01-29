@@ -28,6 +28,12 @@ class Menu_model extends CI_Model
 		return $this->db->delete('akun_sub_menu');
 
 	}
+	public function hapusdataKlas($id)
+	{
+		$this->db->where('klasifikasi', $id);
+		return $this->db->delete('kode_klasifikasi');
+
+	}
 	public function satuData($id)
 	{
 		return $this->db->where(['id' => $id])->get('akun_menu')->row_object();

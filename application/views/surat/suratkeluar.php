@@ -11,7 +11,7 @@
         <?= $this->session->flashdata('message'); ?>
 
 
-        <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal">Tambah Surat Masuk</a>
+        <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratKeluarModal">Tambah Surat Keluar</a>
 
         <table class="table table-striped">
          <thead>
@@ -21,29 +21,27 @@
                <th scope="col">Perihal</th>
                <th scope="col">Kode Klasifikasi</th>
                <th scope="col">Lampiran</th>
-               <th scope="col">Pengirim</th>
+               <th scope="col">Kepada</th>
                <th scope="col">Tanggal Surat</th>
-               <th scope="col">Status</th>
                <th scope="col">File</th>
                <th scope="col">Action</th>
             </tr>
          </thead>
          <tbody>
             <?php $i = 1; ?>
-            <?php foreach ($nomor_surat as $sms) : ?>
+            <?php foreach ($nomor_surat as $sk) : ?>
                <tr>
                   <th scope="row"><?= $i; ?></th>
-                  <td><?= $sms['nomor_surat']; ?></td>
-                  <td><?= $sms['perihal']; ?></td>
-                  <td><?= $sms['klasifikasi']; ?></td>
-                  <td><?= $sms['lampiran']; ?></td>
-                  <td><?= $sms['pengirim']; ?></td>
-                  <td><?= $sms['tgl_surat']; ?></td>
-                  <td><?= $sms['status']; ?></td>
-                  <td><?= $sms['file']; ?></td>
+                  <td><?= $sk['nomor_surat']; ?></td>
+                  <td><?= $sk['perihal']; ?></td>
+                  <td><?= $sk['klasifikasi']; ?></td>
+                  <td><?= $sk['lampiran']; ?></td>
+                  <td><?= $sk['kepada']; ?></td>
+                  <td><?= $sk['tgl_surat']; ?></td>
+                  <td><?= $sk['file']; ?></td>
                   <td>
-                     <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
-                     <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+                     <a href="<?= base_url(); ?>surat/editk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
+                     <a href="<?= base_url(); ?>surat/hapusk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
                      <a href="" class="badge badge-warning">Arsipkan</a>
                   </td>
                </tr>
@@ -56,14 +54,14 @@
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="newSuratMasukModal" tabindex="-1" role="dialog" aria-labelledby="newSuratMasukModalLabel" aria-hidden="true">
+<div class="modal fade" id="newSuratKeluarModal" tabindex="-1" role="dialog" aria-labelledby="newSuratKeluarModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="newSuratMasukModalLabel">Tambah Surat Masuk</h5>
+            <h5 class="modal-title" id="newSuratKeluarModalLabel">Tambah Surat Keluar</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          </div>
-         <form action="<?= base_url('surat'); ?>" method="post">
+         <form action="<?= base_url('surat/suratkeluar'); ?>" method="post">
             <div class="modal-body">
                <div class="form-group">
                   <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Nomor Surat">
@@ -84,21 +82,11 @@
                   <input type="text" class="form-control" id="lampiran" name="lampiran" placeholder="Lampiran">
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control" id="pengirim" name="pengirim" placeholder="pengirim">
+                  <input type="text" class="form-control" id="kepada" name="kepada" placeholder="Kepada">
                </div>
                <div class="form-group">
                   <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
                </div>
-               <div class="form-group">
-                  <select name="status" id="status" class="form-control">
-                     <?php foreach ($nomor_surat as $sms) : ?>
-                        <option value="<?= $sms['status']; ?>"><?= $sms['status']; ?></option>
-                     <?php endforeach; ?>
-                  </select>
-               </div>
-               <!-- <div class="form-group">
-                  <input type="text" class="form-control" id="status" name="status" placeholder="Status">
-               </div> -->
                <div class="form-group">
                   <input type="text" class="form-control" id="file" name="file" placeholder="File">
                </div>

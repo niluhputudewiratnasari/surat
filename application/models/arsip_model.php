@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-class Surat_model extends CI_Model
+class Arsip_model extends CI_Model
 {
 	
-	public function getSurat()
+	public function getArsip()
 	{
-		$query = "SELECT `surat_masuk`.*, `kode_klasifikasi`.`klasifikasi`
-		FROM `surat_masuk` JOIN `kode_klasifikasi`
-		ON  `surat_masuk`.`klasifikasi` = `kode_klasifikasi`.`klasifikasi`
+		$query = "SELECT `arsip_masuk`.*, `surat_masuk`.`nomor_surat`
+		FROM `arsip_masuk` JOIN `surat_masuk`
+		ON  `arsip_masuk`.`nomor_surat` = `surat_masuk`.`nomor_surat`
 		";
 		return $this->db->query($query)->result_array();
 	}

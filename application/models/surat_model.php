@@ -14,6 +14,14 @@ class Surat_model extends CI_Model
 		";
 		return $this->db->query($query)->result_array();
 	}
+
+	public function hapusdata($id)
+	{
+		$this->db->where('id_suratmasuk', $id);
+		return $this->db->delete('surat_masuk');
+
+	}
+
 	public function getSuratK()
 	{
 		$query = "SELECT `surat_keluar`.*, `kode_klasifikasi`.`klasifikasi`

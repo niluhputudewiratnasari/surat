@@ -8,34 +8,47 @@
    			<?= $this->session->flashdata('message'); ?>
 
 
-   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newMenuModal">Add New Menu</a>
+   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newMenuModal"><i class="fas fa-fw fa-plus"></i> Add New Menu</a>
+        <br>
 
-   			<table class="table table-striped">
-   				<thead>
-   					<tr>
-   						<th scope="col">#</th>
-   						<th scope="col">Menu</th>
-   						<th scope="col">Action</th>
-   					</tr>
-   				</thead>
-   				<tbody>
-   					<?php $i = 1; ?>
-   					<?php foreach ($menu as $m) : ?>
-   						<tr>
-   							<th scope="row"><?= $i; ?></th>
-   							<td><?= $m['menu']; ?></td>
-   							<td>
-   								<a href="<?= base_url(); ?>menu/edit/<?= $m['id'];?>" class="badge badge-success">Edit</a>
-   								<a href="<?= base_url(); ?>menu/hapus/<?= $m['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-   							</td>
-   						</tr>
-   						<?php $i++; ?>
-   					<?php endforeach; ?>
-   				</tbody>
-   			</table>
-   		</div>
-   	</div>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+            aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+             <button class="btn btn-info" type="button">
+              <i class="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Menu</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+         <?php $i = 1; ?>
+         <?php foreach ($menu as $m) : ?>
+           <tr>
+             <th scope="row"><?= $i; ?></th>
+             <td><?= $m['menu']; ?></td>
+             <td>
+               <a href="<?= base_url(); ?>menu/edit/<?= $m['id'];?>" class="badge badge-success">Edit</a>
+               <a href="<?= base_url(); ?>menu/hapus/<?= $m['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+             </td>
+           </tr>
+           <?php $i++; ?>
+         <?php endforeach; ?>
+       </tbody>
+     </table>
    </div>
+ </div>
+</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="newMenuModal" tabindex="-1" role="dialog" aria-labelledby="newMenuModalLabel" aria-hidden="true">

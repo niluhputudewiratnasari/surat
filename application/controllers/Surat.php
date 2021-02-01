@@ -7,14 +7,15 @@ class Surat extends CI_Controller {
 	{
 		parent::__construct();
 		//is_logged_in();
+		$this->load->model('surat_model');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Surat Masuk';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		
 		$this->load->model('Surat_model', 'surat');
-
 		$data['nomor_surat'] = $this->surat->getSurat();
 		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
 
@@ -42,15 +43,37 @@ class Surat extends CI_Controller {
 				'pengirim' => $this->input->post('pengirim'),
 				'tgl_surat' => $this->input->post('tgl_surat'),
 				'status' => $this->input->post('status'),
-				'file' => $this->input->post('file')
+				'file' => $this->input->post('file')//$_FILES['file']['name']
 			];
+
+
+			// if ($file='') {}else{
+			// 	$config ['upload_path'] = './assets/photo/';
+			// 	$config ['allowed_types'] ='jpg|jpeg|png|tiff';
+			// 	$this->load->library('upload', $config);
+
+			// 	if (!$this->upload->do_upload('file')) {
+			// 		echo "File Berhasil Diupload!";
+			// 	}else{
+			// 		$file = $this->upload->data('file_name');
+			// 	}
+
+			
+
 			$this->db->insert('surat_masuk', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 				Surat Masuk Berhasil Ditambahkan! </div>');
 			redirect('surat/index');
 		}
 	}
-	
+
+	public function hapus($id = '')
+	{
+		$this->surat_model->hapusdata($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('surat/index');
+	}
+
 	public function suratkeluar()
 	{
 		$data['title'] = 'Surat Keluar';

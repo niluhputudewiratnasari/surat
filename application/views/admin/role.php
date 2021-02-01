@@ -8,35 +8,35 @@
    			<?= $this->session->flashdata('message'); ?>
 
 
-   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newRoleModal">Add New Role</a>
+   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newRoleModal"><i class="fas fa-fw fa-plus"></i> Add New Role</a>
 
-   			<table class="table table-striped">
-   				<thead>
-   					<tr>
-   						<th scope="col">#</th>
-   						<th scope="col">Role</th>
-   						<th scope="col">Action</th>
-   					</tr>
-   				</thead>
-   				<tbody>
-   					<?php $i = 1; ?>
-   					<?php foreach ($role as $r) : ?>
-   						<tr>
-   							<th scope="row"><?= $i; ?></th>
-   							<td><?= $r['role']; ?></td>
-   							<td>
-                           <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-warning">Akses</a>
-                           <a href="" class="badge badge-success">Edit</a>
-                           <a href="<?= base_url(); ?>admin/hapus/<?= $r['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-                        </td>
-                     </tr>
-                     <?php $i++; ?>
-                  <?php endforeach; ?>
-               </tbody>
-            </table>
-         </div>
-      </div>
-   </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Action</th>
+               </tr>
+            </thead>
+            <tbody>
+             <?php $i = 1; ?>
+             <?php foreach ($role as $r) : ?>
+               <tr>
+                 <th scope="row"><?= $i; ?></th>
+                 <td><?= $r['role']; ?></td>
+                 <td>
+                  <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-warning">Akses</a>
+                  <a href="" class="badge badge-success">Edit</a>
+                  <a href="<?= base_url(); ?>admin/hapus/<?= $r['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+               </td>
+            </tr>
+            <?php $i++; ?>
+         <?php endforeach; ?>
+      </tbody>
+   </table>
+</div>
+</div>
+</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="newRoleModal" tabindex="-1" role="dialog" aria-labelledby="newRoleModalLabel" aria-hidden="true">

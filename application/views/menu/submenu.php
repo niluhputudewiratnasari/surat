@@ -11,37 +11,48 @@
     <?= $this->session->flashdata('message'); ?>
 
 
-    <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSubmenuModal">Add New Submenu</a>
+    <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSubmenuModal"><i class="fas fa-fw fa-plus"></i> Add New Submenu</a>
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+     <div class="input-group">
+      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+      aria-label="Search" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-info" type="button">
+          <i class="fas fa-search fa-sm"></i>
+        </button>
+      </div>
+    </div>
+  </form>
 
-    <table class="table table-striped">
-     <thead>
-      <tr>
-       <th scope="col">#</th>
-       <th scope="col">Title</th>
-       <th scope="col">Menu</th>
-       <th scope="col">Url</th>
-       <th scope="col">Icon</th>
-       <th scope="col">Active</th>
-       <th scope="col">Action</th>
-     </tr>
-   </thead>
-   <tbody>
-     <?php $i = 1; ?>
-     <?php foreach ($subMenu as $sm) : ?>
-      <tr>
-       <th scope="row"><?= $i; ?></th>
-       <td><?= $sm['title']; ?></td>
-       <td><?= $sm['menu']; ?></td>
-       <td><?= $sm['url']; ?></td>
-       <td><?= $sm['icon']; ?></td>
-       <td><?= $sm['is_active']; ?></td>
-       <td>
-        <a href="" class="badge badge-success">Edit</a>
-        <a href="<?= base_url(); ?>menu/hapussub/<?= $sm['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-      </td>
-    </tr>
-    <?php $i++; ?>
-  <?php endforeach; ?>
+  <table class="table table-striped">
+   <thead>
+    <tr>
+     <th scope="col">#</th>
+     <th scope="col">Title</th>
+     <th scope="col">Menu</th>
+     <th scope="col">Url</th>
+     <th scope="col">Icon</th>
+     <th scope="col">Active</th>
+     <th scope="col">Action</th>
+   </tr>
+ </thead>
+ <tbody>
+   <?php $i = 1; ?>
+   <?php foreach ($subMenu as $sm) : ?>
+    <tr>
+     <th scope="row"><?= $i; ?></th>
+     <td><?= $sm['title']; ?></td>
+     <td><?= $sm['menu']; ?></td>
+     <td><?= $sm['url']; ?></td>
+     <td><?= $sm['icon']; ?></td>
+     <td><?= $sm['is_active']; ?></td>
+     <td>
+      <a href="" class="badge badge-success">Edit</a>
+      <a href="<?= base_url(); ?>menu/hapussub/<?= $sm['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+    </td>
+  </tr>
+  <?php $i++; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
 </div>

@@ -11,34 +11,46 @@
           <?= $this->session->flashdata('message'); ?>
 
 
-          <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newKlasifikasiModal">Add New Classification</a>
+          <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newKlasifikasiModal"><i class="fas fa-fw fa-plus"></i> Add New Classification</a>
 
-          <table class="table table-striped">
-           <thead>
-             <tr>
-               <th scope="col">#</th>
-               <th scope="col">Kode Klasifikasi</th>
-               <th scope="col">Nama Klasifikasi</th>
-               <th scope="col">Uraian</th>
-               <th scope="col">Action</th>
-            </tr>
-         </thead>
-         <tbody>
-          <?php $i = 1; ?>
-          <?php foreach ($klasifikasi as $klas) : ?>
-            <tr>
-              <th scope="row"><?= $i; ?></th>
-              <td><?= $klas['klasifikasi']; ?></td>
-              <td><?= $klas['nama_klasifikasi']; ?></td>
-              <td><?= $klas['uraian']; ?></td>
-              <td>
-               <a href="<?= base_url(); ?>menu/editklas/<?= $klas['klasifikasi'];?>" class="badge badge-success">Edit</a>
-               <a href="<?= base_url(); ?>menu/hapusklas/<?= $klas['klasifikasi'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-            </td>
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+             <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+              aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-info" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+               </button>
+            </div>
+         </div>
+      </form>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Kode Klasifikasi</th>
+            <th scope="col">Nama Klasifikasi</th>
+            <th scope="col">Uraian</th>
+            <th scope="col">Action</th>
          </tr>
-         <?php $i++; ?>
-      <?php endforeach; ?>
-   </tbody>
+      </thead>
+      <tbody>
+       <?php $i = 1; ?>
+       <?php foreach ($klasifikasi as $klas) : ?>
+         <tr>
+           <th scope="row"><?= $i; ?></th>
+           <td><?= $klas['klasifikasi']; ?></td>
+           <td><?= $klas['nama_klasifikasi']; ?></td>
+           <td><?= $klas['uraian']; ?></td>
+           <td>
+            <a href="<?= base_url(); ?>menu/editklas/<?= $klas['klasifikasi'];?>" class="badge badge-success">Edit</a>
+            <a href="<?= base_url(); ?>menu/hapusklas/<?= $klas['klasifikasi'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+         </td>
+      </tr>
+      <?php $i++; ?>
+   <?php endforeach; ?>
+</tbody>
 </table>
 </div>
 </div>

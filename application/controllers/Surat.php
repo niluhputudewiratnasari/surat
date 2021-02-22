@@ -49,7 +49,10 @@ class Surat extends CI_Controller {
 
 			// if ($file='') {}else{
 			// 	$config ['upload_path'] = './assets/photo/';
-			// 	$config ['allowed_types'] ='jpg|jpeg|png|tiff';
+			// 	$config ['allowed_types'] ='jpg|jpeg|png|pdf';
+			// 	$config ['max_size']='3000';
+			// 	$config ['max_width']='3000';
+			// 	$config ['max_height']='3000';
 			// 	$this->load->library('upload', $config);
 
 			// 	if (!$this->upload->do_upload('file')) {

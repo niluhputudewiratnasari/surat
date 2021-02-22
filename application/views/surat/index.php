@@ -13,6 +13,7 @@
 
 
       <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal"><i class="fas fa-fw fa-plus"></i> Tambah Surat Masuk</a>
+      <br>
 
       <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
        <div class="input-group">
@@ -26,7 +27,7 @@
       </div>
     </form>
 
-    <table class="table table-striped">
+    <table class="table table-striped mt-3">
      <thead>
       <tr>
        <th scope="col">#</th>
@@ -55,6 +56,8 @@
       <td><?= $sms['status']; ?></td>
       <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
       <td>
+       <a href="" class="badge badge-info">Disposisi</a>
+       <a href="" class="badge badge-primary">Detail</a>
        <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
        <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
        <a href="" class="badge badge-warning">Arsipkan</a>

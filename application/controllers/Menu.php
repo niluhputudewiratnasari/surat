@@ -88,6 +88,7 @@ class Menu extends CI_Controller {
 	{
 		$data['title'] = 'Menu Management';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		$data['akun_menu'] = $this->menu_model->getId($id);
 
 		$data['menu'] = $this->db->get('akun_menu')->result_array();
 		$this->form_validation->set_rules('menu', 'Menu', 'required');
@@ -99,12 +100,12 @@ class Menu extends CI_Controller {
 			$this->load->view('menu/editmenu', $data);
 			$this->load->view('templetes/footerindex');
 		} else {
-			$this->db->insert('akun_menu', ['menu' => $this->input->post('menu')]);
+			$this->menu_model->editMenu();
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 				New menu added! </div>');
 			redirect('menu');
 		}
-		$this->menu_model->satuData($id);
+		//$this->menu_model->satuData($id);
 		$this->load->view('menu/editmenu', $data);
 	}
 

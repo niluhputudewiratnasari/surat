@@ -34,6 +34,11 @@ class Menu_model extends CI_Model
 		return $this->db->delete('kode_klasifikasi');
 
 	}
+	public function getId($id)
+	{
+		return $this->db->get_where('akun_menu',['id' => $id])->row_array();
+	}
+
 	public function satuData($id)
 	{
 		return $this->db->where(['id' => $id])->get('akun_menu')->row_object();
@@ -41,5 +46,15 @@ class Menu_model extends CI_Model
 	public function simpanEdit($input_id, $data)
 	{
 		$this->db->where(['id' => $input_id])->update('akun_menu', $data);
+	}
+
+	public function editMenu()
+	{
+		$data = [
+			'menu' => $this->input->post('menu', true)
+		];
+
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('akun_menu', $data);
 	}
 }

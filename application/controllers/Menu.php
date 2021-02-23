@@ -101,8 +101,6 @@ class Menu extends CI_Controller {
 			$this->load->view('templetes/footerindex');
 		} else {
 			$this->menu_model->editMenu();
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				New menu added! </div>');
 			redirect('menu');
 		}
 		//$this->menu_model->satuData($id);
@@ -118,6 +116,8 @@ class Menu extends CI_Controller {
 		);
 
 		$this->menu_model->simpanEdit($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Menu Has Updated! </div>');
 		redirect('menu/index');
 	}
 	public function klasifikasi()

@@ -11,9 +11,14 @@
       <?= $this->session->flashdata('message'); ?>
 
 
-
-      <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal"><i class="fas fa-fw fa-plus"></i> Tambah Surat Masuk</a>
-      <br>
+      <?php
+      if($this->session->role_id == '1'):
+        ?>
+        <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal"><i class="fas fa-fw fa-plus"></i> Tambah Surat Masuk</a>
+        <br>
+        <?php 
+      endif
+      ?>
 
       <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
        <div class="input-group">
@@ -56,15 +61,23 @@
       <td><?= $sms['status']; ?></td>
       <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
       <td>
-       <a href="" class="badge badge-info">Disposisi</a>
+
        <a href="" class="badge badge-primary">Detail</a>
-       <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
-       <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-       <a href="" class="badge badge-warning">Arsipkan</a>
-     </td>
-   </tr>
-   <?php $i++; ?>
- <?php endforeach; ?>
+
+       <!-- <a href="" class="badge badge-info">Disposisi</a> -->
+       <?php
+       if($this->session->role_id == '1'):
+        ?>
+        <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
+        <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+        <a href="" class="badge badge-warning">Arsipkan</a>
+        <?php 
+      endif
+      ?>
+    </td>
+  </tr>
+  <?php $i++; ?>
+<?php endforeach; ?>
 </tbody>
 </table>
 </div>

@@ -86,5 +86,39 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('admin/role');
 	}
+	public function editrole($id='')
+	{
+		$data['title'] = 'Role';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		$data['akun_role'] = $this->admin_model->getIdrole($id);
+
+		$data['role'] = $this->db->get('akun_role')->result_array();
+		$this->form_validation->set_rules('role', 'Role', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('admin/editrole', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->admin_model->editRole();
+			redirect('admin');
+		}
+		$this->load->view('admin/editrole', $data);
+	}
+	public function proses_editrole()
+	{
+		$input_id = $this->input->post('id');
+		$data = array(
+			'id' => $this->input->post('id') ,
+			'role' => $this->input->post('role') 
+		);
+
+		$this->admin_model->simpanEditrole($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Role Has Updated! </div>');
+		redirect('admin/role');
+	}
 
 }

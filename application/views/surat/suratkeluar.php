@@ -10,9 +10,14 @@
     <?php endif; ?>
     <?= $this->session->flashdata('message'); ?>
 
-
-    <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratKeluarModal"><i class="fas fa-fw fa-plus"></i> Tambah Surat Keluar</a>
-    <br>
+    <?php
+    if($this->session->role_id == '1'):
+      ?>
+      <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratKeluarModal"><i class="fas fa-fw fa-plus"></i> Tambah Surat Keluar</a>
+      <br>
+      <?php 
+    endif
+    ?>
 
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
       <div class="input-group">
@@ -54,9 +59,15 @@
      <td><?= $sk['file']; ?></td>
      <td>
       <a href="" class="badge badge-primary">Detail</a>
-      <a href="<?= base_url(); ?>surat/editk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
-      <a href="<?= base_url(); ?>surat/hapusk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-      <a href="" class="badge badge-warning">Arsipkan</a>
+      <?php
+      if($this->session->role_id == '1'):
+        ?>
+        <a href="<?= base_url(); ?>surat/editk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
+        <a href="<?= base_url(); ?>surat/hapusk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+        <a href="" class="badge badge-warning">Arsipkan</a>
+        <?php 
+      endif
+      ?>
     </td>
   </tr>
   <?php $i++; ?>

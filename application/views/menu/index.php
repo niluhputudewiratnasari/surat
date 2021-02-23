@@ -7,9 +7,14 @@
    			', '</div>') ?>
    			<?= $this->session->flashdata('message'); ?>
 
-
-   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newMenuModal"><i class="fas fa-fw fa-plus"></i> Add New Menu</a>
-        <br>
+        <?php
+        if($this->session->role_id == '1'):
+          ?>
+          <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newMenuModal"><i class="fas fa-fw fa-plus"></i> Add New Menu</a>
+          <br>
+          <?php 
+        endif
+        ?>
 
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div class="input-group">

@@ -105,7 +105,6 @@ class Admin extends CI_Controller {
 			$this->admin_model->editRole();
 			redirect('admin');
 		}
-		$this->load->view('admin/editrole', $data);
 	}
 	public function proses_editrole()
 	{

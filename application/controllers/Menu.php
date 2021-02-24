@@ -103,8 +103,6 @@ class Menu extends CI_Controller {
 			$this->menu_model->editMenu();
 			redirect('menu');
 		}
-		//$this->menu_model->satuData($id);
-		$this->load->view('menu/editmenu', $data);
 	}
 
 	public function proses_edit()
@@ -120,6 +118,59 @@ class Menu extends CI_Controller {
 			Menu Has Updated! </div>');
 		redirect('menu/index');
 	}
+
+	//=====================UNTUK EDIT SUBMENU=================
+	public function editSub($id = '')
+	{
+		$data['title'] = 'Submenu Management';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		$this->load->model('Menu_model', 'menu');
+
+		$data['akun_sub_menu'] = $this->menu->getSubMenu();
+
+		$data['akun_sub_menu'] = $this->menu_model->getIdSub($id);
+
+		
+		$data['menu'] = $this->db->get('akun_menu')->result_array();
+
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('menu_id', 'Menu', 'required');
+		$this->form_validation->set_rules('url', 'URL', 'required');
+		$this->form_validation->set_rules('icon', 'Icon', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('menu/editsubmenu', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->menu_model->editSubMenu();
+			redirect('menu/submenu');
+		}
+	}
+
+	public function proses_editsub()
+	{
+		$input_id = $this->input->post('id');
+		$data = array(
+			'id' => $this->input->post('id') ,
+			'title' => $this->input->post('title'),
+			'menu_id' => $this->input->post('menu_id'),
+			'url' => $this->input->post('url'),
+			'icon' => $this->input->post('icon'),
+			'is_active' => $this->input->post('is_active')
+		);
+
+		$this->menu_model->simpanEditSub($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Submenu Has Updated! </div>');
+		redirect('menu/submenu');
+	}
+
+	//=================AKHIRAN EDIT SUBMENU===================
+
+
 	public function klasifikasi()
 	{
 		$data['title'] = 'Klasifikasi';

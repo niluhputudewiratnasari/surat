@@ -20,7 +20,7 @@
       endif
       ?>
 
-      <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
        <div class="input-group">
         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
         aria-label="Search" aria-describedby="basic-addon2">
@@ -30,56 +30,61 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> -->
 
-    <table class="table table-striped mt-3">
-     <thead>
-      <tr>
-       <th scope="col">#</th>
-       <th scope="col">Nomor Surat</th>
-       <th scope="col">Perihal</th>
-       <th scope="col">Kode Klasifikasi</th>
-       <th scope="col">Lampiran</th>
-       <th scope="col">Pengirim</th>
-       <th scope="col">Tanggal Surat</th>
-       <th scope="col">Status</th>
-       <th scope="col">File</th>
-       <th scope="col">Action</th>
-     </tr>
-   </thead>
-   <tbody>
-    <?php $i = 1; ?>
-    <?php foreach ($nomor_surat as $sms) : ?>
-     <tr>
-      <th scope="row"><?= $i; ?></th>
-      <td><?= $sms['nomor_surat']; ?></td>
-      <td><?= $sms['perihal']; ?></td>
-      <td><?= $sms['klasifikasi']; ?></td>
-      <td><?= $sms['lampiran']; ?></td>
-      <td><?= $sms['pengirim']; ?></td>
-      <td><?= $sms['tgl_surat']; ?></td>
-      <td><?= $sms['status']; ?></td>
-      <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
-      <td>
 
-       <a href="" class="badge badge-primary">Detail</a>
+    <div class="card">
+      <div class="card-body">
 
-       <!-- <a href="" class="badge badge-info">Disposisi</a> -->
-       <?php
-       if($this->session->role_id == '1'):
-        ?>
-        <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
-        <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-        <a href="" class="badge badge-warning">Arsipkan</a>
-        <?php 
-      endif
-      ?>
-    </td>
-  </tr>
-  <?php $i++; ?>
-<?php endforeach; ?>
-</tbody>
+        <table class="table table-striped mt-3">
+         <thead>
+          <tr>
+           <th scope="col">#</th>
+           <th scope="col">Nomor Surat</th>
+           <th scope="col">Perihal</th>
+           <th scope="col">Kode Klasifikasi</th>
+           <th scope="col">Lampiran</th>
+           <th scope="col">Pengirim</th>
+           <th scope="col">Tanggal Surat</th>
+           <th scope="col">Status</th>
+           <th scope="col">File</th>
+           <th scope="col">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+        <?php $i = 1; ?>
+        <?php foreach ($nomor_surat as $sms) : ?>
+         <tr>
+          <th scope="row"><?= $i; ?></th>
+          <td><?= $sms['nomor_surat']; ?></td>
+          <td><?= $sms['perihal']; ?></td>
+          <td><?= $sms['klasifikasi']; ?></td>
+          <td><?= $sms['lampiran']; ?></td>
+          <td><?= $sms['pengirim']; ?></td>
+          <td><?= $sms['tgl_surat']; ?></td>
+          <td><?= $sms['status']; ?></td>
+          <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
+          <td>
+
+           <a href="" class="badge badge-primary">Detail</a>
+
+           <!-- <a href="" class="badge badge-info">Disposisi</a> -->
+           <?php
+           if($this->session->role_id == '1'):
+            ?>
+            <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
+            <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+            <a href="" class="badge badge-warning">Arsipkan</a>
+            <?php 
+          endif
+          ?>
+        </td>
+      </tr>
+      <?php $i++; ?>
+    <?php endforeach; ?>
+  </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>

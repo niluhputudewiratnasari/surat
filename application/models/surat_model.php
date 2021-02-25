@@ -37,5 +37,10 @@ class Surat_model extends CI_Model
 		return $this->db->delete('surat_keluar');
 
 	}
-	
+
+	public function getWhere($kode)
+	{
+		return $this->db->get_where('surat_keluar',['id_suratkeluar' => $kode])->row_array();
+	}
+
 }

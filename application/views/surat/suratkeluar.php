@@ -61,7 +61,7 @@
        <td><?= $sk['tgl_surat']; ?></td>
        <td><?= $sk['file']; ?></td>
        <td>
-        <a href="" class="badge badge-primary">Detail</a>
+        <a href="<?=site_url(); ?>surat/detailsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-primary">Detail</a>
         <?php
         if($this->session->role_id == '1'):
           ?>

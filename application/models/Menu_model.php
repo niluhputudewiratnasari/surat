@@ -79,4 +79,26 @@ class Menu_model extends CI_Model
 	{
 		$this->db->where(['id' => $input_id])->update('akun_sub_menu', $data);
 	}
+
+
+//===============================================KLASIFIKASI=============================================
+	public function editklasifikasi()
+	{
+		$data = [
+			'klasifikasi' => $this->input->post('klasifikasi', true),
+			'nama_klasifikasi' => $this->input->post('nama_klasifikasi', ture),
+			'uraian' => $this->input->post('uraian', true)
+		];
+
+		$this->db->where('klasifikasi', $this->input->post('klasifikasi'));
+		$this->db->update('kode_klasifikasi', $data);
+	}
+	public function getIdklas($klasifikasi)
+	{
+		return $this->db->get_where('kode_klasifikasi',['klasifikasi' => $klasifikasi])->row_array();
+	}
+	public function simpanEditklasifikasi($input_id, $data)
+	{
+		$this->db->where(['klasifikasi' => $input_id])->update('kode_klasifikasi', $data);
+	}
 }

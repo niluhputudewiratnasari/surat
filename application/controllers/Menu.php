@@ -9,6 +9,7 @@ class Menu extends CI_Controller {
 		$this->load->model('menu_model');
 	}
 
+//=================================================MENU=================================================
 	public function index()
 	{
 		$data['title'] = 'Menu Management';
@@ -30,6 +31,8 @@ class Menu extends CI_Controller {
 			redirect('menu');
 		}
 	}
+
+	//=================================================SUBMENU=================================================
 	public function subMenu()
 	{
 		$data['title'] = 'Submenu Management';
@@ -66,24 +69,31 @@ class Menu extends CI_Controller {
 
 	}
 
+//=====================================HAPUS SUNMENU==============================================
 	public function hapussub($id = '')
 	{
 		$this->menu_model->hapusdataSub($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('menu/submenu');
 	}
+
+	//=====================================HAPUS MENU==============================================
 	public function hapus($id = '')
 	{
 		$this->menu_model->hapusdata($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('menu/index');
 	}
+
+	//===================================HAPUS KLASIFIKASI==========================================
 	public function hapusklas($id = '')
 	{
 		$this->menu_model->hapusdataKlas($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('menu/klasifikasi');
 	}
+
+	//=====================================EDIT MENU==============================================
 	public function edit($id = '')
 	{
 		$data['title'] = 'Menu Management';
@@ -118,15 +128,16 @@ class Menu extends CI_Controller {
 			Menu Has Updated! </div>');
 		redirect('menu/index');
 	}
+	//=====================================AKHIR EDIT MENU==============================================
 
-	//=====================UNTUK EDIT SUBMENU=================
+	//=====================================UNTUK EDIT SUBMENU===========================================
 	public function editSub($id = '')
 	{
 		$data['title'] = 'Submenu Management';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 		$this->load->model('Menu_model', 'menu');
 
-		$data['akun_sub_menu'] = $this->menu->getSubMenu();
+		$data['akun_sub_menu'] = $this->menu->getSubMenu($id);
 
 		$data['akun_sub_menu'] = $this->menu_model->getIdSub($id);
 
@@ -168,9 +179,9 @@ class Menu extends CI_Controller {
 		redirect('menu/submenu');
 	}
 
-	//=================AKHIRAN EDIT SUBMENU===================
+//=====================================AKHIRAN EDIT SUBMENU=====================================
 
-
+//=====================================KLASIFIKASI==============================================
 	public function klasifikasi()
 	{
 		$data['title'] = 'Klasifikasi';
@@ -200,6 +211,43 @@ class Menu extends CI_Controller {
 				Klasifikasi berhasil ditambah! </div>');
 			redirect('menu/klasifikasi');
 		}
+	}
 
+	public function editklasifikasi($klasifikasi = '')
+	{
+		$data['title'] = 'Klasifikasi';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		$data['kode_klasifikasi'] = $this->menu_model->getIdklas($klasifikasi);
+		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+
+		$this->form_validation->set_rules('klasifikasi', 'Kode Klasifikasi', 'required');
+		$this->form_validation->set_rules('nama_klasifikasi', 'Nama Klasifikasi', 'required');
+		$this->form_validation->set_rules('uraian', 'Uraian', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('menu/editklasifikasi', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->menu_model->editklasifikasi();
+			redirect('menu/klasifikasi');
+		}
+	}
+
+	public function proses_editklasifikasi()
+	{
+		$input_id = $this->input->post('klasifikasi');
+		$data = array(
+			'klasifikasi' => $this->input->post('klasifikasi'),
+			'nama_klasifikasi' => $this->input->post('nama_klasifikasi'),
+			'uraian' => $this->input->post('uraian')
+		);
+
+		$this->menu_model->simpanEditklasifikasi($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Classification Has Updated! </div>');
+		redirect('menu/klasifikasi');
 	}
 }

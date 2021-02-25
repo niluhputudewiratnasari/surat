@@ -30,5 +30,12 @@ class Surat_model extends CI_Model
 		";
 		return $this->db->query($query)->result_array();
 	}
+
+	public function hapusdatask($id)
+	{
+		$this->db->where('id_suratkeluar', $id);
+		return $this->db->delete('surat_keluar');
+
+	}
 	
 }

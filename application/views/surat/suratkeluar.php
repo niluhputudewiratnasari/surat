@@ -19,7 +19,7 @@
     endif
     ?>
 
-    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
       <div class="input-group">
        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
        aria-label="Search" aria-describedby="basic-addon2">
@@ -29,51 +29,56 @@
          </button>
        </div>
      </div>
-   </form>
+   </form> -->
 
-   <table class="table table-striped mt-3">
-    <thead>
-     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nomor Surat</th>
-      <th scope="col">Perihal</th>
-      <th scope="col">Kode Klasifikasi</th>
-      <th scope="col">Lampiran</th>
-      <th scope="col">Kepada</th>
-      <th scope="col">Tanggal Surat</th>
-      <th scope="col">File</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-   <?php $i = 1; ?>
-   <?php foreach ($nomor_surat as $sk) : ?>
-    <tr>
-     <th scope="row"><?= $i; ?></th>
-     <td><?= $sk['nomor_surat']; ?></td>
-     <td><?= $sk['perihal']; ?></td>
-     <td><?= $sk['klasifikasi']; ?></td>
-     <td><?= $sk['lampiran']; ?></td>
-     <td><?= $sk['kepada']; ?></td>
-     <td><?= $sk['tgl_surat']; ?></td>
-     <td><?= $sk['file']; ?></td>
-     <td>
-      <a href="" class="badge badge-primary">Detail</a>
-      <?php
-      if($this->session->role_id == '1'):
+
+   <div class="card">
+    <div class="card-body">
+     <table class="table table-striped mt-3">
+      <thead>
+       <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nomor Surat</th>
+        <th scope="col">Perihal</th>
+        <th scope="col">Kode Klasifikasi</th>
+        <th scope="col">Lampiran</th>
+        <th scope="col">Kepada</th>
+        <th scope="col">Tanggal Surat</th>
+        <th scope="col">File</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+     <?php $i = 1; ?>
+     <?php foreach ($nomor_surat as $sk) : ?>
+      <tr>
+       <th scope="row"><?= $i; ?></th>
+       <td><?= $sk['nomor_surat']; ?></td>
+       <td><?= $sk['perihal']; ?></td>
+       <td><?= $sk['klasifikasi']; ?></td>
+       <td><?= $sk['lampiran']; ?></td>
+       <td><?= $sk['kepada']; ?></td>
+       <td><?= $sk['tgl_surat']; ?></td>
+       <td><?= $sk['file']; ?></td>
+       <td>
+        <a href="" class="badge badge-primary">Detail</a>
+        <?php
+        if($this->session->role_id == '1'):
+          ?>
+          <a href="<?= base_url(); ?>surat/editk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
+          <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+          <a href="" class="badge badge-warning">Arsipkan</a>
+          <?php 
+        endif
         ?>
-        <a href="<?= base_url(); ?>surat/editk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
-        <a href="<?= base_url(); ?>surat/hapusk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-        <a href="" class="badge badge-warning">Arsipkan</a>
-        <?php 
-      endif
-      ?>
-    </td>
-  </tr>
-  <?php $i++; ?>
-<?php endforeach; ?>
+      </td>
+    </tr>
+    <?php $i++; ?>
+  <?php endforeach; ?>
 </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
 </div>

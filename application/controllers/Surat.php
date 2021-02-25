@@ -116,4 +116,11 @@ class Surat extends CI_Controller {
 			redirect('surat/suratkeluar');
 		}
 	}
+
+	public function hapussk($id = '')
+	{
+		$this->surat_model->hapusdatask($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('surat/suratkeluar');
+	}
 }

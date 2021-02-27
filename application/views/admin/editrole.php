@@ -9,13 +9,14 @@
 							<div class="row mb-3">
 								<label for="role" class="col-sm-2 col-form-label">Role </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="role" name="role" vplaceholder="Masukkan Menu"  value="<?= $akun_role['role']; ?>">
+									<input type="text" class="form-control" id="role" name="role" placeholder="Masukkan Role"  value="<?= $akun_role['role']; ?>">
 								</div>
 							</div>
 
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-10">
 									<button type="submit" name="editrole" class="btn btn-primary">Edit</button>
+									<a class="btn btn-danger" href="<?=site_url('Admin/role')?>" role="button">Cancel</a>
 								</div>
 							</div>
 

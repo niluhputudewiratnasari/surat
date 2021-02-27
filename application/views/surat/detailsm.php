@@ -8,8 +8,9 @@
             <li class="nav-item">
               <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true"><?= $title; ?></a>
             </li>
-            
-
+            <li class="nav-item">
+              <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true"><?= $title; ?></a>
+            </li>
 
           </ul>
         </div>
@@ -48,9 +49,9 @@
                         </tr>
 
                         <tr>
-                          <td class="field text-left font-weight-bold">Kepada</td>
+                          <td class="field text-left font-weight-bold">Pengirim</td>
                           <td width="5%">:</td>
-                          <td class="text-left"><?= $nomor_surat['kepada']; ?></td>
+                          <td class="text-left"><?= $nomor_surat['pengirim']; ?></td>
                         </tr>
 
                         <tr>

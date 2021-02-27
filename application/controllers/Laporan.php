@@ -9,6 +9,8 @@ class Laporan extends CI_Controller {
 		//is_logged_in();
 
 		$this->load->model('laporan_model');
+		$this->load->model('disposisi_model');
+		$this->load->model('surat_model');
 	}
 
 	public function index()
@@ -35,5 +37,27 @@ class Laporan extends CI_Controller {
 		$this->load->view('laporan/index', $data);
 		$this->load->view('templetes/footerindex');
 		
+	}
+
+	public function disposisi()
+	{
+		$data['title'] = 'Disposisi';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		$data['data_masuk'] = $this->disposisi_model->getAll();
+		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
+
+		$this->form_validation->set_rules('tgl_surat', 'Tanggal Surat', 'required');
+		$this->form_validation->set_rules('tujuan', 'Tujuan Disposisi', 'required');
+		$this->form_validation->set_rules('keterangan', 'Isi Disposisi', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('laporan/disposisi', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			redirect('laporan/disposisi');
+		}
 	}
 }

@@ -36,7 +36,7 @@
     <div class="card">
       <div class="card-body">
 
-        <table class="table table-striped mt-3">
+        <table class="table table-striped mt-3 text-center">
          <thead>
           <tr>
            <th scope="col">#</th>
@@ -46,12 +46,18 @@
            <th scope="col">Lampiran</th>
            <th scope="col">Pengirim</th>
            <th scope="col">Tanggal Surat</th>
-           <th scope="col">Status</th>
-           <th scope="col">File</th>
-           <th scope="col">Action</th>
-         </tr>
-       </thead>
-       <tbody>
+           <?php
+           if($this->session->role_id != '2'):
+            ?>
+            <th>Status</th>
+            <?php
+          endif;
+          ?>
+          <th scope="col">File</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
         <?php $i = 1; ?>
         <?php foreach ($nomor_surat as $sms) : ?>
          <tr>
@@ -61,18 +67,31 @@
           <td><?= $sms['klasifikasi']; ?></td>
           <td><?= $sms['lampiran']; ?></td>
           <td><?= $sms['pengirim']; ?></td>
-          <td><?= $sms['tgl_surat']; ?></td>
-          <td><?= $sms['status']; ?></td>
-          <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
-          <td>
-
-           <a href="" class="badge badge-primary">Detail</a>
-
-           <!-- <a href="" class="badge badge-info">Disposisi</a> -->
-           <?php
-           if($this->session->role_id == '1'):
+          <td><?= $sms['tgl_surat']; ?></td><?php
+          if($this->session->role_id != '2'):
             ?>
-            <a href="<?= base_url(); ?>surat/edit/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
+            <td>
+              <?php 
+              if ($sms['status'] == 'Menunggu Disposisi'):
+               ?>
+               <a class="badge badge-info" href="<<?=site_url(); ?>laporan/tambah_disposisi/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
+               <?php 
+             endif 
+             ?>
+             <?= $sms['status']; ?>
+           </td>
+           <?php
+         endif;
+         ?>
+         <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
+         <td>
+
+          <a href="<?=site_url(); ?>surat/detailsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-primary">Detail</a>
+
+          <?php
+          if($this->session->role_id == '1'):
+            ?>
+            <a href="<?= base_url(); ?>surat/editsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
             <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
             <a href="" class="badge badge-warning">Arsipkan</a>
             <?php 

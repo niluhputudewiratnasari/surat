@@ -40,22 +40,22 @@
         </thead>
         <tbody>
           <?php $i = 1; ?>
-          <?php foreach ($data_masuk as $sms) : ?>
+          <?php foreach ($nomor_surat as $sms) : ?>
            <tr>
             <th scope="row"><?= $i; ?></th>
             <td><?=$no++?></td>
-            <td><?=$isi->id_disposisi; ?></td>
-            <td><?=$isi->tgl_disposisi; ?></td>
-            <td><?=$isi->nomor_surat; ?></td>
-            <td><?=$isi->perihal; ?></td>
-            <td><?=$isi->tujuan; ?></td>
-            <td><?=$isi->keterangan; ?></td>
+            <td><?=$sms->no_urut; ?></td>
+            <td><?=$sms->tgl_dispossms; ?></td>
+            <td><?=$sms->nomor_surat; ?></td>
+            <td><?=$sms->perihal; ?></td>
+            <td><?=$sms->tujuan; ?></td>
+            <td><?=$sms->keterangan; ?></td>
 
             <td>           
-              <a class="btn btn-xs btn-warning" title="Edit" href="<?=site_url('Laporan/disposisi/'.$isi->id_disposisi); ?>">
+              <a class="btn btn-xs btn-warning" title="Edit" href="<?=site_url('Laporan/disposisi/'.$sms->id_disposisi); ?>">
               </a>
               |
-              <a class ="btn btn-xs btn-danger" title="Hapus" onclick="return confirm('Anda Yakin Ingin Menghapus ?')"  href="<?=site_url('Laporan/disposisi/'.$isi->id_disposisi); ?>">
+              <a class ="btn btn-xs btn-danger" title="Hapus" onclick="return confirm('Anda Yakin Ingin Menghapus ?')"  href="<?=site_url('Laporan/disposisi/'.$sms->id_disposisi); ?>">
               </a>
             </td>
           </tr>

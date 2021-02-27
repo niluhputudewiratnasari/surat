@@ -41,19 +41,22 @@ class Surat_model extends CI_Model
 	public function getWhere($kode)
 	{
 		return $this->db->get_where('surat_keluar',['id_suratkeluar' => $kode])->row_array();
+
 	}
 
 	public function getWheresm($kode)
 	{
+		
 		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $kode])->row_array();
+		return $this->db->get_where('tabel_disposisi',['id_disposisi' => $kode])->row_array();
 	}
 
 	public function buat_kode()
 	{
 
 		$tgl = date('dmY');
-		$this->db->select('RIGHT(surat_keluar.id_suratkeluar,4) as kode', FALSE);
-		$this->db->order_by('id_suratkeluar','DESC');    
+		$this->db->select('RIGHT(surat_keluar.no_urut,4) as kode', FALSE);
+		$this->db->order_by('no_urut','DESC');    
 		$this->db->limit(1);    
 		  $query = $this->db->get('surat_keluar');      //cek dulu apakah ada sudah ada kode di tabel.    
 		  if($query->num_rows() <> 0){      
@@ -75,8 +78,8 @@ class Surat_model extends CI_Model
 		{
 
 			$tgl = date('dmY');
-			$this->db->select('RIGHT(surat_masuk.id_suratmasuk,4) as kode', FALSE);
-			$this->db->order_by('id_suratmasuk','DESC');    
+			$this->db->select('RIGHT(surat_masuk.no_urut,4) as kode', FALSE);
+			$this->db->order_by('no_urut','DESC');    
 			$this->db->limit(1);    
 		  $query = $this->db->get('surat_masuk');      //cek dulu apakah ada sudah ada kode di tabel.    
 		  if($query->num_rows() <> 0){      

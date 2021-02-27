@@ -74,7 +74,7 @@
               <?php 
               if ($sms['status'] == 'Menunggu Disposisi'):
                ?>
-               <a class="badge badge-info" href="<<?=site_url(); ?>laporan/tambah_disposisi/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
+               <a class="badge badge-info" href="<?=site_url(); ?>surat/disposisikan/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
                <?php 
              endif 
              ?>
@@ -142,13 +142,13 @@
   <div class="form-group">
     <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
   </div>
-  <div class="form-group">
+ <!--  <div class="form-group">
     <select name="status" id="status" class="form-control">
      <option value="">--Pilih Status--</option>
      <option value="Menunggu Disposisi">Menunggu Disposisi</option>
      <option value="Disposisi Berhasil">Disposisi Berhasil</option>
    </select>
- </div>
+ </div> -->
                <!-- <div class="form-group">
                   <input type="text" class="form-control" id="status" name="status" placeholder="Status">
                 </div> -->

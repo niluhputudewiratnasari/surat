@@ -22,9 +22,9 @@
                     <table class="table table-borderless table-sm center">
                       <tbody>
                         <tr>
-                          <td class="field text-left font-weight-bold">Id Surat</td>
+                          <td class="field text-left font-weight-bold">No</td>
                           <td width="5%">:</td>
-                          <td class="text-left"><?= $nomor_surat['id_suratkeluar']; ?></td>
+                          <td class="text-left"><?= $nomor_surat['no_urut']; ?></td>
                         </tr>
                         <tr>
                           <td class="field text-left font-weight-bold">Nomor Surat</td>

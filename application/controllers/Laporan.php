@@ -43,7 +43,7 @@ class Laporan extends CI_Controller {
 	{
 		$data['title'] = 'Disposisi';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
-		$data['data_masuk'] = $this->disposisi_model->getAll();
+		$data['nomor_surat'] = $this->disposisi_model->getAll();
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
 
 		$this->form_validation->set_rules('tgl_surat', 'Tanggal Surat', 'required');

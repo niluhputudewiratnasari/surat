@@ -8,6 +8,7 @@ class Surat extends CI_Controller {
 		parent::__construct();
 		//is_logged_in();
 		$this->load->model('surat_model');
+		$this->load->model('disposisi_model');
 	}
 
 	public function index()
@@ -75,6 +76,59 @@ class Surat extends CI_Controller {
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('surat/index');
 	}
+
+	public function editsm($id = '')
+	{
+		$data['title'] = 'Surat Masuk';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		
+		$this->load->model('Surat_model', 'surat');
+		$data['nomor_surat'] = $this->surat->getSurat($id);
+		$data['nomor_surat'] = $this->surat_model->getId($id);
+		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+
+		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
+		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
+		$this->form_validation->set_rules('klasifikasi', 'Kode Klasifikasi', 'required');
+		$this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
+		$this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
+		$this->form_validation->set_rules('tgl_surat', 'Tanggal Surat', 'required');
+		$this->form_validation->set_rules('file', 'File', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('surat/editsm', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->surat_model->editsm();
+			redirect('surat/index');
+		}
+	}
+
+	public function proses_editsm()
+	{
+		$input_id = $this->input->post('id_suratmasuk');
+		$data = array(
+			'id_suratmasuk' => $this->input->post('id_suratmasuk'),
+			'no_urut' => $this->input->post('no_urut'),
+			'nomor_surat' => $this->input->post('nomor_surat'),
+			'perihal' => $this->input->post('perihal'),
+			'klasifikasi' => $this->input->post('klasifikasi'),
+			'lampiran' => $this->input->post('lampiran'),
+			'pengirim' => $this->input->post('pengirim'),
+			'tgl_surat' => $this->input->post('tgl_surat'),
+			'file' => $this->input->post('file')
+
+		);
+
+		$this->surat_model->simpanEditsm($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Surat Masuk Has Updated! </div>');
+		redirect('surat/index');
+	}
+
 	public	function detailsm($kode)
 	{
 		$data['title'] = 'Surat Masuk';
@@ -82,7 +136,9 @@ class Surat extends CI_Controller {
 		$this->load->model('Surat_model', 'surat');
 
 		$data['nomor_surat'] = $this->surat->getWheresm($kode);
+		$data['nomor'] = $this->disposisi_model->getWheredisposisi($kode);
 		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
 
 		$this->form_validation->set_rules('no_urut', 'No', 'required');
 		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
@@ -137,15 +193,17 @@ class Surat extends CI_Controller {
 			$this->load->view('laporan/tambah_disposisi', $data);
 			$this->load->view('templetes/footerindex');
 		} else {
-			// $data = [
-			// 	'nomor_surat' => $this->input->post('nomor_surat'),
-			// 	'perihal' => $this->input->post('perihal'),
-			// 	'klasifikasi' => $this->input->post('klasifikasi'),
-			// 	'lampiran' => $this->input->post('lampiran'),
+			$tgl_disposisi = $this->input->post('tgl_disposisi');
+			$nomor_surat = $this->input->post('nomor_surat');
+			$tujuan = $this->input->post('tujuan');
+			$keterangan = $this->input->post('keterangan');				
 			// 	'kepada' => $this->input->post('kepada'),
 			// 	'tgl_surat' => $this->input->post('tgl_surat'),
 			// 	'file' => $this->input->post('file')
 			// ];
+
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+				Your Disposisition has benn Added! </div>');
 			redirect('laporan/disposisi');
 
 		}
@@ -199,6 +257,57 @@ class Surat extends CI_Controller {
 		$this->surat_model->hapusdatask($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
 		return redirect('surat/suratkeluar');
+	}
+	public function editsk($id = '')
+	{
+		$data['title'] = 'Surat Keluar';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		
+		$this->load->model('Surat_model', 'surat');
+		$data['nomor_surat'] = $this->surat->getSuratK($id);
+		$data['nomor_surat'] = $this->surat_model->getIdsk($id);
+		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+
+		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
+		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
+		$this->form_validation->set_rules('klasifikasi', 'Kode Klasifikasi', 'required');
+		$this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
+		$this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
+		$this->form_validation->set_rules('tgl_surat', 'Tanggal Surat', 'required');
+		$this->form_validation->set_rules('file', 'File', 'required');
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex', $data);
+			$this->load->view('surat/editsk', $data);
+			$this->load->view('templetes/footerindex');
+		} else {
+			$this->surat_model->editsk();
+			redirect('surat/suratkeluar');
+		}
+	}
+
+	public function proses_editsk()
+	{
+		$input_id = $this->input->post('id_suratkeluar');
+		$data = array(
+			'id_suratkeluar' => $this->input->post('id_suratkeluar'),
+			'no_urut' => $this->input->post('no_urut'),
+			'nomor_surat' => $this->input->post('nomor_surat'),
+			'perihal' => $this->input->post('perihal'),
+			'klasifikasi' => $this->input->post('klasifikasi'),
+			'lampiran' => $this->input->post('lampiran'),
+			'kepada' => $this->input->post('kepada'),
+			'tgl_surat' => $this->input->post('tgl_surat'),
+			'file' => $this->input->post('file')
+
+		);
+
+		$this->surat_model->simpanEditsk($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Surat Keluar Has Updated! </div>');
+		redirect('surat/suratkeluar');
 	}
 
 	public	function detailsk($kode)

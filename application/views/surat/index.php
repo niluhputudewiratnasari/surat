@@ -74,7 +74,7 @@
               <?php 
               if ($sms['status'] == 'Menunggu Disposisi'):
                ?>
-               <a class="badge badge-info" href="<?=site_url(); ?>surat/disposisikan/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
+               <a class="badge badge-info" href="<?=site_url(); ?>laporan/tambah_disposisi/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
                <?php 
              endif 
              ?>
@@ -93,7 +93,7 @@
             ?>
             <a href="<?= base_url(); ?>surat/editsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
             <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-            <a href="" class="badge badge-warning">Arsipkan</a>
+            <a href="<?= base_url(); ?>arsip/tambaharsipsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-warning">Arsipkan</a>
             <?php 
           endif
           ?>

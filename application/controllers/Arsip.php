@@ -7,6 +7,7 @@ class Arsip extends CI_Controller {
 	{
 		parent::__construct();
 		//is_logged_in();
+		$this->load->model('arsip_model');
 	}
 
 	public function index()
@@ -29,8 +30,13 @@ class Arsip extends CI_Controller {
 			$this->load->view('templetes/footerindex');
 		} else {
 			$data = [
+				'id_arsipmasuk' => $this->arsip_model->buat_kode(),
+				'nomor_surat' => $this->input->post('nomor_surat'),
 				'tgl_arsipmasuk' => $this->input->post('tgl_arsipmasuk'),
-				'nomor_surat' => $this->input->post('nomor_surat')
+				'perihal' => $this->input->post('perihal'),
+				'pengirim' => $this->input->post('pengirim'),
+				'tgl_surat' => $this->input->post('tgl_surat')
+
 			];
 			$this->db->insert('arsip_masuk', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -38,44 +44,63 @@ class Arsip extends CI_Controller {
 			redirect('arsip/index');
 		}
 	}
-	
-	public function suratkeluar()
+
+	public	function tambaharsipsm($id)
 	{
-		$data['title'] = 'Surat Keluar';
+		$data['title'] = 'Arsip Surat Masuk';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
-		$this->load->model('Surat_model', 'surat');
 
-		$data['nomor_surat'] = $this->surat->getSuratK();
-		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+		$this->load->model('arsip_model', 'arsip');
+		$data['tgl_arsipmasuk'] = $this->arsip_model->getArsip();
+		$data['nomor_surat'] = $this->arsip_model->getId($id);
+		$data['nomor_surat'] = $this->arsip_model->getWhereasm($id);
+		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
 
+		$this->form_validation->set_rules('tgl_arsipmasuk', 'Tanggal Arsip Masuk', 'required');
 		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
 		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
-		$this->form_validation->set_rules('klasifikasi', 'Kode Klasifikasi', 'required');
-		$this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
 		$this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
 		$this->form_validation->set_rules('tgl_surat', 'Tanggal Surat', 'required');
-		$this->form_validation->set_rules('file', 'File', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templetes/headerindex', $data);
 			$this->load->view('templetes/sidebarindex', $data);
 			$this->load->view('templetes/topbarindex', $data);
-			$this->load->view('surat/suratkeluar', $data);
+			$this->load->view('arsip/tambaharsipsm', $data);
 			$this->load->view('templetes/footerindex');
 		} else {
-			$data = [
+			$data = array(
+				'id_arsipmasuk' => $this->arsip_model->buat_kode(),
+				'tgl_arsipmasuk' => $this->input->post('tgl_arsipmasuk'),
+				'id_suratmasuk' => $this->input->post('id_suratmasuk'),
 				'nomor_surat' => $this->input->post('nomor_surat'),
 				'perihal' => $this->input->post('perihal'),
-				'klasifikasi' => $this->input->post('klasifikasi'),
-				'lampiran' => $this->input->post('lampiran'),
 				'pengirim' => $this->input->post('pengirim'),
-				'tgl_surat' => $this->input->post('tgl_surat'),
-				'file' => $this->input->post('file')
-			];
-			$this->db->insert('surat_keluar', $data);
+				'tgl_surat' => $this->input->post('tgl_surat')
+			);
+			$this->db->insert('arsip_masuk', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				Surat Keluar Berhasil Ditambahkan! </div>');
-			redirect('surat/suratkeluar');
+				Arsip Surat Masuk Has Added! </div>');
+			redirect('arsip/index');
 		}
+	}
+
+	public function proses_simpan()
+	{
+		//$input_id = $this->input->post('id_arsipmasuk');
+		$data = array(
+			'id_arsipmasuk' => $this->arsip_model->buat_kode(),			
+			'tgl_arsipmasuk' => $this->input->post('tgl_arsipmasuk'),
+			'id_suratmasuk' => $this->input->post('id_suratmasuk'),
+			'nomor_surat' => $this->input->post('nomor_surat'),
+			'perihal' => $this->input->post('perihal'),
+			'pengirim' => $this->input->post('pengirim'),
+			'tgl_surat' => $this->input->post('tgl_surat')
+		);
+		$this->db->insert('arsip_masuk', $data);
+		//$this->arsip_model->simpanasm($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Arsip Surat Masuk Has Added! </div>');
+		redirect('arsip/index');
 	}
 }

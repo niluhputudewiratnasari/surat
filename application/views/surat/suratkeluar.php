@@ -34,14 +34,14 @@
 
    <div class="card">
     <div class="card-body">
-      <div class="col-sm-12 col-md-6">
+      <!-- <div class="col-sm-12 col-md-6">
         <div class="dataTables" id="example1">
           <label>Search:
             <input class="form-control form-control-sm" aria-controls="example1" type="search" placeholder="klik">
           </label>
         </div>
-      </div>
-      <table class="table table-bordered table-striped">
+      </div> -->
+      <table class="table table-striped mt-3 text-center">
         <thead>
          <tr>
           <th scope="col">#</th>
@@ -72,7 +72,7 @@
           <?php
           if($this->session->role_id == '1'):
             ?>
-            <a href="<?= base_url(); ?>surat/editk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
+            <a href="<?= base_url(); ?>surat/editsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
             <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
             <a href="" class="badge badge-warning">Arsipkan</a>
             <?php 

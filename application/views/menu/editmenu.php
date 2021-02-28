@@ -16,7 +16,7 @@
 							<div class="row mb-3">
 								<label for="menu" class="col-sm-2 col-form-label">Menu </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="menu" name="menu" vplaceholder="Masukkan Menu"  value="<?= $akun_menu['menu']; ?>">
+									<input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan Menu"  value="<?= $akun_menu['menu']; ?>">
 								</div>
 							</div>
 

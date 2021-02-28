@@ -22,6 +22,34 @@ class Surat_model extends CI_Model
 
 	}
 
+
+
+	public function getId($id)
+	{
+		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $id])->row_array();
+	}
+
+	public function editsm()
+	{
+		$data = [
+			'no_urut' => $this->input->post('no_urut', true),
+			'nomor_surat' => $this->input->post('nomor_surat', true),
+			'perihal' => $this->input->post('perihal', true),
+			'klasifikasi' => $this->input->post('klasifikasi', true),
+			'lampiran' => $this->input->post('lampiran', true),
+			'pengirim' => $this->input->post('pengirim', true),
+			'tgl_surat' => $this->input->post('tgl_surat', true),
+			'file' => $this->input->post('file', true)
+		];
+
+		$this->db->where('id_suratmasuk', $this->input->post('id_suratmasuk'));
+		$this->db->update('surat_masuk', $data);
+	}
+	public function simpanEditsm($input_id, $data)
+	{
+		$this->db->where(['id_suratmasuk' => $input_id])->update('surat_masuk', $data);
+	}
+
 	public function getSuratK()
 	{
 		$query = "SELECT `surat_keluar`.*, `kode_klasifikasi`.`klasifikasi`
@@ -43,12 +71,42 @@ class Surat_model extends CI_Model
 		return $this->db->get_where('surat_keluar',['id_suratkeluar' => $kode])->row_array();
 
 	}
+	public function getWheredis($kode)
+	{
 
+		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $kode])->row_array();
+		return $this->db->get_where('tabel_disposisi',['id_disposisi' => $kode])->row_array();
+	}
 	public function getWheresm($kode)
 	{
 		
 		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $kode])->row_array();
 		return $this->db->get_where('tabel_disposisi',['id_disposisi' => $kode])->row_array();
+	}
+	public function getIdsk($id)
+	{
+		return $this->db->get_where('surat_keluar',['id_suratkeluar' => $id])->row_array();
+	}
+	public function editsk()
+	{
+		$data = [
+			'no_urut' => $this->input->post('no_urut', true),
+			'nomor_surat' => $this->input->post('nomor_surat', true),
+			'perihal' => $this->input->post('perihal', true),
+			'klasifikasi' => $this->input->post('klasifikasi', true),
+			'lampiran' => $this->input->post('lampiran', true),
+			'kepada' => $this->input->post('kepada', true),
+			'tgl_surat' => $this->input->post('tgl_surat', true),
+			'file' => $this->input->post('file', true)
+			
+		];
+
+		$this->db->where('id_suratkeluar', $this->input->post('id_suratkeluar'));
+		$this->db->update('surat_keluar', $data);
+	}
+	public function simpanEditsk($input_id, $data)
+	{
+		$this->db->where(['id_suratkeluar' => $input_id])->update('surat_keluar', $data);
 	}
 
 	public function buat_kode()

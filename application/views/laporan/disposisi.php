@@ -36,27 +36,24 @@
             <th>Perihal</th>
             <th>Tujuan Disposisi</th>
             <th>Isi Disposisi</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <?php $i = 1; ?>
-          <?php foreach ($nomor_surat as $sms) : ?>
+          <?php foreach ($nomor_surat as $dis) : ?>
            <tr>
             <th scope="row"><?= $i; ?></th>
-            <td><?=$no++?></td>
-            <td><?=$sms->no_urut; ?></td>
-            <td><?=$sms->tgl_dispossms; ?></td>
-            <td><?=$sms->nomor_surat; ?></td>
-            <td><?=$sms->perihal; ?></td>
-            <td><?=$sms->tujuan; ?></td>
-            <td><?=$sms->keterangan; ?></td>
+            <td><?= $dis['id_disposisi']; ?></td>
+            <td><?= $dis['tgl_disposisi']; ?></td>
+            <td><?= $dis['nomor_surat']; ?></td>
+            <td><?= $dis['perihal']; ?></td>
+            <td><?= $dis['tujuan']; ?></td>
+            <td><?= $dis['keterangan']; ?></td>
 
             <td>           
-              <a class="btn btn-xs btn-warning" title="Edit" href="<?=site_url('Laporan/disposisi/'.$sms->id_disposisi); ?>">
-              </a>
-              |
-              <a class ="btn btn-xs btn-danger" title="Hapus" onclick="return confirm('Anda Yakin Ingin Menghapus ?')"  href="<?=site_url('Laporan/disposisi/'.$sms->id_disposisi); ?>">
-              </a>
+              <a href="<?= base_url(); ?>surat/editsm/<?= $dis['id_disposisi'];?>" class="badge badge-success">Edit</a>
+              <a href="<?= base_url(); ?>surat/hapus/<?= $dis['id_disposisi'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
             </td>
           </tr>
           <?php $i++; ?>

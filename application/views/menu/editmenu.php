@@ -23,6 +23,7 @@
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-10">
 									<button type="submit" name="editmenu" class="btn btn-primary">Edit</button>
+									<a class="btn btn-danger" href="<?=site_url('Menu/index')?>" role="button">Cancel</a>
 								</div>
 							</div>
 

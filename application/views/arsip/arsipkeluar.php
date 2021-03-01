@@ -20,36 +20,35 @@
          <thead>
           <tr>
            <th scope="col">#</th>
-           <th scope="col">No Arsip Keluar</th>
+           <th scope="col">No Arsip </th>
            <th scope="col">Tanggal Arsip Keluar</th>
            <th scope="col">Nomor Surat Keluar</th>
            <th scope="col">Perihal</th>
-           <th scope="col">Kepada</th>
-           <th scope="col">Tanggal Arsip Keluar</th>
+           <th scope="col">Pengirim</th>
+           <th scope="col">Tanggal Surat Keluar</th>
            <th scope="col">Action</th>
          </tr>
        </thead>
        <tbody>
         <?php $i = 1; ?>
-        <?php foreach ($tgl_arsipkeluar as $ak) : ?>
+        <?php foreach ($nomor_surat as $arsipkeluar) : ?>
          <tr>
           <th scope="row"><?= $i; ?></th>
-          <td><?= $ak['id_arsipkeluar']; ?></td>
-          <td><?= $ak['tgl_arsipkeluar']; ?></td>
-          <td><?= $ak['nomor_surat']; ?></td>
-          <td><?= $ak['perihal']; ?></td>
-          <td><?= $ak['kepada']; ?></td>
-          <td><?= $ak['tgl_surat']; ?></td>
+          <td><?= $arsipkeluar['no']; ?></td>
+          <td><?= $arsipkeluar['tgl_arsipkeluar']; ?></td>
+          <td><?= $arsipkeluar['nomor_surat']; ?></td>
+          <td><?= $arsipkeluar['perihal']; ?></td>
+          <td><?= $arsipkeluar['kepada']; ?></td>
+          <td><?= $arsipkeluar['tgl_surat']; ?></td>
           <td>
-           <a href="<?= base_url(); ?>arsip/edit/<?= $ak['id_arsipkeluar'];?>" class="badge badge-success">Edit</a>
-           <a href="<?= base_url(); ?>arsip/hapus/<?= $ak['id_arsipkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-           <a href="<?= base_url(); ?>arsip/tambaharsipsk/<?= $ak['id_arsipkeluar'];?>" class="badge badge-warning">Arsipkan</a>
-         </td>
-       </tr>
-       <?php $i++; ?>
-     <?php endforeach; ?>
-   </tbody>
- </table>
+            <a href="<?= base_url(); ?>arsip/editark/<?= $arsipkeluar['id_arsipkeluar'];?>" class="badge badge-success">Edit</a>
+            <a href="<?= base_url(); ?>arsip/hapusark/<?= $arsipkeluar['id_arsipkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+          </td>
+        </tr>
+        <?php $i++; ?>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 </div>
 </div>
 </div>

@@ -31,24 +31,24 @@
        </thead>
        <tbody>
         <?php $i = 1; ?>
-        <?php foreach ($tgl_arsipmasuk as $am) : ?>
+        <?php foreach ($nomor_surat as $arsipmasuk) : ?>
          <tr>
           <th scope="row"><?= $i; ?></th>
-          <td><?= $am['id_arsipmasuk']; ?></td>
-          <td><?= $am['tgl_arsipmasuk']; ?></td>
-          <td><?= $am['nomor_surat']; ?></td>
-          <td><?= $am['perihal']; ?></td>
-          <td><?= $am['pengirim']; ?></td>
-          <td><?= $am['tgl_surat']; ?></td>
+          <td><?= $arsipmasuk['no']; ?></td>
+          <td><?= $arsipmasuk['tgl_arsipmasuk']; ?></td>
+          <td><?= $arsipmasuk['nomor_surat']; ?></td>
+          <td><?= $arsipmasuk['perihal']; ?></td>
+          <td><?= $arsipmasuk['pengirim']; ?></td>
+          <td><?= $arsipmasuk['tgl_surat']; ?></td>
           <td>
-           <a href="<?= base_url(); ?>arsip/editarsip/<?= $am['id_arsipmasuk'];?>" class="badge badge-success">Edit</a>
-           <a href="<?= base_url(); ?>arsip/hapuams/<?= $am['id_arsipmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-         </td>
-       </tr>
-       <?php $i++; ?>
-     <?php endforeach; ?>
-   </tbody>
- </table>
+            <a href="<?= base_url(); ?>arsip/editar/<?= $arsipmasuk['id_arsipmasuk'];?>" class="badge badge-success">Edit</a>
+            <a href="<?= base_url(); ?>arsip/hapusar/<?= $arsipmasuk['id_arsipmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+          </td>
+        </tr>
+        <?php $i++; ?>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 </div>
 </div>
 </div>

@@ -22,26 +22,26 @@
         <div class="row mb-3">
           <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat </label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Masukkan nomor surat"  value="<?= $nomor_surat['nomor_surat']; ?>">
+            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" value="<?= $nomor_surat['nomor_surat']; ?>" readonly>
           </div>
         </div>
 
         <div class="row mb-3">
           <label for="perihal" class="col-sm-2 col-form-label">Perihal </label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="perihal" name="perihal" placeholder="Masukkan Perihal"  value="<?= $nomor_surat['perihal']; ?>">
+            <input type="text" class="form-control" id="perihal" name="perihal" value="<?= $nomor_surat['perihal']; ?>" readonly>
           </div>
         </div>
 
         <div class="row mb-3">
           <label for="pengirim" class="col-sm-2 col-form-label">Pengirim</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="pengirim" name="pengirim" placeholder="Masukkan nomor surat"  value="<?= $nomor_surat['pengirim']; ?>">
+            <input type="text" class="form-control" id="pengirim" name="pengirim" value="<?= $nomor_surat['pengirim']; ?>" readonly>
           </div>
         </div> <div class="row mb-3">
           <label for="tgl_surat" class="col-sm-2 col-form-label">Tanggal Surat </label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="tgl_surat" name="tgl_surat" placeholder="Masukkan nomor surat"  value="<?= $nomor_surat['tgl_surat']; ?>">
+            <input type="text" class="form-control" id="tgl_surat" name="tgl_surat" value="<?= $nomor_surat['tgl_surat']; ?>" readonly>
           </div>
         </div>
         <div class="form-group row justify-content-end">

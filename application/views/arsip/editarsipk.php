@@ -8,8 +8,8 @@
 					<div class="col-lg">
 						<?= $this->session->set_flashdata('message'); ?>
 
-						<form action="<?= site_url('arsip/proses_editar') ?>" method="post">
-							<input type="hidden" name="id_arsipmasuk" value="<?= $nomor_surat['id_arsipmasuk']; ?>">
+						<form action="<?= site_url('arsip/proses_editark') ?>" method="post">
+							<input type="hidden" name="id_arsipkeluar" value="<?= $nomor_surat['id_arsipkeluar']; ?>">
 
 							<div class="row mb-3">
 								<label for="no" class="col-sm-3 col-form-label">No. Urut</label>
@@ -20,10 +20,10 @@
 							</div>
 
 							<div class="row mb-3">
-								<label for="tgl_arsipmasuk" class="col-sm-3 col-form-label">Tanggal Arsip Masuk</label>
+								<label for="tgl_arsipkeluar" class="col-sm-3 col-form-label">Tanggal Arsip Keluar</label>
 								<div class="col-sm-8">
-									<input type="date" class="form-control" id="tgl_arsipmasuk" name="tgl_arsipmasuk" placeholder="Masukkan Tanggal Arsip Masuk"  value="<?= $nomor_surat['tgl_arsipmasuk']; ?>"> 
-									<?= form_error('tgl_arsipmasuk','<small class="text-danger pl-3">', '</small>');  ?>
+									<input type="date" class="form-control" id="tgl_arsipkeluar" name="tgl_arsipkeluar" placeholder="Masukkan Tanggal Arsip Masuk"  value="<?= $nomor_surat['tgl_arsipkeluar']; ?>"> 
+									<?= form_error('tgl_arsipkeluar','<small class="text-danger pl-3">', '</small>');  ?>
 								</div>
 							</div>
 
@@ -47,10 +47,10 @@
 							</div>
 
 							<div class="row mb-3">
-								<label for="pengirim" class="col-sm-3 col-form-label">Pengirim </label>
+								<label for="kepada" class="col-sm-3 col-form-label">Kepada </label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="pengirim" name="pengirim" value="<?= $nomor_surat['pengirim']; ?>" readonly>
-									<?= form_error('pengirim','<small class="text-danger pl-3">', '</small>');  ?>
+									<input type="text" class="form-control" id="kepada" name="kepada" value="<?= $nomor_surat['kepada']; ?>" readonly>
+									<?= form_error('kepada','<small class="text-danger pl-3">', '</small>');  ?>
 								</div>
 							</div>
 

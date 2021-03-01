@@ -31,7 +31,7 @@
 
       <div class="card">
         <div class="card-body">
-          <table class="table table-striped mt-3">
+          <table class="table table-striped mt-3  text-center">
             <thead>
               <tr>
                 <th scope="col">#</th>

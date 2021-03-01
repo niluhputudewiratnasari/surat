@@ -52,8 +52,8 @@
             <td><?= $dis['keterangan']; ?></td>
 
             <td>           
-              <a href="<?= base_url(); ?>surat/editsm/<?= $dis['id_disposisi'];?>" class="badge badge-success">Edit</a>
-              <a href="<?= base_url(); ?>surat/hapus/<?= $dis['id_disposisi'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+              <a href="<?= base_url(); ?>laporan/editdis/<?= $dis['id_disposisi'];?>" class="badge badge-success">Edit</a>
+              <a href="<?= base_url(); ?>laporan/hapusdis/<?= $dis['id_disposisi'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
             </td>
           </tr>
           <?php $i++; ?>

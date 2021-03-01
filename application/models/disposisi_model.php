@@ -14,6 +14,30 @@ class Disposisi_model extends CI_Model
 		";
 		return $this->db->query($query)->result_array();
 	}
+	public function hapusdata($id)
+	{
+		$this->db->where('id_disposisi', $id);
+		return $this->db->delete('tabel_disposisi');
+
+	}
+	public function editdis()
+	{
+		$data = [
+			'tgl_disposisi' => $this->input->post('tgl_disposisi', true),
+			'id_suratmasuk' => $this->input->post('id_suratmasuk', true),
+			'nomor_surat' => $this->input->post('nomor_surat', true),
+			'perihal' => $this->input->post('perihal', true),
+			'tujuan' => $this->input->post('tujuan', true),
+			'keterangan' => $this->input->post('keterangan', true)
+		];
+
+		$this->db->where('id_disposisi', $this->input->post('id_disposisi'));
+		$this->db->update('tabel_disposisi', $data);
+	}
+	public function simpanEditdis($input_id, $data)
+	{
+		$this->db->where(['id_disposisi' => $input_id])->update('tabel_disposisi', $data);
+	}
 
 	public function getId($id)
 	{

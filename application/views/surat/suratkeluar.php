@@ -74,7 +74,7 @@
             ?>
             <a href="<?= base_url(); ?>surat/editsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
             <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-            <a href="" class="badge badge-warning">Arsipkan</a>
+            <a href="<?= base_url(); ?>arsip/tambaharsipsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-warning">Arsipkan</a>
             <?php 
           endif
           ?>

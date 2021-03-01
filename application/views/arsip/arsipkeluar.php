@@ -20,29 +20,30 @@
          <thead>
           <tr>
            <th scope="col">#</th>
-           <th scope="col">No Arsip </th>
-           <th scope="col">Tanggal Arsip Masuk</th>
-           <th scope="col">Nomor Surat Masuk</th>
+           <th scope="col">No Arsip Keluar</th>
+           <th scope="col">Tanggal Arsip Keluar</th>
+           <th scope="col">Nomor Surat Keluar</th>
            <th scope="col">Perihal</th>
-           <th scope="col">Pengirim</th>
-           <th scope="col">Tanggal Surat Masuk</th>
+           <th scope="col">Kepada</th>
+           <th scope="col">Tanggal Arsip Keluar</th>
            <th scope="col">Action</th>
          </tr>
        </thead>
        <tbody>
         <?php $i = 1; ?>
-        <?php foreach ($tgl_arsipmasuk as $am) : ?>
+        <?php foreach ($tgl_arsipkeluar as $ak) : ?>
          <tr>
           <th scope="row"><?= $i; ?></th>
-          <td><?= $am['id_arsipmasuk']; ?></td>
-          <td><?= $am['tgl_arsipmasuk']; ?></td>
-          <td><?= $am['nomor_surat']; ?></td>
-          <td><?= $am['perihal']; ?></td>
-          <td><?= $am['pengirim']; ?></td>
-          <td><?= $am['tgl_surat']; ?></td>
+          <td><?= $ak['id_arsipkeluar']; ?></td>
+          <td><?= $ak['tgl_arsipkeluar']; ?></td>
+          <td><?= $ak['nomor_surat']; ?></td>
+          <td><?= $ak['perihal']; ?></td>
+          <td><?= $ak['kepada']; ?></td>
+          <td><?= $ak['tgl_surat']; ?></td>
           <td>
-           <a href="<?= base_url(); ?>arsip/editarsip/<?= $am['id_arsipmasuk'];?>" class="badge badge-success">Edit</a>
-           <a href="<?= base_url(); ?>arsip/hapuams/<?= $am['id_arsipmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+           <a href="<?= base_url(); ?>arsip/edit/<?= $ak['id_arsipkeluar'];?>" class="badge badge-success">Edit</a>
+           <a href="<?= base_url(); ?>arsip/hapus/<?= $ak['id_arsipkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+           <a href="<?= base_url(); ?>arsip/tambaharsipsk/<?= $ak['id_arsipkeluar'];?>" class="badge badge-warning">Arsipkan</a>
          </td>
        </tr>
        <?php $i++; ?>

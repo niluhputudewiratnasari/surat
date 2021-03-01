@@ -23,14 +23,14 @@
           <div class="row mb-3">
             <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Masukkan Tujuan Disposisi" value="<?= $nomor_surat['nomor_surat']; ?>">
+              <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Masukkan Tujuan Disposisi" value="<?= $nomor_surat['nomor_surat']; ?>" readonly>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="perihal" class="col-sm-2 col-form-label">Perihal</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="perihal" name="perihal" placeholder="Masukkan perihal" value="<?= $nomor_surat['perihal']; ?>">
+              <input type="text" class="form-control" id="perihal" name="perihal" placeholder="Masukkan perihal" value="<?= $nomor_surat['perihal']; ?>" readonly>
             </div>
           </div>
 

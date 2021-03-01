@@ -108,6 +108,9 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="newSuratMasukModal" tabindex="-1" role="dialog" aria-labelledby="newSuratMasukModalLabel" aria-hidden="true">
  <div class="modal-dialog" role="document">

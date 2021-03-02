@@ -5,13 +5,19 @@
             <div class="col-lg-7">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
+
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Silahkan Login</h1>
+                                        <i class="fas fa-hospital-user fa-4x mb-4"></i>
+                                        <h4 class="h4 text-gray-900 mb-2 font-weight-bold">Aplikasi Pengarsipan Surat</h4>
+                                        <h5 class="h5 text-gray-600 mb-1">Dinas Kesehatan Provinsi Nusa Tenggara Barat</h5>
+                                        <hr>
+                                        <h4 class="h4 text-gray-900 mb-6">Silahkan Login</h4>
                                     </div>
+                                    <br>
 
                                     <?= $this->session->flashdata('message');  ?>
 
@@ -34,9 +40,9 @@
                                     </form>
                                     <hr>
                                     
-                                   <!--  <div class="text-center">
+                                    <div class="text-center">
                                         <a class="small" href="<?= base_url('masukcontroller/registration'); ?>">Create an Account!</a>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

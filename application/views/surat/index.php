@@ -139,7 +139,7 @@
     <input type="text" class="form-control" id="lampiran" name="lampiran" placeholder="Lampiran">
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="pengirim" name="pengirim" placeholder="pengirim">
+    <input type="text" class="form-control" id="pengirim" name="pengirim" placeholder="Pengirim">
   </div>
   <div class="form-group">
     <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">

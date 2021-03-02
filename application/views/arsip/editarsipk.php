@@ -27,7 +27,7 @@
 								</div>
 							</div>
 
-							<input type="hidden" name="id_suratmasuk" value="<?= $nomor_surat['id_suratmasuk']; ?>">
+							<input type="hidden" name="id_suratkeluar" value="<?= $nomor_surat['id_suratkeluar']; ?>">
 
 							<div class="row mb-3">
 								<label for="nomor_surat" class="col-sm-3 col-form-label">Nomor Surat</label>

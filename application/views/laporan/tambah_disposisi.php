@@ -42,9 +42,9 @@
           </div>
 
           <div class="row mb-3">
-            <label for="keterangan" class="col-sm-2 col-form-label">Keterangan </label>
+            <label for="keterangan" class="col-sm-2 col-form-label">Isi Disposisi </label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan keterangan">
+              <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Isi Disposisi">
             </div>
           </div>
 

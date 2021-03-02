@@ -91,15 +91,6 @@
 
               </div> -->
             </div>
-            <?php 
-            if($this->session->role_id == '1'):
-              ?>
-              <div class="row"> 
-                <div class="col-sm-1">
-                  <a class="btn btn-warning" onclick="return confirm('Anda Yakin ingin mengarsipkan surat ?')" href="" role="button">Arsipkan</a>
-                </div>
-              </div>
-            <?php endif ?>
           </div>        
 
         </div>

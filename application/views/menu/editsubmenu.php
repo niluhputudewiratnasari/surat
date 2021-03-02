@@ -16,31 +16,40 @@
 							<div class="row mb-3">
 								<label for="title" class="col-sm-2 col-form-label">Title</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="title" name="title" vplaceholder="Masukkan Title"  value="<?= $akun_sub_menu['title']; ?>">
+									<input type="text" class="form-control" id="title" name="title" placeholder="Masukkan Title"  value="<?= $akun_sub_menu['title']; ?>">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<label for="menu_id" class="col-sm-2 col-form-label">Menu </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="menu_id" name="menu_id" vplaceholder="Masukkan Menu"  value="<?= $akun_sub_menu['menu_id']; ?>" readonly>
+									<select name="menu_id" id="menu_id" class="form-control">
+										<option>-- Select Menu --</option>
+										<?php foreach ($menu as $m) : ?>
+											<option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+										<?php endforeach; ?>
+									</select>
 								</div>
+								<!-- <div class="col-sm-10">
+									<input type="text" class="form-control" id="menu_id" name="menu_id" vplaceholder="Masukkan Menu"  value="<?= $akun_sub_menu['menu_id']; ?>" readonly>
+								</div> -->
 							</div>
+
 							<div class="row mb-3">
 								<label for="url" class="col-sm-2 col-form-label">Url </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="url" name="url" vplaceholder="Masukkan Url"  value="<?= $akun_sub_menu['url']; ?>">
+									<input type="text" class="form-control" id="url" name="url" placeholder="Masukkan Url"  value="<?= $akun_sub_menu['url']; ?>">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<label for="icon" class="col-sm-2 col-form-label">Icon </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="icon" name="icon" vplaceholder="Masukkan Icon"  value="<?= $akun_sub_menu['icon']; ?>">
+									<input type="text" class="form-control" id="icon" name="icon" placeholder="Masukkan Icon"  value="<?= $akun_sub_menu['icon']; ?>">
 								</div>
 							</div>
 							<div class="row mb-3">
 								<label for="is_active" class="col-sm-2 col-form-label">Active </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="is_active" name="is_active" placeholder="Masukkan Active = 1/ Not Active = 0"  value="<?= $akun_sub_menu['is_active']; ?>">
+									<input type="text" class="form-control" id="is_active" name="is_active" placeholder="Masukkan Active = 1 / Not Active = 0"  value="<?= $akun_sub_menu['is_active']; ?>">
 								</div>
 							</div>
 

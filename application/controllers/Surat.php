@@ -36,7 +36,8 @@ class Surat extends CI_Controller {
 			$this->load->view('templetes/footerindex');
 		} else {
 			$data = [
-				'no_urut' => $this->surat_model->buat_kode(),
+				'id_suratmasuk' => $this->input->post('id_suratmasuk'),
+				'no_urut' => $this->surat_model->buat_kodesm(),
 				'nomor_surat' => $this->input->post('nomor_surat'),
 				'perihal' => $this->input->post('perihal'),
 				'klasifikasi' => $this->input->post('klasifikasi'),
@@ -236,6 +237,7 @@ class Surat extends CI_Controller {
 			$this->load->view('templetes/footerindex');
 		} else {
 			$data = [
+				'id_suratkeluar' => $this->input->post('id_suratkeluar'),
 				'no_urut' => $this->surat_model->buat_kode(),
 				'nomor_surat' => $this->input->post('nomor_surat'),
 				'perihal' => $this->input->post('perihal'),

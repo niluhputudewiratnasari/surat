@@ -48,7 +48,17 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<script src="<?=base_url('assets/')?>plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?=base_url('assets/')?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
+<script>
+  $(function(){
+     $('#example1').DataTable({
+        'ordering' : false
+    });
+ })
+
+</script>
 <script>
 
     $('.custom-file-input').on('change', function(){

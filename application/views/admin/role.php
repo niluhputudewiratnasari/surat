@@ -2,7 +2,7 @@
 
    	<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
    	<div class="row">
-   		<div class="col-lg-6">
+   		<div class="col-lg">
    			<?= form_error('menu','<div class="alert alert-danger" role="alert">
    			', '</div>') ?>
    			<?= $this->session->flashdata('message'); ?>
@@ -13,7 +13,7 @@
 
          <div class="card">
           <div class="card-body">
-            <table class="table table-striped">
+            <table id="example1" class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">#</th>

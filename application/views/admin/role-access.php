@@ -2,15 +2,15 @@
 
    	<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
    	<div class="row">
-   		<div class="col-lg-6">
+   		<div class="col-lg">
    			
    			<?= $this->session->flashdata('message'); ?>
 
 
         <div class="card">
           <div class="card-body">
-            <h5>Role : <?= $role['role'];?></h5>
-            <table class="table table-striped">
+            <h5 class="text-center mb-3">Role : <?= $role['role'];?></h5>
+            <table id="example1" class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">#</th>

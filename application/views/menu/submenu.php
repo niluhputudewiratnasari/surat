@@ -27,7 +27,7 @@
 
   <div class="card">
     <div class="card-body">
-      <table class="table table-striped">
+      <table id="example1" class="table table-striped">
        <thead>
         <tr>
          <th scope="col">#</th>

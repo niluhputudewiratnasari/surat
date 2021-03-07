@@ -40,6 +40,8 @@
     <div class="row">
      <div class="col-lg">
 
+       
+
 
       <form class="form-inline">
         <div class="form-group mb-3">
@@ -80,7 +82,7 @@
             </option>
             <?php $tahun = date('Y');
             for($i=2020;$i<$tahun+5;$i++) {?>
-            <option value="<?php echo $i ?>"><?php echo $i ?></option>
+              <option value="<?php echo $i ?>"><?php echo $i ?></option>
             <?php }?>
           </select>
         </div>
@@ -109,7 +111,7 @@ $bulantahun = $tanggal.$bulan.$tahun;
   Menampilkan Laporan Surat Masuk Bulan : <span class="font-weight-bold"><?php echo $bulan ?> </span> Tahun : <span class="font-weight-bold"><?php echo $tahun ?> </span>
 </div>
 
-<table class="table table-striped mt-3 text-center style="font-size: 12px;">
+<table class="table table-striped mt-3 text-center" style="font-size: 12px;">
  <thead>
   <tr>
    <th scope="col">#</th>
@@ -123,16 +125,16 @@ $bulantahun = $tanggal.$bulan.$tahun;
 <tbody>
   <?php $i = 1; ?>
   <?php foreach ($nomor_surat as $sms) : ?>
-  <tr>
-    <th scope="row"><?= $i; ?></th>
-    <td><?= $sms->nomor_surat; ?></td>
-    <td><?= $sms->perihal; ?></td>
-    <td><?= $sms->klasifikasi; ?></td>
-    <td><?= $sms->pengirim; ?></td>
-    <td><?= $sms->tgl_surat; ?></td>
+    <tr>
+      <th scope="row"><?= $i; ?></th>
+      <td><?= $sms->nomor_surat; ?></td>
+      <td><?= $sms->perihal; ?></td>
+      <td><?= $sms->klasifikasi; ?></td>
+      <td><?= $sms->pengirim; ?></td>
+      <td><?= $sms->tgl_surat; ?></td>
 
-  </tr>
-  <?php $i++; ?>
+    </tr>
+    <?php $i++; ?>
   <?php endforeach; ?>
 </tbody>
 </table>

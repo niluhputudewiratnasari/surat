@@ -88,10 +88,62 @@ class Laporan extends CI_Controller {
 	// }
 
 	//==========================================Laporan Surat Keluar======================================
-
-
-
 	public function keluar()
+	{
+
+		$data['title'] = 'Laporan Surat Keluar';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+		$data['tahun'] = $this->laporan_model->gettahun();
+		$data['nomor_surat']=$this->db->order_by('tgl_surat', 'ASC')->get('surat_keluar')->result();
+		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
+		
+		$this->load->view('templetes/headerindex', $data);
+		$this->load->view('templetes/sidebarindex', $data);
+		$this->load->view('templetes/topbarindex', $data);
+		$this->load->view('laporan/keluar', $data);
+		$this->load->view('templetes/footerindex');
+	}
+
+	public function filter1()
+	{
+		$tanggalawal = $this->input->post('tanggalawal');
+		$tanggalakhir = $this->input->post('tanggalakhir');
+		$tahun1 = $this->input->post('tahun1');
+		$bulanawal = $this->input->post('bulanawal');
+		$bulanakhir = $this->input->post('bulanakhir');
+		$tahun2 = $this->input->post('tahun2');
+		$nilaifilter = $this->input->post('nilaifilter');
+
+
+		if ($nilaifilter == 1) {
+			$data['judul'] = "Laporan Surat Keluar By Tanggal";
+			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.'Sampai Tanggal :'.$tanggalakhir;
+			$data['datafilter'] = $this->laporan_model->filterbytanggal($tanggalawal, $tanggalakhir);
+
+
+			$this->load->view('laporan/print_keluar', $data);
+
+		}elseif ($nilaifilter == 2) {
+			$data['judul'] = "Laporan Surat Keluar By Bulan";
+			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal '.$bulanakhir.'Tahun : '.$tahun1;
+			$data['datafilter'] = $this->laporan_model->filterbybulan($tahun1,$bulanawal, $bulanakhir);
+
+
+			$this->load->view('laporan/print_keluar', $data);
+
+		}elseif ($nilaifilter == 3) {
+			$data['judul'] = "Laporan Surat Keluar By Tahun";
+			$data['subjudul'] = 'Tahun : '.$tahun2;
+			$data['datafilter'] = $this->laporan_model->filterbytahun($tahun2);
+
+
+			$this->load->view('laporan/print_keluar', $data);
+		}
+	}
+
+
+
+	public function keluark()
 	{
 		$pdf = new FPDF('l','mm','A4', 'potrait');
         // membuat halaman baru

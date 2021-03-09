@@ -35,7 +35,7 @@
             <th scope="col">Lampiran</th>
             <th scope="col">Kepada</th>
             <th scope="col">Tanggal Surat</th>
-            <th scope="col">File</th>
+            <!-- <th scope="col">File</th> -->
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -51,7 +51,7 @@
            <td><?= $sk['lampiran']; ?></td>
            <td><?= $sk['kepada']; ?></td>
            <td><?= $sk['tgl_surat']; ?></td>
-           <td><img src="<?php echo base_url(); ?>assets/photo/<?= $sk['file'];?>" width="64"></td>
+           <!--  <td><img src="<?php echo base_url(); ?>assets/photo/<?= $sk['file'];?>" width="64"></td> -->
 
            <td>
             <a href="<?=site_url(); ?>surat/detailsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-primary">Detail</a>
@@ -85,7 +85,7 @@
     <h5 class="modal-title" id="newSuratKeluarModalLabel">Tambah Surat Keluar</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   </div>
-  <form action="<?= base_url('surat/suratkeluar'); ?>" method="post">
+  <form action="<?= base_url('surat/simpan_surat_keluar'); ?>" method="post" enctype="multipart/form-data">
     <div class="modal-body">
      <div class="form-group">
       <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Nomor Surat">
@@ -111,19 +111,17 @@
   <div class="form-group">
     <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" id="file" name="file" placeholder="File">
+  
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="file" name="file">
+    <label class="custom-file-label" for="file">Choose file</label>
   </div>
-               <!-- <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="file" name="file">
-                  <label class="custom-file-label" for="file">Choose file</label>
-                </div> -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Add</button>
-                </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
 
-              </form>
-            </div>
-          </div>
-        </div>
+</form>
+</div>
+</div>
+</div>

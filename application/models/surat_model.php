@@ -26,7 +26,8 @@ class Surat_model extends CI_Model
 
 	public function getId($id)
 	{
-		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $id])->row_object();
+
+		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $id])->row_array();
 	}
 
 	public function editsm()
@@ -181,15 +182,14 @@ class Surat_model extends CI_Model
     return "default.jpg";
 }
 
-private function _deleteImagek($id)
+public function _deleteImagek($id)
 {
-	$surat_keluar = $this->getById($id);
+	$surat_keluar = $this->getIdsk($id);
 	if ($surat_keluar->file != "default.jpg") {
 		$filename = explode(".", $surat_keluar->file)[0];
-		return array_map('unlink', glob(FCPATH."assets/photo/$filename.*"));
+		return array_map('unlink', glob(FCPATH."./assets/photo/$filename.*"));
 	}
 }
-
 
 //============================================================================================================
 public function buat_kodesm()

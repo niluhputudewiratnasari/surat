@@ -34,7 +34,7 @@
         <div class="card">
           <h5 class="card-header">Fillter By Tanggal</h5>
           <div class="card-body">
-            <form action="<?= base_url(); ?>laporan/filter1" methood="POST" target='_blank'>
+            <form action="<?= base_url(); ?>laporan/filter1" method="POST" target='_blank'>
 
               <input type="hidden" name="nilaifilter" value="1">
 
@@ -70,7 +70,7 @@
     <div class="card">
       <h5 class="card-header">Fillter By Bulan</h5>
       <div class="card-body">
-        <form action="<?= base_url(); ?>laporan/filter1" methood="POST" target='_blank'>
+        <form action="<?= base_url(); ?>laporan/filter1" method="POST" target='_blank'>
 
           <input type="hidden" name="nilaifilter" value="2">
 
@@ -78,8 +78,8 @@
             <label for="tahun1"> Years : </label>
             <select class="form-control ml-2" name="tahun1" required="">
              <?php foreach ($tahun as $bl) : ?>
-             <option value="">--Select Years-- </option>
-             <option value="<?php echo $bl->tahun ?>"><?php echo $bl->tahun ?></option>
+               <option value="">--Select Years-- </option>
+               <option value="<?php echo $bl->tahun ?>"><?php echo $bl->tahun ?></option>
 
              <?php endforeach; ?>
            </select>
@@ -141,7 +141,7 @@
     <div class="card">
       <h5 class="card-header">Fillter By Tahun</h5>
       <div class="card-body">
-        <form action="<?= base_url(); ?>laporan/filter1" methood="POST" target='_blank'>
+        <form action="<?= base_url(); ?>laporan/filter1" method="POST" target='_blank'>
 
           <input type="hidden" name="nilaifilter" value="3">
 
@@ -149,8 +149,8 @@
             <label for="tahun2"> Years : </label>
             <select class="form-control ml-2" name="tahun2" required="">
              <?php foreach ($tahun as $bl) : ?>
-             <option value="">--Select Years-- </option>
-             <option value="<?php echo $bl->tahun ?>"><?php echo $bl->tahun ?></option>
+               <option value="">--Select Years-- </option>
+               <option value="<?php echo $bl->tahun ?>"><?php echo $bl->tahun ?></option>
 
              <?php endforeach; ?>
            </select>

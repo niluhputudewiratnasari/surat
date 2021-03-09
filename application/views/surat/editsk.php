@@ -9,7 +9,7 @@
 
 						<?= $this->session->set_flashdata('message'); ?>
 
-						<form action="<?= site_url('surat/proses_editsk') ?>" method="post">
+						<form action="<?= site_url('surat/proses_editsk') ?>" method="post" enctype="multipart/form-data" >
 							<input type="hidden" name="id_suratkeluar" value="<?= $nomor_surat['id_suratkeluar']; ?>">
 							<div class="row mb-3">
 								<label for="no_urut" class="col-sm-3 col-form-label">No </label>
@@ -73,8 +73,12 @@
 							<div class="row mb-3">
 								<label for="file" class="col-sm-3 col-form-label">File </label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="file" name="file" placeholder="Masukkan File"  value="<?= $nomor_surat['file']; ?>">
-									<?= form_error('file','<small class="text-danger pl-3">', '</small>');  ?>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="file" name="file">
+										<label class="custom-file-label" for="file">Choose file</label>
+									</div>
+									<!-- <input type="text" class="form-control" id="file" name="file"> -->
+									<small><?= $nomor_surat['file']; ?></small>
 								</div>
 							</div>
 

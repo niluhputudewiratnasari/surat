@@ -69,20 +69,41 @@
 
                   </div>
                 </div>
-              <!--  <div class="col-4">
+                <div class="col-4">
 
-                 <div class="profile-left" align="center">
-                  <div class="panel-body">
-                    <a href="<?=base_url();?>assets/img/profile/<?= $nomor_surat['file'];?>"  target="blank" title="view" class="btn btn-lg btn-white">
-                      <i class="fa fa-file fa-4x text-primary"></i>
-                    </a>              
-                  </div>
-                  <div class="m-b-12">
-                    <a href="javascript:;" class="btn btn-default btn-block btn-sm"><?= $nomor_surat['nomor_surat']; ?></a>
+                  <div class="profile-left" align="center">
+                    <div class="panel-body">
+                      <?php 
+                      if ($nomor_surat['file'] != '') {
+                        $tipe = explode('.', $nomor_surat['file']);
+                        if($tipe[1] == 'pdf'){
+                          ?>
+                          <a href="<?=base_url();?>assets/photo/<?= $nomor_surat['file'];?>"  target="_blank" title="view" class="btn btn-lg btn-info"> Download Dokumen
+                          </a>
+                          <?php 
+                        } else {
+                          ?>
+                          <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal"><i class="fas fa-fw fa-plus"></i> Tampilkan Dokumen</a>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="newSuratMasukModal" tabindex="-1" role="dialog" aria-labelledby="newSuratMasukModalLabel" aria-hidden="true">
+                           <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <img src="<?=base_url();?>assets/photo/<?= $nomor_surat['file'];?>" alt="">
+                            </div>
+                          </div>
+                        </div>
+                        <?php
+                      }
+                    } else {
+                      echo 'Tidak ada file dokumen';
+                    }
+                    ?>
+
                   </div>
                 </div>
 
-              </div> -->
+              </div>
             </div>
           </div>        
 

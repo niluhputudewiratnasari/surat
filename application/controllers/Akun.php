@@ -48,7 +48,7 @@ class Akun extends CI_Controller {
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('image')) {
-					$old_image = $data['user']['image'];
+					$old_image = $data['akun']['image'];
 					if ($old_image != 'default.jpg') {
 						unlink(FCPATH . 'assets/img/profile/' . $old_image);
 					}

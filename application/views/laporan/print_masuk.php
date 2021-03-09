@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Print Laporan Surat Keluar</title>
+	<title>Print Laporan Surat Masuk</title>
 	<style>
 		body {
 			font-family: calibri;
@@ -31,23 +31,23 @@
 				<th scope="col">Nomor Surat</th>
 				<th scope="col">Perihal</th>
 				<th scope="col">Kode Klasifikasi</th>
-				<th scope="col">Kepada</th>
+				<th scope="col">Pengirim</th>
 				<th scope="col">Tanggal Surat</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php $i = 1; ?>
-			<?php foreach ($nomor_surat as $sk) : ?>
-				<tr>
-					<th scope="row"><?= $i; ?></th>
-					<td><?= $sk->nomor_surat; ?></td>
-					<td><?= $sk->perihal; ?></td>
-					<td><?= $sk->klasifikasi; ?></td>
-					<td><?= $sk->kepada; ?></td>
-					<td><?= $sk->tgl_surat; ?></td>
+			<?php foreach ($nomor_surat as $sms) : ?>
+			<tr>
+				<th scope="row"><?= $i; ?></th>
+				<td><?= $sms->nomor_surat; ?></td>
+				<td><?= $sms->perihal; ?></td>
+				<td><?= $sms->klasifikasi; ?></td>
+				<td><?= $sms->pengirim; ?></td>
+				<td><?= $sms->tgl_surat; ?></td>
 
-				</tr>
-				<?php $i++; ?>
+			</tr>
+			<?php $i++; ?>
 			<?php endforeach; ?>
 		</tbody>
 	</table>

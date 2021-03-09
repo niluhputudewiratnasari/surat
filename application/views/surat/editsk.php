@@ -79,9 +79,9 @@
 							</div>
 
 							<!-- <div class="form-group">
-								<label for="exampleFormControlFile1">Input File</label>
-								<input type="file" class="form-control-file" name="file_sk" value="<?=$isi->file; ?>">
-								<input type="hidden" class="form-control-file" name="file" value="<?=$isi->file; ?>">
+								<label for="file">Input File</label>
+								<input type="file" class="form-control-file" name="file" value="<?= $nomor_surat['file']; ?>">
+								<input type="hidden" class="form-control-file" name="file" value="<?= $nomor_surat['file']; ?>">
 							</div> -->
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-9">

@@ -22,15 +22,6 @@
 </head>
 <body>
 
-  <!--  <img src="<?=base_url('assets/dist/img/cop.jpg')?>"><br> -->
-  <h5 style="text-align: center;">PEMERINTAH PROVINSI NUSA TENGGARA BARAT</h5>
-  <h2 style="text-align: center">DINAS KESEHATAN</h2>
-
-  <p style="text-align: center">Jl. Amir Hamzah No. 103 Telp (0370) 621786
-    <br>Mataram 83211
-  </p>
-  <hr size="30px">
-  <br>
   <h5 style="text-align: center;" > LAPORAN SURAT MASUK </h5>
   <!-- <h6 style="text-align: center;">Tanggal <?php echo date("d-m-Y",strtotime($tgl1)) ?> sampai <?php echo date("d-m-Y",strtotime($tgl2)) ?></h6> -->
   <br>
@@ -38,108 +29,144 @@
 
 
     <div class="row">
-     <div class="col-lg">
+      <div class="col-lg-6">
 
-       
+        <div class="card">
+          <h5 class="card-header">Fillter By Tanggal</h5>
+          <div class="card-body">
+            <form action="<?= base_url(); ?>laporan/filter2" method="POST" target='_blank'>
 
+              <input type="hidden" name="nilaifilter" value="1">
 
-      <form class="form-inline">
-        <div class="form-group mb-3">
-          <label for="tanggal"> Days: </label>
-          <select class="form-control ml-2" name="tanggal">
-            <option value="">--Select Days-- </option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-          </select>
-        </div>
-        <div class="form-group mb-3">
-          <label for="bulan"> Month : </label>
-          <select class="form-control ml-2" name="bulan">
+              <div class="row">
+                <label for="tanggalawal" class="col-sm-5 col-form-label"> Tanggal Awal </label>
+                <div class="col-sm-3">
+                 <!--  Tanggal Awal <br> -->
+                 <input type="date" name="tanggalawal" required="">
+               </div>
+             </div>
+
+             <div class="row">
+              <label for="tanggalakhir" class="col-sm-5 col-form-label"> Tanggal Akhir </label>
+              <div class="col-sm-3">
+               <!--  Tanggal Awal <br> -->
+               <input type="date" name="tanggalakhir" required="">
+             </div>
+           </div>
+           <div class="form-group row justify-content-end">
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-primary">Print</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-6">
+
+    <div class="card">
+      <h5 class="card-header">Fillter By Bulan</h5>
+      <div class="card-body">
+        <form action="<?= base_url(); ?>laporan/filter2" method="POST" target='_blank'>
+
+          <input type="hidden" name="nilaifilter" value="2">
+
+          <div class="form-group">
+            <label for="tahun1"> Years : </label>
+            <select class="form-control ml-2" name="tahun1" required="">
+             <?php foreach ($tahun as $bl) : ?>
+               <option value="">--Select Years-- </option>
+               <option value="<?php echo $bl->tahun ?>"><?php echo $bl->tahun ?></option>
+
+             <?php endforeach; ?>
+           </select>
+         </div>
+
+         <div class="form-group">
+          <label for="bulanawal"> First Month : </label>
+          <select class="form-control ml-2" name="bulanawal" required="">
             <option value="">--Select Month-- </option>
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
             <option value="10">October</option>
             <option value="11">November</option>
             <option value="12">December</option>
           </select>
         </div>
-        <div class="form-group mb-3 ml-3">
-          <label for="tahun"> Years : </label>
-          <select class="form-control ml-2" name="tahun">
-            <option value="">--Select Years-- 
-            </option>
-            <?php $tahun = date('Y');
-            for($i=2020;$i<$tahun+5;$i++) {?>
-              <option value="<?php echo $i ?>"><?php echo $i ?></option>
-            <?php }?>
+
+        <div class="form-group mb-3">
+          <label for="bulanakhir"> Last Month : </label>
+          <select class="form-control ml-2" name="bulanakhir" required="">
+            <option value="">--Select Month-- </option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
           </select>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-3 ml-auto"><i class="fas fa-eye"></i> Tampilkan Data</button>
+        <div class="form-group row justify-content-end">
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary">Print</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
-
- <!--  <?php 
-  if ((isset($_GET['bulan']) && $_GET['bulan']!='') && (isset($_GET['tahun']) && $_GET['tahun']!='')) {
-  $tanggal = $_GET['tanggal'];
-  $bulan = $_GET['bulan'];
-  $tahun = $_GET['tahun'];
-  $bulantahun = $tanggal.$bulan.$tahun;
-}else{
-$tanggal = date('d');
-$bulan = date('m');
-$tahun = date('Y');
-$bulantahun = $tanggal.$bulan.$tahun;
-}
-
-?> -->
+</div>
+</div>
 <br>
-<div class="alert alert-info">
-  Menampilkan Laporan Surat Masuk Bulan : <span class="font-weight-bold"><?php echo $bulan ?> </span> Tahun : <span class="font-weight-bold"><?php echo $tahun ?> </span>
-</div>
 
-<table class="table table-striped mt-3 text-center" style="font-size: 12px;">
- <thead>
-  <tr>
-   <th scope="col">#</th>
-   <th scope="col">Nomor Surat</th>
-   <th scope="col">Perihal</th>
-   <th scope="col">Kode Klasifikasi</th>
-   <th scope="col">Pengirim</th>
-   <th scope="col">Tanggal Surat</th>
- </tr>
-</thead>
-<tbody>
-  <?php $i = 1; ?>
-  <?php foreach ($nomor_surat as $sms) : ?>
-    <tr>
-      <th scope="row"><?= $i; ?></th>
-      <td><?= $sms->nomor_surat; ?></td>
-      <td><?= $sms->perihal; ?></td>
-      <td><?= $sms->klasifikasi; ?></td>
-      <td><?= $sms->pengirim; ?></td>
-      <td><?= $sms->tgl_surat; ?></td>
+<div class="row">
+  <div class="col-lg-6">
 
-    </tr>
-    <?php $i++; ?>
-  <?php endforeach; ?>
-</tbody>
-</table>
+    <div class="card">
+      <h5 class="card-header">Fillter By Tahun</h5>
+      <div class="card-body">
+        <form action="<?= base_url(); ?>laporan/filter2" method="POST" target='_blank'>
 
+          <input type="hidden" name="nilaifilter" value="3">
+
+          <div class="form-group">
+            <label for="tahun2"> Years : </label>
+            <select class="form-control ml-2" name="tahun2" required="">
+             <?php foreach ($tahun as $bl) : ?>
+               <option value="">--Select Years-- </option>
+               <option value="<?php echo $bl->tahun ?>"><?php echo $bl->tahun ?></option>
+
+             <?php endforeach; ?>
+           </select>
+         </div>
+
+         <div class="form-group row justify-content-end">
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary">Print</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 </div>
+
+
 </body>
 </html>

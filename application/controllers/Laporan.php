@@ -19,6 +19,7 @@ class Laporan extends CI_Controller {
 		$data['title'] = 'Laporan Surat Masuk';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
+		$data['tahun'] = $this->laporan_model->gettahuns();
 		$data['nomor_surat']=$this->db->order_by('tgl_surat', 'ASC')->get('surat_masuk')->result();
 		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
 
@@ -27,17 +28,6 @@ class Laporan extends CI_Controller {
 		$this->load->view('templetes/topbarindex', $data);
 		$this->load->view('laporan/index', $data);
 		$this->load->view('templetes/footerindex');
-		// if ((isset($_GET['bulan']) && $_GET['bulan']!='') && (isset($_GET['tahun']) && $_GET['tahun']!='')) {
-		// 	$bulan = $_GET['bulan'];
-		// 	$tahun = $_GET['tahun'];
-		// 	$bulantahun = $bulan.$tahun;
-		// }else{
-		// 	$bulan = date('m');
-		// 	$tahun = date('Y');
-		// 	$bulantahun = $bulan.$tahun;
-		// }
-
-		// $data['nomor_surat'] = $this->db->query("SELECT surat_masuk.*,kode_klasifikasi.klasifikasi FROM surat_masuk JOIN kode_klasifikasi on surat_masuk.klasifikasi = kode_klasifikasi.klasifikasi WHERE surat_masuk.tgl_surat='$bulantahun'")->result();
 		
 		
 	}
@@ -46,6 +36,7 @@ class Laporan extends CI_Controller {
 	{
 		$data['title'] = 'Laporan Surat Masuk';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+
 
 		$data['nomor_surat']=$this->db->order_by('tgl_surat', 'ASC')->where('tgl_surat >=',$this->input->post('tgl1'))->where('tgl_surat <=',$this->input->post('tgl2'))->get('surat_masuk')->result();
 
@@ -66,26 +57,42 @@ class Laporan extends CI_Controller {
 
 	}
 
-	// public function laporan_pdf(){
-
-	// 	$data['nomor_surat']=$this->db->get('surat_masuk')->result();
-
-	// 	$this->load->library('pdf');
-
-	// 	$tgl1=$this->input->post('tgl1');
-	// 	$tgl2=$this->input->post('tgl2');
-	// 	$this->pdf->setPaper('A4', 'potrait');
-	// 	$this->pdf->filename = "laporan Surat Masuk tanggal-".$tgl1."sampai".$tgl2;
-	// 	$this->pdf->load_view('laporan/cetakLaporanSM', $data);
+	public function filter2()
+	{
+		$tanggalawal = $this->input->post('tanggalawal');
+		$tanggalakhir = $this->input->post('tanggalakhir');
+		$tahun1 = $this->input->post('tahun1');
+		$bulanawal = $this->input->post('bulanawal');
+		$bulanakhir = $this->input->post('bulanakhir');
+		$tahun2 = $this->input->post('tahun2');
+		$nilaifilter = $this->input->post('nilaifilter');
 
 
-	// }
-	
-	// public function cetak()
-	// {
-	// 	$data['nomor_surat']=$this->db->get('surat_masuk')->result();
-	// 	$this->load->view('laporan/cetakLaporanSM',$data);
-	// }
+		if ($nilaifilter == 1) {
+			$data['judul'] = "Laporan Surat Masuk By Tanggal";
+			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.'Sampai Tanggal :'.$tanggalakhir;
+			$data['nomor_surat'] = $this->laporan_model->filterbytanggals($tanggalawal, $tanggalakhir);
+
+
+			$this->load->view('laporan/print_masuk', $data);
+
+		}elseif ($nilaifilter == 2) {
+			$data['judul'] = "Laporan Surat Masuk By Bulan";
+			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal '.$bulanakhir.'Tahun : '.$tahun1;
+			$data['nomor_surat'] = $this->laporan_model->filterbybulans($tahun1,$bulanawal, $bulanakhir);
+
+
+			$this->load->view('laporan/print_masuk', $data);
+
+		}elseif ($nilaifilter == 3) {
+			$data['judul'] = "Laporan Surat Masuk By Tahun";
+			$data['subjudul'] = 'Tahun : '.$tahun2;
+			$data['nomor_surat'] = $this->laporan_model->filterbytahuns($tahun2);
+			// var_dump($data);
+
+			$this->load->view('laporan/print_masuk', $data);
+		}
+	}
 
 	//==========================================Laporan Surat Keluar======================================
 	public function keluar()
@@ -118,7 +125,7 @@ class Laporan extends CI_Controller {
 		if ($nilaifilter == 1) {
 			$data['judul'] = "Laporan Surat Keluar By Tanggal";
 			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.'Sampai Tanggal :'.$tanggalakhir;
-			$data['datafilter'] = $this->laporan_model->filterbytanggal($tanggalawal, $tanggalakhir);
+			$data['nomor_surat'] = $this->laporan_model->filterbytanggal($tanggalawal, $tanggalakhir);
 
 
 			$this->load->view('laporan/print_keluar', $data);
@@ -126,7 +133,7 @@ class Laporan extends CI_Controller {
 		}elseif ($nilaifilter == 2) {
 			$data['judul'] = "Laporan Surat Keluar By Bulan";
 			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal '.$bulanakhir.'Tahun : '.$tahun1;
-			$data['datafilter'] = $this->laporan_model->filterbybulan($tahun1,$bulanawal, $bulanakhir);
+			$data['nomor_surat'] = $this->laporan_model->filterbybulan($tahun1,$bulanawal, $bulanakhir);
 
 
 			$this->load->view('laporan/print_keluar', $data);
@@ -134,8 +141,8 @@ class Laporan extends CI_Controller {
 		}elseif ($nilaifilter == 3) {
 			$data['judul'] = "Laporan Surat Keluar By Tahun";
 			$data['subjudul'] = 'Tahun : '.$tahun2;
-			$data['datafilter'] = $this->laporan_model->filterbytahun($tahun2);
-
+			$data['nomor_surat'] = $this->laporan_model->filterbytahun($tahun2);
+			// var_dump($data);
 
 			$this->load->view('laporan/print_keluar', $data);
 		}
@@ -145,7 +152,7 @@ class Laporan extends CI_Controller {
 
 	public function keluark()
 	{
-		$pdf = new FPDF('l','mm','A4', 'potrait');
+		$pdf = new FPDF('l','mm','A4');
         // membuat halaman baru
 		$pdf->AddPage();
         // setting jenis font yang akan digunakan
@@ -266,7 +273,7 @@ class Laporan extends CI_Controller {
 			'keterangan' => $this->input->post('keterangan')
 		);
 		$this->db->insert('tabel_disposisi', $data);
-		$this->db->where('id_suratmasuk')->update('surat_masuk', ['status'=>'Berhasil Disposisi']);
+		$this->db->where(['id_suratmasuk' => $data['id_suratmasuk']])->update('surat_masuk', ['status'=>'Berhasil Disposisi']);
 		$noSurat= $this->db->select('nomor_surat')->where('id_suratmasuk')->get('surat_masuk')->result();
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

@@ -47,7 +47,7 @@
         <div class="form-group row justify-content-end">
           <div class="col-sm-10">
             <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-            <a class="btn btn-danger" href="<?=site_url('Admin/role')?>" role="button">Cancel</a>
+            <a class="btn btn-danger" href="<?=site_url('Surat/index')?>" role="button">Cancel</a>
           </div>
         </div>
 

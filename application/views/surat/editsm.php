@@ -14,7 +14,7 @@
 						<?= $this->session->flashdata('message'); ?>
 						<?= $this->session->set_flashdata('message'); ?>
 
-						<form action="<?= site_url('surat/proses_editsm') ?>" method="post">
+						<form action="<?= site_url('surat/proses_editsm') ?>"  enctype="multipart/form-data" method="post">
 							<input type="hidden" name="id_suratmasuk" value="<?= $nomor_surat['id_suratmasuk']; ?>">
 							<div class="row mb-3">
 								<label for="no_urut" class="col-sm-3 col-form-label">No </label>
@@ -42,7 +42,6 @@
 							<div class="row mb-3">
 								<label for="klasifikasi" class="col-sm-3 col-form-label">Klasifikasi </label>
 								<div class="col-sm-8">
-									<!-- 									<input type="text" class="form-control" id="klasifikasi" name="klasifikasi" placeholder="Masukkan klasifikasi"  value="<?= $nomor_surat['klasifikasi']; ?>"> -->
 									<select name="klasifikasi" id="klasifikasi" class="form-control" >
 										<?php foreach ($klasifikasi as $klas) : ?>
 											<option value="<?= $klas['klasifikasi']; ?>"><?= $klas['klasifikasi']; ?></option>
@@ -79,15 +78,19 @@
 							<div class="row mb-3">
 								<label for="file" class="col-sm-3 col-form-label">File </label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="file" name="file" placeholder="Masukkan file"  value="<?= $nomor_surat['file']; ?>">
-									<?= form_error('file','<small class="text-danger pl-3">', '</small>');  ?>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="file" name="file">
+										<label class="custom-file-label" for="file">Choose file</label>
+									</div>
+									<!-- <input type="text" class="form-control" id="file" name="file"> -->
+									<small><?= $nomor_surat['file']; ?></small>
 								</div>
 							</div>
 
 							<!-- <div class="form-group">
-								<label for="exampleFormControlFile1">Input File</label>
-								<input type="file" class="form-control-file" name="file_sk" value="<?=$isi->file; ?>">
-								<input type="hidden" class="form-control-file" name="file" value="<?=$isi->file; ?>">
+								<label for="file">Input File</label>
+								<input type="file" class="form-control-file" name="file" value="<?= $nomor_surat['file']; ?>">
+								<input type="hidden" class="form-control-file" name="file" value="<?= $nomor_surat['file']; ?>">
 							</div> -->
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-9">

@@ -53,10 +53,10 @@ aria-hidden="true">
 
 <script>
   $(function(){
-     $('#example1').DataTable({
-        'ordering' : false
-    });
- })
+   $('#example1').DataTable({
+    'ordering' : false
+});
+})
 
 </script>
 <script>

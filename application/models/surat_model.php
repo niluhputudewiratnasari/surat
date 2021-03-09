@@ -22,11 +22,11 @@ class Surat_model extends CI_Model
 
 	}
 
-
+	//===================================== EDIT SM ==========================================
 
 	public function getId($id)
 	{
-		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $id])->row_array();
+		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $id])->row_object();
 	}
 
 	public function editsm()
@@ -39,7 +39,7 @@ class Surat_model extends CI_Model
 			'lampiran' => $this->input->post('lampiran', true),
 			'pengirim' => $this->input->post('pengirim', true),
 			'tgl_surat' => $this->input->post('tgl_surat', true),
-			'file' => $this->input->post('file', true)
+			//'file' => $this->input->post('file', true)
 		];
 
 		$this->db->where('id_suratmasuk', $this->input->post('id_suratmasuk'));
@@ -49,6 +49,38 @@ class Surat_model extends CI_Model
 	{
 		$this->db->where(['id_suratmasuk' => $input_id])->update('surat_masuk', $data);
 	}
+
+//================================ UPLOAD FILE SM =================================================
+	private function _uploadImage($file)
+	{
+		$config['upload_path']          = './assets/photo/';
+		$config['allowed_types']        = 'gif|jpg|png|pdf';
+		$config['file_name']            = $this->id_suratmasuk;
+		$config['overwrite']			= true;
+		$config['max_size']             = 1024; 
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload($file)) {
+			var_dump($this->upload->display_errors());
+    	// return $this->upload->data("file_name");
+		}
+
+		return "default.jpg";
+	}
+
+	public function _deleteImage($id)
+	{
+		$surat_masuk = $this->getId($id);
+		if ($surat_masuk->file != "default.jpg") {
+			$filename = explode(".", $surat_masuk->file)[0];
+			return array_map('unlink', glob(FCPATH."./assets/photo/$filename.*"));
+		}
+	}
+
+	//===============================================================================================
 
 	public function getSuratK()
 	{
@@ -79,7 +111,7 @@ class Surat_model extends CI_Model
 	}
 	public function getWheresm($kode)
 	{
-		
+
 		return $this->db->get_where('surat_masuk',['id_suratmasuk' => $kode])->row_array();
 		return $this->db->get_where('tabel_disposisi',['id_disposisi' => $kode])->row_array();
 	}
@@ -97,8 +129,8 @@ class Surat_model extends CI_Model
 			'lampiran' => $this->input->post('lampiran', true),
 			'kepada' => $this->input->post('kepada', true),
 			'tgl_surat' => $this->input->post('tgl_surat', true),
-			'file' => $this->input->post('file', true)
-			
+		//'file' => $this->input->post('file', true)
+
 		];
 
 		$this->db->where('id_suratkeluar', $this->input->post('id_suratkeluar'));
@@ -116,43 +148,70 @@ class Surat_model extends CI_Model
 		$this->db->select('RIGHT(surat_keluar.no_urut,4) as kode', FALSE);
 		$this->db->order_by('no_urut','DESC');    
 		$this->db->limit(1);    
-		  $query = $this->db->get('surat_keluar');      //cek dulu apakah ada sudah ada kode di tabel.    
-		  if($query->num_rows() <> 0){      
-		   //jika kode ternyata sudah ada.      
-		  	$data = $query->row();      
-		  	$kode = intval($data->kode) + 1;    
-		  }
-		  else {      
-		   //jika kode belum ada      
-		  	$kode = 1;    
-		  }
-
-		  $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-		  $kodejadi = "No. SK-".$tgl."-".$kodemax;    // hasilnya ODJ-9921-0001 dst.
-		  return $kodejadi;  
+		$query = $this->db->get('surat_keluar');  
+		if($query->num_rows() <> 0){      
+			$data = $query->row();      
+			$kode = intval($data->kode) + 1;    
+		}
+		else {         
+			$kode = 1;    
 		}
 
-		public function buat_kodesm()
-		{
-
-			$tgl = date('dmY');
-			$this->db->select('RIGHT(surat_masuk.no_urut,4) as kode', FALSE);
-			$this->db->order_by('no_urut','DESC');    
-			$this->db->limit(1);    
-		  $query = $this->db->get('surat_masuk');      //cek dulu apakah ada sudah ada kode di tabel.    
-		  if($query->num_rows() <> 0){      
-		   //jika kode ternyata sudah ada.      
-		  	$data = $query->row();      
-		  	$kode = intval($data->kode) + 1;    
-		  }
-		  else {      
-		   //jika kode belum ada      
-		  	$kode = 1;    
-		  }
-
-		  $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-		  $kodejadi = "No. SM-".$tgl."-".$kodemax;    // hasilnya ODJ-9921-0001 dst.
-		  return $kodejadi;  
-		}
-
+		$kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+		$kodejadi = "No. SK-".$tgl."-".$kodemax;
+		return $kodejadi;  
 	}
+
+	private function _uploadImagek()
+	{
+		$config['upload_path']          = './assets/photo/';
+		$config['allowed_types']        = 'gif|jpg|png|pdf';
+		$config['file_name']            = $this->id_suratkeluar;
+		$config['overwrite']			= true;
+    $config['max_size']             = 1024; // 1MB
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('file')) {
+    	return $this->upload->data("file_name");
+    }
+    
+    return "default.jpg";
+}
+
+private function _deleteImagek($id)
+{
+	$surat_keluar = $this->getById($id);
+	if ($surat_keluar->file != "default.jpg") {
+		$filename = explode(".", $surat_keluar->file)[0];
+		return array_map('unlink', glob(FCPATH."assets/photo/$filename.*"));
+	}
+}
+
+
+//============================================================================================================
+public function buat_kodesm()
+{
+
+	$tgl = date('dmY');
+	$this->db->select('RIGHT(surat_masuk.no_urut,4) as kode', FALSE);
+	$this->db->order_by('no_urut','DESC');    
+	$this->db->limit(1);    
+	$query = $this->db->get('surat_masuk');  
+	if($query->num_rows() <> 0){      
+		
+		$data = $query->row();      
+		$kode = intval($data->kode) + 1;    
+	}
+	else {            
+		$kode = 1;    
+	}
+
+	$kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+	$kodejadi = "No. SM-".$tgl."-".$kodemax;
+	return $kodejadi;  
+}
+
+}

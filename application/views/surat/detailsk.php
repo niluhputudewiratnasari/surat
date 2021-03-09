@@ -64,28 +64,21 @@
                           <td width="5%">:</td>
                           <td class="text-left"><?= $nomor_surat['file']; ?></td>
                         </tr>
-
-                        <!-- <div class="form-group">
-                          <label for="exampleFormControlFile1">Input File</label>
-                          <input type="file" class="form-control-file" name="file" >
-                          <input type="hidden" name="file1" value="<?= $nomor_surat['file']; ?>">
-                        </div> -->
-
                       </tbody>
                     </table>
 
                   </div>
                 </div>
-               <!--  <div class="col-4">
+              <!--  <div class="col-4">
 
                  <div class="profile-left" align="center">
                   <div class="panel-body">
-                    <a href="<?=base_url('assets/uploads/'.$isi->file);?>"  target="blank" title="view" class="btn btn-lg btn-white">
+                    <a href="<?=base_url();?>assets/img/profile/<?= $nomor_surat['file'];?>"  target="blank" title="view" class="btn btn-lg btn-white">
                       <i class="fa fa-file fa-4x text-primary"></i>
                     </a>              
                   </div>
                   <div class="m-b-12">
-                    <a href="javascript:;" class="btn btn-default btn-block btn-sm"><?=$isi->no_surat; ?></a>
+                    <a href="javascript:;" class="btn btn-default btn-block btn-sm"><?= $nomor_surat['nomor_surat']; ?></a>
                   </div>
                 </div>
 

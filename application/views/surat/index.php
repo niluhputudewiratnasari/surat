@@ -53,7 +53,7 @@
             <?php
           endif;
           ?>
-          <th scope="col">File</th>
+          <!-- <th scope="col">File</th> -->
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -67,7 +67,9 @@
           <td><?= $sms['klasifikasi']; ?></td>
           <td><?= $sms['lampiran']; ?></td>
           <td><?= $sms['pengirim']; ?></td>
-          <td><?= $sms['tgl_surat']; ?></td><?php
+          <td><?= $sms['tgl_surat']; ?></td>
+
+          <?php
           if($this->session->role_id != '2'):
             ?>
             <td>
@@ -83,13 +85,14 @@
            <?php
          endif;
          ?>
-         <td><img src="<?php echo base_url().'assets/photo/'.$sms['file'] ?>" width="75px"></td>
+
+         <!-- <td><img src="<?php //echo base_url(); ?>assets/photo/<?= $sms['file'];?>" width="64"></td> -->
+
          <td>
+           <a href="<?=site_url(); ?>surat/detailsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-primary">Detail</a>
 
-          <a href="<?=site_url(); ?>surat/detailsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-primary">Detail</a>
-
-          <?php
-          if($this->session->role_id == '1'):
+           <?php
+           if($this->session->role_id == '1'):
             ?>
             <a href="<?= base_url(); ?>surat/editsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
             <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
@@ -98,6 +101,7 @@
           endif
           ?>
         </td>
+        
       </tr>
       <?php $i++; ?>
     <?php endforeach; ?>
@@ -118,7 +122,7 @@
     <h5 class="modal-title" id="newSuratMasukModalLabel">Tambah Surat Masuk</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   </div>
-  <form action="<?= base_url('surat'); ?>" method="post" enctype="multipart/form-data">
+  <form action="<?= base_url('surat/simpan_surat_masuk'); ?>" method="post" enctype="multipart/form-data">
     <div class="modal-body">
      <div class="form-group">
       <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Nomor Surat">
@@ -136,10 +140,10 @@
     </select>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="lampiran" name="lampiran" placeholder="Lampiran">
+    <input type="text" class="form-control" required id="lampiran" name="lampiran" placeholder="Lampiran">
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="pengirim" name="pengirim" placeholder="Pengirim">
+    <input type="text" class="form-control" required id="pengirim" name="pengirim" placeholder="Pengirim">
   </div>
   <div class="form-group">
     <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
@@ -154,13 +158,15 @@
                <!-- <div class="form-group">
                   <input type="text" class="form-control" id="status" name="status" placeholder="Status">
                 </div> -->
-                <div class="form-group">
+               <!--  <div class="form-group">
                   <input type="text" class="form-control" id="file" name="file" placeholder="File">
-                </div>
-                <!-- <div class="custom-file">
+                </div> -->
+
+
+                <div class="custom-file">
                   <input type="file" class="custom-file-input" id="file" name="file">
                   <label class="custom-file-label" for="file">Choose file</label>
-                </div> -->
+                </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Add</button>

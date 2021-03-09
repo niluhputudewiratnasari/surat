@@ -1,8 +1,10 @@
    <div class="container-fluid">
 
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+
     <div class="row">
      <div class="col-lg">
+
       <?php if(validation_errors()) : ?>
        <div class="alert alert-danger" role="alert">
         <?= validation_errors(); ?>
@@ -19,71 +21,56 @@
     endif
     ?>
 
-    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-      <div class="input-group">
-       <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-       aria-label="Search" aria-describedby="basic-addon2">
-       <div class="input-group-append">
-         <button class="btn btn-info" type="button">
-           <i class="fas fa-search fa-sm"></i>
-         </button>
-       </div>
-     </div>
-   </form> -->
+    <div class="card">
+      <div class="card-body">
 
+        <table id="example1" class="table table-striped mt-3 text-center">
 
-   <div class="card">
-    <div class="card-body">
-      <!-- <div class="col-sm-12 col-md-6">
-        <div class="dataTables" id="example1">
-          <label>Search:
-            <input class="form-control form-control-sm" aria-controls="example1" type="search" placeholder="klik">
-          </label>
-        </div>
-      </div> -->
-      <table id="example1" class="table table-striped mt-3 text-center">
-        <thead>
-         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nomor Surat</th>
-          <th scope="col">Perihal</th>
-          <th scope="col">Kode Klasifikasi</th>
-          <th scope="col">Lampiran</th>
-          <th scope="col">Kepada</th>
-          <th scope="col">Tanggal Surat</th>
-          <th scope="col">File</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-       <?php $i = 1; ?>
-       <?php foreach ($nomor_surat as $sk) : ?>
-        <tr>
-         <th scope="row"><?= $i; ?></th>
-         <td><?= $sk['nomor_surat']; ?></td>
-         <td><?= $sk['perihal']; ?></td>
-         <td><?= $sk['klasifikasi']; ?></td>
-         <td><?= $sk['lampiran']; ?></td>
-         <td><?= $sk['kepada']; ?></td>
-         <td><?= $sk['tgl_surat']; ?></td>
-         <td><?= $sk['file']; ?></td>
-         <td>
-          <a href="<?=site_url(); ?>surat/detailsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-primary">Detail</a>
-          <?php
-          if($this->session->role_id == '1'):
+          <thead>
+           <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nomor Surat</th>
+            <th scope="col">Perihal</th>
+            <th scope="col">Kode Klasifikasi</th>
+            <th scope="col">Lampiran</th>
+            <th scope="col">Kepada</th>
+            <th scope="col">Tanggal Surat</th>
+            <th scope="col">File</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+         <?php $i = 1; ?>
+         <?php foreach ($nomor_surat as $sk) : ?>
+          <tr>
+           <th scope="row"><?= $i; ?></th>
+           <td><?= $sk['nomor_surat']; ?></td>
+           <td><?= $sk['perihal']; ?></td>
+           <td><?= $sk['klasifikasi']; ?></td>
+           <td><?= $sk['lampiran']; ?></td>
+           <td><?= $sk['kepada']; ?></td>
+           <td><?= $sk['tgl_surat']; ?></td>
+           <td><img src="<?php echo base_url(); ?>assets/photo/<?= $sk['file'];?>" width="64"></td>
+
+           <td>
+            <a href="<?=site_url(); ?>surat/detailsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-primary">Detail</a>
+            <?php
+            if($this->session->role_id == '1'):
+              ?>
+              <a href="<?= base_url(); ?>surat/editsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
+              <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+              <a href="<?= base_url(); ?>arsip/tambaharsipsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-warning">Arsipkan</a>
+              <?php 
+            endif
             ?>
-            <a href="<?= base_url(); ?>surat/editsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
-            <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-            <a href="<?= base_url(); ?>arsip/tambaharsipsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-warning">Arsipkan</a>
-            <?php 
-          endif
-          ?>
-        </td>
-      </tr>
-      <?php $i++; ?>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+          </td>
+
+        </tr>
+        <?php $i++; ?>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 </div>
 </div>
 </div>

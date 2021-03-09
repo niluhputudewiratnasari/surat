@@ -67,6 +67,7 @@
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-9">
 									<button type="submit" name="editklasifikasi" class="btn btn-primary">Edit</button>
+									<a class="btn btn-danger" href="<?=site_url('Arsip/index')?>" role="button">Cancel</a>
 								</div>
 							</div>
 

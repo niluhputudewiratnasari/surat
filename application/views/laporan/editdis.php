@@ -38,10 +38,15 @@
 							</div>
 
 							<div class="row mb-3">
-								<label for="tujuan" class="col-sm-3 col-form-label">Tujuan Disposisi </label>
+								<label for="tujuan" class="col-sm-3 col-form-label">Tujuan Disposisi</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="tujuan" name="tujuan" placeholder="Masukkan tujuan"  value="<?= $nomor_surat['tujuan']; ?>">
-									<?= form_error('tujuan','<small class="text-danger pl-3">', '</small>');  ?>
+									<select name="tujuan" id="tujuan" class="form-control" >
+										<option value="">--Select Tujuan Disposisi-- </option>
+										<?php foreach ($id_bagian as $bg) : ?>
+											<option value="<?= $bg['nama_bagian']; ?>"><?= $bg['nama_bagian']; ?></option>
+										<?php endforeach; ?>
+									</select>
+									<?= form_error('klasifikasi','<small class="text-danger pl-3">', '</small>');  ?>
 								</div>
 							</div>
 

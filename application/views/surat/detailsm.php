@@ -85,7 +85,7 @@
                       <?php 
                     } else {
                       ?>
-                      <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal"><i class="fas fa-fw fa-plus"></i> Tampilkan Dokumen</a>
+                      <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newSuratMasukModal"> Tampilkan Dokumen</a>
 
                       <!-- Modal -->
                       <div class="modal fade" id="newSuratMasukModal" tabindex="-1" role="dialog" aria-labelledby="newSuratMasukModalLabel" aria-hidden="true">

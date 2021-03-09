@@ -70,7 +70,7 @@ class Laporan extends CI_Controller {
 
 		if ($nilaifilter == 1) {
 			$data['judul'] = "Laporan Surat Masuk By Tanggal";
-			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.'Sampai Tanggal :'.$tanggalakhir;
+			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.' Sampai Tanggal : '.$tanggalakhir;
 			$data['nomor_surat'] = $this->laporan_model->filterbytanggals($tanggalawal, $tanggalakhir);
 
 
@@ -78,7 +78,7 @@ class Laporan extends CI_Controller {
 
 		}elseif ($nilaifilter == 2) {
 			$data['judul'] = "Laporan Surat Masuk By Bulan";
-			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal '.$bulanakhir.'Tahun : '.$tahun1;
+			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal : '.$bulanakhir.'Tahun : '.$tahun1;
 			$data['nomor_surat'] = $this->laporan_model->filterbybulans($tahun1,$bulanawal, $bulanakhir);
 
 
@@ -124,7 +124,7 @@ class Laporan extends CI_Controller {
 
 		if ($nilaifilter == 1) {
 			$data['judul'] = "Laporan Surat Keluar By Tanggal";
-			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.'Sampai Tanggal :'.$tanggalakhir;
+			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.' Sampai Tanggal : '.$tanggalakhir;
 			$data['nomor_surat'] = $this->laporan_model->filterbytanggal($tanggalawal, $tanggalakhir);
 
 
@@ -132,7 +132,7 @@ class Laporan extends CI_Controller {
 
 		}elseif ($nilaifilter == 2) {
 			$data['judul'] = "Laporan Surat Keluar By Bulan";
-			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal '.$bulanakhir.'Tahun : '.$tahun1;
+			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal : '.$bulanakhir.'Tahun : '.$tahun1;
 			$data['nomor_surat'] = $this->laporan_model->filterbybulan($tahun1,$bulanawal, $bulanakhir);
 
 
@@ -229,6 +229,8 @@ class Laporan extends CI_Controller {
 		$data['nomor_surat'] = $this->dis->getId($id);
 		$data['nomor_surat'] = $this->dis->getWheredis($id);
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
+		$data['tgl_disposisi'] = $this->dis->getBagian();
+		$data['id_bagian'] = $this->db->get('bagian')->result_array();
 
 		$this->form_validation->set_rules('tgl_disposisi', 'Tanggal Disposisi', 'required');
 		$this->form_validation->set_rules('id_suratmasuk', 'Id Surat Masuk', 'required');
@@ -297,6 +299,9 @@ class Laporan extends CI_Controller {
 		$data['nomor_surat'] = $this->dis->getAll($id);
 		$data['nomor_surat'] = $this->dis->getId($id);
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
+		$data['tgl_disposisi'] = $this->dis->getBagian();
+		$data['id_bagian'] = $this->db->get('bagian')->result_array();
+
 
 		$this->form_validation->set_rules('tgl_disposisi', 'Tanggal Disposisi', 'required');
 		$this->form_validation->set_rules('id_suratmasuk', 'Id Surat Masuk', 'required');

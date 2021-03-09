@@ -8,12 +8,22 @@ class Disposisi_model extends CI_Model
 	
 	public function getAll()
 	{
-		$query = "SELECT `tabel_disposisi`.*, `surat_masuk`.`nomor_surat`,`surat_masuk`.`perihal`
+		$query = "SELECT `tabel_disposisi`.*, `surat_masuk`.`nomor_surat`
 		FROM `tabel_disposisi` JOIN `surat_masuk`
 		ON  `tabel_disposisi`.`id_suratmasuk` = `surat_masuk`.`id_suratmasuk`
 		";
 		return $this->db->query($query)->result_array();
 	}
+
+	public function getBagian()
+	{
+		$query = "SELECT `tabel_disposisi`.*, `bagian`.`nama_bagian`
+		FROM `tabel_disposisi` JOIN `bagian`
+		ON  `tabel_disposisi`.`id_bagian` = `bagian`.`id_bagian`
+		";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function hapusdata($id)
 	{
 		$this->db->where('id_disposisi', $id);

@@ -16,9 +16,9 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Name : <br><?= $akun['name']; ?></h5>
-            <p class="card-text">Email  : <br><?= $akun['email']; ?></p>
-            <p class="card-text"><small class="text-muted">Member since <?= date('d F Y', $akun['date_create']); ?></small></p>
+            <h5 class="card-title">Name : <?= $akun['name']; ?></h5>
+            <h6 class="card-text mb-5">Email  : <?= $akun['email']; ?></h6>
+            <p class="card-text text-right"><small class="text-mute">Member since <?= date('d F Y', $akun['date_create']); ?></small></p>
           </div>
         </div>
       </div>

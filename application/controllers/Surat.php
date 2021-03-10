@@ -22,6 +22,9 @@ class Surat extends CI_Controller {
 		$data['nomor_surat'] = $this->surat->getSurat();
 		$data['klasifikasi'] = $this->db->get('kode_klasifikasi')->result_array();
 
+		
+		
+
 		$this->load->view('templetes/headerindex', $data);
 		$this->load->view('templetes/sidebarindex', $data);
 		$this->load->view('templetes/topbarindex', $data);
@@ -31,7 +34,7 @@ class Surat extends CI_Controller {
 	}
 
 	function simpan_surat_masuk(){
-		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
+		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required|is_unique[surat_masuk.nomor_surat]');
 		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
 		$this->form_validation->set_rules('klasifikasi', 'Kode Klasifikasi', 'required');
 		$this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
@@ -310,7 +313,7 @@ class Surat extends CI_Controller {
 			$this->index();
 		} else {
 			$config['upload_path']          = './assets/photo/';
-			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			$config['allowed_types']        = 'gif|jpg|png|pdf|doc|docx';
 			$config['encrypt_name']            = false;
 			$config['overwrite']			= false;
 			$config['max_size']             = 1024;

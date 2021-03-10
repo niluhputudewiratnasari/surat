@@ -126,28 +126,29 @@
     <div class="modal-body">
      <div class="form-group">
       <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Nomor Surat">
+      <?=(form_error('nomor_surat')) ? 'is-invalid' : '';?>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="perihal" name="perihal" placeholder="Perihal">
-    </div>
+        <input type="text" class="form-control" id="perihal" name="perihal" placeholder="Perihal">
+      </div>
 
+      <div class="form-group">
+        <select name="klasifikasi" id="klasifikasi" class="form-control">
+         <option value="">Select Kode Klasifikasi</option>
+         <?php foreach ($klasifikasi as $klas) : ?>
+          <option value="<?= $klas['klasifikasi']; ?>"><?= $klas['klasifikasi']; ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
     <div class="form-group">
-      <select name="klasifikasi" id="klasifikasi" class="form-control">
-       <option value="">Select Kode Klasifikasi</option>
-       <?php foreach ($klasifikasi as $klas) : ?>
-        <option value="<?= $klas['klasifikasi']; ?>"><?= $klas['klasifikasi']; ?></option>
-      <?php endforeach; ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" required id="lampiran" name="lampiran" placeholder="Lampiran">
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" required id="pengirim" name="pengirim" placeholder="Pengirim">
-  </div>
-  <div class="form-group">
-    <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
-  </div>
+      <input type="text" class="form-control" required id="lampiran" name="lampiran" placeholder="Lampiran">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" required id="pengirim" name="pengirim" placeholder="Pengirim">
+    </div>
+    <div class="form-group">
+      <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
+    </div>
  <!--  <div class="form-group">
     <select name="status" id="status" class="form-control">
      <option value="">--Pilih Status--</option>

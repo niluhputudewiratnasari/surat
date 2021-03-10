@@ -18,34 +18,35 @@
    					<?= form_error('name','<small class="text-danger pl-3">', '</small>');  ?>
    				</div>
    			</div>
-   			<div class="row mb-3">
-   				<div class="col-sm-2">Picture</div>
-   				<div class="col-sm-10">
-   					<div class="row">
-   						<div class="col-sm-3">
-   							<img src="<?= base_url('assets/img/profile/') . $akun['image'] ;?>" class="img-thumbnail">
-   						</div>
-   						<div class="col-sm-9">
-   							<div class="custom-filr">
-   								<input class="custom-file-input" type="file" id="image" name="image">
-   								<label class="custom-file-label" for="image">Choose file</label>
-   							</div>
-   						</div>
-   					</div>
-   				</div>
-   			</div>
 
-   			<div class="form-group row justify-content-end">
-   				<div class="col-sm-10">
-   					<button type="submit" class="btn btn-primary">Edit</button>
-   				</div>
-   			</div>
+          <div class="row mb-3">
+           <div class="col-sm-2">Picture</div>
+           <div class="col-sm-10">
+             <div class="row">
+               <div class="col-sm-3">
+                  <img src="<?= base_url('assets/img/profile/') . $akun['image'] ;?>" class="img-thumbnail">
+               </div>
+               <div class="col-sm-9">
+                  <div class="custom-file">
+                   <input class="custom-file-input" type="file" id="image" name="image">
+                   <label class="custom-file-label" for="image">Choose file</label>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
 
-   		</form>
+    <div class="form-group row justify-content-end">
+     <div class="col-sm-10">
+       <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+ </div>
+
+</form>
 
 
-   	</div>
-   </div>
+</div>
+</div>
 
 </div>
 

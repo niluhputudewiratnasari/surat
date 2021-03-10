@@ -28,4 +28,10 @@ class Admin_model extends CI_Model
 	{
 		$this->db->where(['id' => $input_id])->update('akun_role', $data);
 	}
+
+
+	public function simpanEditp($input_id, $data)
+	{
+		$this->db->where(['id_akun' => $input_id])->update('akun', $data);
+	}
 }

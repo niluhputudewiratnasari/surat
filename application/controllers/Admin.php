@@ -26,7 +26,9 @@ class Admin extends CI_Controller {
 		$data['title'] = 'Role';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
+
 		$data['role'] = $this->db->get('akun_role')->result_array();
+		
 		$this->form_validation->set_rules('role', 'Role', 'required');
 
 		if ($this->form_validation->run() == false) {

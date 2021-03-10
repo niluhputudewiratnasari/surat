@@ -37,6 +37,7 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
+                                        <a class="btn btn-danger btn-user btn-block" href="<?=site_url('Home/index')?>" role="button">Cancel</a>
                                     </form>
                                     <hr>
                                     

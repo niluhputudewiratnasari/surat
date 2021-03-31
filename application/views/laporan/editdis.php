@@ -13,7 +13,7 @@
 							<div class="row mb-3">
 								<label for="tgl_disposisi" class="col-sm-3 col-form-label">Tanggal Disposisi</label>
 								<div class="col-sm-8">
-									<input type="date" class="form-control" id="tgl_disposisi" name="tgl_disposisi" placeholder="Masukkan nomor surat"  value="<?= $nomor_surat['tgl_disposisi']; ?>"> 
+									<input type="date" class="form-control" required  id="tgl_disposisi" name="tgl_disposisi" placeholder="Masukkan nomor surat"  value="<?= $nomor_surat['tgl_disposisi']; ?>"> 
 									<?= form_error('tgl_disposisi','<small class="text-danger pl-3">', '</small>');  ?>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 							<div class="row mb-3">
 								<label for="tujuan" class="col-sm-3 col-form-label">Tujuan Disposisi</label>
 								<div class="col-sm-8">
-									<select name="tujuan" id="tujuan" class="form-control" >
+									<select name="tujuan" required id="tujuan" class="form-control" >
 										<option value="">--Select Tujuan Disposisi-- </option>
 										<?php foreach ($id_bagian as $bg) : ?>
 											<option value="<?= $bg['nama_bagian']; ?>"><?= $bg['nama_bagian']; ?></option>
@@ -53,7 +53,7 @@
 							<div class="row mb-3">
 								<label for="keterangan" class="col-sm-3 col-form-label">Isi Disposisi </label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan keterangan"  value="<?= $nomor_surat['keterangan']; ?>">
+									<input type="text" class="form-control" required id="keterangan" name="keterangan" placeholder="Masukkan keterangan"  value="<?= $nomor_surat['keterangan']; ?>">
 									<?= form_error('keterangan','<small class="text-danger pl-3">', '</small>');  ?>
 								</div>
 							</div>
@@ -62,8 +62,8 @@
 
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-9">
-									<button type="submit" name="editklasifikasi" class="btn btn-primary">Edit</button>
-									<a class="btn btn-danger" href="<?=site_url('Laporan/disposisi')?>" role="button">Cancel</a>
+									<button type="submit" name="editklasifikasi" class="btn btn-primary">Simpan</button>
+									<a class="btn btn-danger" href="<?=site_url('Laporan/disposisi')?>" role="button">Batal</a>
 								</div>
 							</div>
 

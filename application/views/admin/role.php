@@ -8,7 +8,7 @@
    			<?= $this->session->flashdata('message'); ?>
 
 
-   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newRoleModal"><i class="fas fa-fw fa-plus"></i> Add New Role</a>
+   			<a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newRoleModal"><i class="fas fa-fw fa-plus"></i> Tambah Role</a>
 
 
          <div class="card">
@@ -29,8 +29,8 @@
                    <td><?= $r['role']; ?></td>
                    <td>
                     <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-warning">Akses</a>
-                    <a href="<?= base_url(); ?>admin/editrole/<?= $r['id'];?>" class="badge badge-success">Edit</a>
-                    <a href="<?= base_url(); ?>admin/hapus/<?= $r['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+                    <a href="<?= base_url(); ?>admin/editrole/<?= $r['id'];?>" class="badge badge-success">Ubah</a>
+                    <a href="<?= base_url(); ?>admin/hapus/<?= $r['id'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Hapus</a>
                   </td>
                 </tr>
                 <?php $i++; ?>
@@ -48,7 +48,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="newRoleModalLabel">Add New Role</h5>
+				<h5 class="modal-title" id="newRoleModalLabel">Tambah Role</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 			<form action="<?= base_url('admin/role'); ?>" method="post">
@@ -58,8 +58,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Add</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-primary">Tambah</button>
 				</div>
 			</form>
 		</div>

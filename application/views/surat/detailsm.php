@@ -80,7 +80,7 @@
                     $tipe = explode('.', $nomor_surat['file']);
                     if($tipe[1] == 'pdf'){
                       ?>
-                      <a href="<?=base_url();?>assets/photo/<?= $nomor_surat['file'];?>"  target="_blank" title="view" class="btn btn-lg btn-info"> Download Dokumen
+                      <a href="<?=base_url();?>assets/photo/<?= $nomor_surat['file'];?>"  target="_blank" title="view" class="btn btn-lg btn-info"> Unduh Dokumen
                       </a>
                       <?php 
                     } else {

@@ -60,19 +60,19 @@ class Masukcontroller extends CI_Controller {
 
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-						Wrong password! </div>');
+						Password salah! </div>');
 					redirect('Masukcontroller');
 				}
 
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-					This email has not been activated! </div>');
+					Email ini belum diaktifkan! </div>');
 				redirect('Masukcontroller');
 			}
 			
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-				Email is not registered! </div>');
+				Email tidak terdaftar! </div>');
 			redirect('Masukcontroller');
 		}
 	}
@@ -110,7 +110,7 @@ class Masukcontroller extends CI_Controller {
 			//$this->_sendEmail();
 
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				A Congratulation! Your account has ben created. Please Login</div>');
+				Selamat akun anda telah dibuat. Silahkan Login!</div>');
 			redirect('Masukcontroller');
 		}
 	}
@@ -149,7 +149,7 @@ class Masukcontroller extends CI_Controller {
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			You have been logout! </div>');
+			Anda telah keluar! </div>');
 		redirect('Masukcontroller');
 	}
 

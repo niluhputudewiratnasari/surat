@@ -27,7 +27,7 @@ class Menu extends CI_Controller {
 		} else {
 			$this->db->insert('akun_menu', ['menu' => $this->input->post('menu')]);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				New menu added! </div>');
+				Menu berhasil ditambahkan! </div>');
 			redirect('menu');
 		}
 	}
@@ -63,7 +63,7 @@ class Menu extends CI_Controller {
 			];
 			$this->db->insert('akun_sub_menu', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				New sub menu added! </div>');
+				Sub menu berhasil ditambahkan! </div>');
 			redirect('menu/submenu');
 		}
 
@@ -125,7 +125,7 @@ class Menu extends CI_Controller {
 
 		$this->menu_model->simpanEdit($input_id, $data);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Menu Has Updated! </div>');
+			Menu berhasil diubah! </div>');
 		redirect('menu/index');
 	}
 	//=====================================AKHIR EDIT MENU==============================================
@@ -175,7 +175,7 @@ class Menu extends CI_Controller {
 
 		$this->menu_model->simpanEditSub($input_id, $data);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Submenu Has Updated! </div>');
+			Sub menu berhasil diubah! </div>');
 		redirect('menu/submenu');
 	}
 
@@ -247,7 +247,7 @@ class Menu extends CI_Controller {
 
 		$this->menu_model->simpanEditklasifikasi($input_id, $data);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Classification Has Updated! </div>');
+			Klasifikasi berhasi diubah! </div>');
 		redirect('menu/klasifikasi');
 	}
 }

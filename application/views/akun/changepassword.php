@@ -6,22 +6,22 @@
    			<?= $this->session->flashdata('message') ;?>
    			<form action="<?= base_url('akun/changepassword') ;?>" method="post">
    				<div class="form-group">
-   					<label for="current_password">Current Password</label>
+   					<label for="current_password">Kata sandi saat ini</label>
    					<input type="password" class="form-control" id="current_password" name="current_password">
    					<?= form_error('current_password','<small class="text-danger pl-3">', '</small>');  ?>
    				</div>
    				<div class="form-group">
-   					<label for="new_password1">New Password</label>
+   					<label for="new_password1">Kata sandi baru</label>
    					<input type="password" class="form-control" id="new_password1" name="new_password1">
    					<?= form_error('new_password1','<small class="text-danger pl-3">', '</small>');  ?>
    				</div>
    				<div class="form-group">
-   					<label for="new_password2">RepeatPassword</label>
+   					<label for="new_password2">Kata sandi baru sekali lagi</label>
    					<input type="password" class="form-control" id="new_password2" name="new_password2">
    					<?= form_error('new_password2','<small class="text-danger pl-3">', '</small>');  ?>
    				</div>
    				<div class="form-group">
-   					<button type="submit" class="btn btn-primary">Change Password</button>
+   					<button type="submit" class="btn btn-primary">Simpan</button>
    				</div>
    			</form>
    		</div>

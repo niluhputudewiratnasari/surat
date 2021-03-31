@@ -9,32 +9,21 @@
 							<div class="row mb-3">
 								<label for="role" class="col-sm-2 col-form-label">Role </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="role" name="role" placeholder="Masukkan Role"  value="<?= $akun_role['role']; ?>">
+									<input type="text" class="form-control" required id="role" name="role" placeholder="Masukkan Role"  value="<?= $akun_role['role']; ?>">
 								</div>
 							</div>
 
 							<div class="form-group row justify-content-end">
 								<div class="col-sm-10">
-									<button type="submit" name="editrole" class="btn btn-primary">Edit</button>
-									<a class="btn btn-danger" href="<?=site_url('Admin/role')?>" role="button">Cancel</a>
+									<button type="submit" name="editrole" class="btn btn-primary">Simpan</button>
+									<a class="btn btn-danger" href="<?=site_url('Admin/role')?>" role="button">Batal</a>
 								</div>
 							</div>
-
-								<!-- <div class="form-group">
-									<label for="role">Role :</label>
-									<input type="text" name="role" id="role" class="form-control" placeholder="Masukkan Menu"  value="<?= $akun_role['role']; ?>">
-								</div> -->
-								<!-- <div class="row mb-3">
-									<div class="col-lg-12 col-sm-2 col-sm-10">
-										<button type="submit" name="editrole" class="btn btn-outline-primary btn-sm">Edit</button>
-									</div>
-								</div> -->
-
-							</form>
-						</div>
+						</form>
 					</div>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
+	</div>
 
 

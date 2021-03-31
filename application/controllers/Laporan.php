@@ -69,7 +69,7 @@ class Laporan extends CI_Controller {
 
 
 		if ($nilaifilter == 1) {
-			$data['judul'] = "Laporan Surat Masuk By Tanggal";
+			$data['judul'] = "Laporan Surat Masuk Berdasarkan Tanggal";
 			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.' Sampai Tanggal : '.$tanggalakhir;
 			$data['nomor_surat'] = $this->laporan_model->filterbytanggals($tanggalawal, $tanggalakhir);
 
@@ -77,7 +77,7 @@ class Laporan extends CI_Controller {
 			$this->load->view('laporan/print_masuk', $data);
 
 		}elseif ($nilaifilter == 2) {
-			$data['judul'] = "Laporan Surat Masuk By Bulan";
+			$data['judul'] = "Laporan Surat Masuk Berdasarkan Bulan";
 			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal : '.$bulanakhir.'Tahun : '.$tahun1;
 			$data['nomor_surat'] = $this->laporan_model->filterbybulans($tahun1,$bulanawal, $bulanakhir);
 
@@ -85,7 +85,7 @@ class Laporan extends CI_Controller {
 			$this->load->view('laporan/print_masuk', $data);
 
 		}elseif ($nilaifilter == 3) {
-			$data['judul'] = "Laporan Surat Masuk By Tahun";
+			$data['judul'] = "Laporan Surat Masuk Berdasarkan Tahun";
 			$data['subjudul'] = 'Tahun : '.$tahun2;
 			$data['nomor_surat'] = $this->laporan_model->filterbytahuns($tahun2);
 			// var_dump($data);
@@ -197,27 +197,12 @@ class Laporan extends CI_Controller {
 		$data['nomor_surat'] = $this->disposisi_model->getAll();
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
 
-		if ($this->form_validation->run() == false) {
-			$this->load->view('templetes/headerindex', $data);
-			$this->load->view('templetes/sidebarindex', $data);
-			$this->load->view('templetes/topbarindex', $data);
-			$this->load->view('laporan/disposisi', $data);
-			$this->load->view('templetes/footerindex');
-		} else {
-			$data = array(
-				'id_disposisi' => $this->disposisi_model->buat_kode(),
-				'tgl_disposisi' => $this->input->post('tgl_disposisi'),
-				'id_suratmasuk' => $this->input->post('id_suratmasuk'),
-				'nomor_surat' => $this->input->post('nomor_surat'),
-				'perihal' => $this->input->post('perihal'),
-				'tujuan' => $this->input->post('tujuan'),
-				'keterangan' => $this->input->post('keterangan')
-			);
-
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				Your Disposisition has benn Added! </div>');
-			redirect('laporan/disposisi');
-		}
+		$this->load->view('templetes/headerindex', $data);
+		$this->load->view('templetes/sidebarindex', $data);
+		$this->load->view('templetes/topbarindex', $data);
+		$this->load->view('laporan/disposisi', $data);
+		$this->load->view('templetes/footerindex');
+		
 	}
 	public	function tambah_disposisi($id)
 	{
@@ -232,34 +217,11 @@ class Laporan extends CI_Controller {
 		$data['tgl_disposisi'] = $this->dis->getBagian();
 		$data['id_bagian'] = $this->db->get('bagian')->result_array();
 
-		$this->form_validation->set_rules('tgl_disposisi', 'Tanggal Disposisi', 'required');
-		$this->form_validation->set_rules('id_suratmasuk', 'Id Surat Masuk', 'required');
-		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
-		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
-		$this->form_validation->set_rules('tujuan', 'Tujuan', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-
-		if ($this->form_validation->run() == false) {
-			$this->load->view('templetes/headerindex', $data);
-			$this->load->view('templetes/sidebarindex', $data);
-			$this->load->view('templetes/topbarindex', $data);
-			$this->load->view('laporan/tambah_disposisi', $data);
-			$this->load->view('templetes/footerindex');
-		} else {
-			$data = array(
-				'id_disposisi' => $this->arsip_model->buat_kode(),
-				'tgl_disposisi' => $this->input->post('tgl_disposisi'),
-				'id_suratmasuk' => $this->input->post('id_suratmasuk'),
-				'nomor_surat' => $this->input->post('nomor_surat'),
-				'perihal' => $this->input->post('perihal'),
-				'tujuan' => $this->input->post('tujuan'),
-				'keterangan' => $this->input->post('tgl_surat')
-			);
-			$this->db->insert('arsip_masuk', $data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				Arsip Surat Masuk Has Added! </div>');
-			redirect('laporan/disposisi');
-		}
+		$this->load->view('templetes/headerindex', $data);
+		$this->load->view('templetes/sidebarindex', $data);
+		$this->load->view('templetes/topbarindex', $data);
+		$this->load->view('laporan/tambah_disposisi', $data);
+		$this->load->view('templetes/footerindex');
 	}
 
 	public function simdis()
@@ -279,7 +241,7 @@ class Laporan extends CI_Controller {
 		$noSurat= $this->db->select('nomor_surat')->where('id_suratmasuk')->get('surat_masuk')->result();
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Disposisi Has Added! </div>');
+			Disposisi berhasil ditambahkan! </div>');
 		redirect('laporan/disposisi');
 	}
 
@@ -301,14 +263,6 @@ class Laporan extends CI_Controller {
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
 		$data['tgl_disposisi'] = $this->dis->getBagian();
 		$data['id_bagian'] = $this->db->get('bagian')->result_array();
-
-
-		$this->form_validation->set_rules('tgl_disposisi', 'Tanggal Disposisi', 'required');
-		$this->form_validation->set_rules('id_suratmasuk', 'Id Surat Masuk', 'required');
-		$this->form_validation->set_rules('nomor_surat', 'Nomor Surat', 'required');
-		$this->form_validation->set_rules('perihal', 'Perihal', 'required');
-		$this->form_validation->set_rules('tujuan', 'Tujuan', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templetes/headerindex', $data);
@@ -338,7 +292,7 @@ class Laporan extends CI_Controller {
 
 		$this->disposisi_model->simpanEditdis($input_id, $data);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Disposisi Has Updated! </div>');
+			Disposisi berhasil diubah! </div>');
 		redirect('laporan/disposisi');
 	}
 

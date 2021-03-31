@@ -25,7 +25,7 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                             id="email" name="email" 
-                                            placeholder="Enter Email Address..." value="<?= set_value('email'); ?>">
+                                            placeholder="Email....." value="<?= set_value('email'); ?>">
                                             <?= form_error('email','<small class="text-danger pl-3">', '</small>');  ?>
                                         </div>
                                         <div class="form-group">
@@ -37,12 +37,12 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
-                                        <a class="btn btn-danger btn-user btn-block" href="<?=site_url('Home/index')?>" role="button">Cancel</a>
+                                        <a class="btn btn-danger btn-user btn-block" href="<?=site_url('Home/index')?>" role="button">Batal</a>
                                     </form>
                                     <hr>
                                     
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url('masukcontroller/registration'); ?>">Create an Account!</a>
+                                        <a class="small" href="<?= base_url('masukcontroller/registration'); ?>">Buat akun!</a>
                                     </div>
                                 </div>
                             </div>

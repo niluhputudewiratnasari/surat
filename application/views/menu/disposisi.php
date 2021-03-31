@@ -20,52 +20,39 @@
       endif
       ?>
 
-      <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-       <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-        aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-info" type="button">
-            <i class="fas fa-search fa-sm"></i>
-          </button>
-        </div>
-      </div>
-    </form> -->
+      <div class="card">
+        <div class="card-body">
 
-
-    <div class="card">
-      <div class="card-body">
-
-        <table class="table table-striped mt-3">
-         <thead>
-          <tr>
-           <th scope="col">#</th>
-           <th scope="col">Tanggal Surat</th>
-           <th scope="col">Nomor Surat Masuk</th>
-           <th scope="col">Tujuan Disposisi</th>
-           <th scope="col">Isi Disposisi</th>
-           <th scope="col">Action</th>
-         </tr>
-       </thead>
-       <tbody>
-        <?php $i = 1; ?>
-        <?php foreach ($disposisi as $dis) : ?>
-         <tr>
-          <th scope="row"><?= $i; ?></th>
-          <td><?= $dis['tgl_disposisi']; ?></td>
-          <td><?= $dis['nomor_surat']; ?></td>
-          <td><?= $dis['tujuan']; ?></td>
-          <td><?= $dis['keterangan']; ?></td>
-          <td>
-            <a href="<?= base_url(); ?>surat/editsm/<?= $dis['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
-            <a href="<?= base_url(); ?>surat/hapus/<?= $dis['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-          </td>
-        </tr>
-        <?php $i++; ?>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-</div>
+          <table class="table table-striped mt-3">
+           <thead>
+            <tr>
+             <th scope="col">#</th>
+             <th scope="col">Tanggal Surat</th>
+             <th scope="col">Nomor Surat Masuk</th>
+             <th scope="col">Tujuan Disposisi</th>
+             <th scope="col">Isi Disposisi</th>
+             <th scope="col">Action</th>
+           </tr>
+         </thead>
+         <tbody>
+          <?php $i = 1; ?>
+          <?php foreach ($disposisi as $dis) : ?>
+           <tr>
+            <th scope="row"><?= $i; ?></th>
+            <td><?= $dis['tgl_disposisi']; ?></td>
+            <td><?= $dis['nomor_surat']; ?></td>
+            <td><?= $dis['tujuan']; ?></td>
+            <td><?= $dis['keterangan']; ?></td>
+            <td>
+              <a href="<?= base_url(); ?>surat/editsm/<?= $dis['id_suratmasuk'];?>" class="badge badge-success">Ubah</a>
+              <a href="<?= base_url(); ?>surat/hapus/<?= $dis['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Hapus</a>
+            </td>
+          </tr>
+          <?php $i++; ?>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
 </div>
 </div>
 </div>

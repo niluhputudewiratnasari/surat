@@ -20,93 +20,78 @@
       endif
       ?>
 
-      <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-       <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-        aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-info" type="button">
-            <i class="fas fa-search fa-sm"></i>
-          </button>
-        </div>
-      </div>
-    </form> -->
 
+      <div class="card">
+        <div class="card-body">
 
-    <div class="card">
-      <div class="card-body">
-
-        <table id="example1" class="table table-striped mt-3 text-center">
-         <thead>
-          <tr>
-           <th scope="col">#</th>
-           <th scope="col">Nomor Surat</th>
-           <th scope="col">Perihal</th>
-           <th scope="col">Kode Klasifikasi</th>
-           <th scope="col">Lampiran</th>
-           <th scope="col">Pengirim</th>
-           <th scope="col">Tanggal Surat</th>
-           <?php
-           if($this->session->role_id != '2'):
+          <table id="example1" class="table table-striped mt-3 text-center">
+           <thead>
+            <tr>
+             <th scope="col">#</th>
+             <th scope="col">Nomor Surat</th>
+             <th scope="col">Perihal</th>
+             <th scope="col">Kode Klasifikasi</th>
+             <th scope="col">Lampiran</th>
+             <th scope="col">Pengirim</th>
+             <th scope="col">Tanggal Surat</th>
+             <?php
+             if($this->session->role_id != '2'):
+              ?>
+              <th>Status</th>
+              <?php
+            endif;
             ?>
-            <th>Status</th>
+            <!-- <th scope="col">File</th> -->
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $i = 1; ?>
+          <?php foreach ($nomor_surat as $sms) : ?>
+           <tr>
+            <th scope="row"><?= $i; ?></th>
+            <td><?= $sms['nomor_surat']; ?></td>
+            <td><?= $sms['perihal']; ?></td>
+            <td><?= $sms['klasifikasi']; ?></td>
+            <td><?= $sms['lampiran']; ?></td>
+            <td><?= $sms['pengirim']; ?></td>
+            <td><?= $sms['tgl_surat']; ?></td>
+
             <?php
-          endif;
-          ?>
-          <!-- <th scope="col">File</th> -->
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php $i = 1; ?>
-        <?php foreach ($nomor_surat as $sms) : ?>
-         <tr>
-          <th scope="row"><?= $i; ?></th>
-          <td><?= $sms['nomor_surat']; ?></td>
-          <td><?= $sms['perihal']; ?></td>
-          <td><?= $sms['klasifikasi']; ?></td>
-          <td><?= $sms['lampiran']; ?></td>
-          <td><?= $sms['pengirim']; ?></td>
-          <td><?= $sms['tgl_surat']; ?></td>
-
-          <?php
-          if($this->session->role_id != '2'):
-            ?>
-            <td>
-              <?php 
-              if ($sms['status'] == 'Menunggu Disposisi'):
+            if($this->session->role_id != '2'):
+              ?>
+              <td>
+                <?php 
+                if ($sms['status'] == 'Menunggu Disposisi'):
+                 ?>
+                 <a class="badge badge-info" href="<?=site_url(); ?>laporan/tambah_disposisi/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
+                 <?php 
+               endif 
                ?>
-               <a class="badge badge-info" href="<?=site_url(); ?>laporan/tambah_disposisi/<?= $sms['id_suratmasuk'];?>">Disposisi</a> 
-               <?php 
-             endif 
-             ?>
-             <?= $sms['status']; ?>
-           </td>
-           <?php
-         endif;
-         ?>
+               <?= $sms['status']; ?>
+             </td>
+             <?php
+           endif;
+           ?>
+           <td>
+             <a href="<?=site_url(); ?>surat/detailsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-primary">Detail</a>
 
-         <!-- <td><img src="<?php //echo base_url(); ?>assets/photo/<?= $sms['file'];?>" width="64"></td> -->
-
-         <td>
-           <a href="<?=site_url(); ?>surat/detailsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-primary">Detail</a>
-
-           <?php
-           if($this->session->role_id == '1'):
+             <?php
+             if($this->session->role_id == '1'):
+              ?>
+              <a href="<?= base_url(); ?>surat/editsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Ubah</a>
+              <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Hapus</a>
+              <a href="<?= base_url(); ?>arsip/tambaharsipsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-warning">Arsipkan</a>
+              <?php 
+            endif
             ?>
-            <a href="<?= base_url(); ?>surat/editsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-success">Edit</a>
-            <a href="<?= base_url(); ?>surat/hapus/<?= $sms['id_suratmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
-            <a href="<?= base_url(); ?>arsip/tambaharsipsm/<?= $sms['id_suratmasuk'];?>" class="badge badge-warning">Arsipkan</a>
-            <?php 
-          endif
-          ?>
-        </td>
-        
-      </tr>
-      <?php $i++; ?>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+          </td>
+          
+        </tr>
+        <?php $i++; ?>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 </div>
 </div>
 </div>
@@ -149,31 +134,19 @@
   <div class="form-group">
     <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
   </div>
- <!--  <div class="form-group">
-    <select name="status" id="status" class="form-control">
-     <option value="">--Pilih Status--</option>
-     <option value="Menunggu Disposisi">Menunggu Disposisi</option>
-     <option value="Disposisi Berhasil">Disposisi Berhasil</option>
-   </select>
- </div> -->
-               <!-- <div class="form-group">
-                  <input type="text" class="form-control" id="status" name="status" placeholder="Status">
-                </div> -->
-               <!--  <div class="form-group">
-                  <input type="text" class="form-control" id="file" name="file" placeholder="File">
-                </div> -->
+  
 
 
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="file" name="file">
-                  <label class="custom-file-label" for="file">Choose file</label>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Add</button>
-                </div>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="file" name="file">
+    <label class="custom-file-label" for="file">Choose file</label>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+    <button type="submit" class="btn btn-primary">Tambah</button>
+  </div>
 
-              </form>
-            </div>
-          </div>
-        </div>
+</form>
+</div>
+</div>
+</div>

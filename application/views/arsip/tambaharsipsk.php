@@ -14,7 +14,7 @@
         <div class="row mb-3">
           <label for="tgl_arsipkeluar" class="col-sm-2 col-form-label">Tanggal Arsip Keluar</label>
           <div class="col-sm-10">
-            <input type="date" class="form-control" id="tgl_arsipkeluar" name="tgl_arsipkeluar">
+            <input type="date" class="form-control" required id="tgl_arsipkeluar" name="tgl_arsipkeluar">
             <?= form_error('tgl_arsipkeluar','<small class="text-danger pl-3">', '</small>');  ?>
           </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="form-group row justify-content-end">
           <div class="col-sm-10">
             <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-            <a class="btn btn-danger" href="<?=site_url('Surat/suratkeluar')?>" role="button">Cancel</a>
+            <a class="btn btn-danger" href="<?=site_url('Surat/suratkeluar')?>" role="button">Batal</a>
           </div>
         </div>
 

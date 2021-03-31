@@ -58,8 +58,8 @@
             <?php
             if($this->session->role_id == '1'):
               ?>
-              <a href="<?= base_url(); ?>surat/editsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Edit</a>
-              <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+              <a href="<?= base_url(); ?>surat/editsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-success">Ubah</a>
+              <a href="<?= base_url(); ?>surat/hapussk/<?= $sk['id_suratkeluar'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Hapus</a>
               <a href="<?= base_url(); ?>arsip/tambaharsipsk/<?= $sk['id_suratkeluar'];?>" class="badge badge-warning">Arsipkan</a>
               <?php 
             endif
@@ -117,8 +117,8 @@
     <label class="custom-file-label" for="file">Choose file</label>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+    <button type="submit" class="btn btn-primary">Tambah</button>
   </div>
 
 </form>

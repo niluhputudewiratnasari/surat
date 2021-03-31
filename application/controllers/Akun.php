@@ -65,7 +65,7 @@ class Akun extends CI_Controller {
 			$this->db->update('akun');
 
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				Your profile has been updated! </div>');
+				Profile berhasil ditambahkan! </div>');
 			redirect('akun');
 		}
 	}
@@ -91,12 +91,12 @@ class Akun extends CI_Controller {
 
 			if (!password_verify($current_password, $data['akun']['password'])) {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-					Wrong Current Password! </div>');
+					Kata Sandi Salah! </div>');
 				redirect('akun/changepassword');
 			} else {
 				if ($current_password == $new_password) {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-						New password cannot be the same as current password! </div>');
+						Kata sandi baru tidak boleh sama dengan kata sandi saat ini! </div>');
 					redirect('akun/changepassword');	
 				} else {
 					//passsword sudah bener
@@ -108,7 +108,7 @@ class Akun extends CI_Controller {
 					$this->db->update('akun');
 
 					$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-						Password change! </div>');
+						Password berhasil diganti! </div>');
 					redirect('akun/changepassword');	
 				}
 			}

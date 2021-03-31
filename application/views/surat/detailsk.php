@@ -9,8 +9,6 @@
               <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true"><?= $title; ?></a>
             </li>
             
-
-
           </ul>
         </div>
         <div class="card-body">
@@ -78,7 +76,7 @@
                         $tipe = explode('.', $nomor_surat['file']);
                         if($tipe[1] == 'pdf'){
                           ?>
-                          <a href="<?=base_url();?>assets/photo/<?= $nomor_surat['file'];?>"  target="_blank" title="view" class="btn btn-lg btn-info"> Download Dokumen
+                          <a href="<?=base_url();?>assets/photo/<?= $nomor_surat['file'];?>"  target="_blank" title="view" class="btn btn-lg btn-info"> Unduh Dokumen
                           </a>
                           <?php 
                         } else {

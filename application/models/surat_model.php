@@ -147,7 +147,7 @@ class Surat_model extends CI_Model
 
 		$tgl = date('dmY');
 		$this->db->select('RIGHT(surat_keluar.no_urut,4) as kode', FALSE);
-		$this->db->order_by('no_urut','DESC');    
+		$this->db->order_by('id_suratkeluar','DESC');    
 		$this->db->limit(1);    
 		$query = $this->db->get('surat_keluar');  
 		if($query->num_rows() <> 0){      
@@ -197,7 +197,7 @@ public function buat_kodesm()
 
 	$tgl = date('dmY');
 	$this->db->select('RIGHT(surat_masuk.no_urut,4) as kode', FALSE);
-	$this->db->order_by('no_urut','DESC');    
+	$this->db->order_by('id_suratmasuk','DESC');    
 	$this->db->limit(1);    
 	$query = $this->db->get('surat_masuk');  
 	if($query->num_rows() <> 0){      

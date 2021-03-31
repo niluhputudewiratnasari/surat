@@ -11,7 +11,6 @@
     <?= $this->session->flashdata('message'); ?>
 
 
-    <!-- <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newArsipSMModal">Tambah Arsip Surat Masuk</a> -->
 
     <div class="card">
       <div class="card-body">
@@ -41,8 +40,8 @@
           <td><?= $arsipmasuk['pengirim']; ?></td>
           <td><?= $arsipmasuk['tgl_surat']; ?></td>
           <td>
-            <a href="<?= base_url(); ?>arsip/editar/<?= $arsipmasuk['id_arsipmasuk'];?>" class="badge badge-success">Edit</a>
-            <a href="<?= base_url(); ?>arsip/hapusar/<?= $arsipmasuk['id_arsipmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Delete</a>
+            <a href="<?= base_url(); ?>arsip/editar/<?= $arsipmasuk['id_arsipmasuk'];?>" class="badge badge-success">Ubah</a>
+            <a href="<?= base_url(); ?>arsip/hapusar/<?= $arsipmasuk['id_arsipmasuk'];?>" class="badge badge-danger" onclick="return confirm('yakin?');">Hapus</a>
           </td>
         </tr>
         <?php $i++; ?>

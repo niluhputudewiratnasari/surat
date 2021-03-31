@@ -6,43 +6,43 @@
 
    			<?= form_open_multipart('akun/edit') ;?>
    			<div class="row mb-3">
-   				<label for="email" class="col-sm-2 col-form-label">Email</label>
-   				<div class="col-sm-10">
+   				<label for="email" class="col-sm-4 col-form-label">Email</label>
+   				<div class="col-sm-8">
    					<input type="text" class="form-control" id="email" name="email" value="<?= $akun['email'] ;?>" readonly>
    				</div>
    			</div>
    			<div class="row mb-3">
-   				<label for="name" class="col-sm-2 col-form-label">Full Name</label>
-   				<div class="col-sm-10">
+   				<label for="name" class="col-sm-4 col-form-label">Nama Lengkap</label>
+   				<div class="col-sm-8">
    					<input type="text" class="form-control" id="name" name="name" value="<?= $akun['name'] ;?>">
    					<?= form_error('name','<small class="text-danger pl-3">', '</small>');  ?>
    				</div>
    			</div>
 
-          <div class="row mb-3">
-           <div class="col-sm-2">Picture</div>
-           <div class="col-sm-10">
-             <div class="row">
-               <div class="col-sm-3">
-                  <img src="<?= base_url('assets/img/profile/') . $akun['image'] ;?>" class="img-thumbnail">
-               </div>
-               <div class="col-sm-9">
-                  <div class="custom-file">
-                   <input class="custom-file-input" type="file" id="image" name="image">
-                   <label class="custom-file-label" for="image">Choose file</label>
-                </div>
+        <div class="row mb-3">
+         <div class="col-sm-4">Foto</div>
+         <div class="col-sm-8">
+           <div class="row">
+             <div class="col-sm-3">
+              <img src="<?= base_url('assets/img/profile/') . $akun['image'] ;?>" class="img-thumbnail">
+            </div>
+            <div class="col-sm-9">
+              <div class="custom-file">
+               <input class="custom-file-input" type="file" id="image" name="image">
+               <label class="custom-file-label" for="image">Choose file</label>
              </div>
-          </div>
+           </div>
+         </div>
        </div>
+     </div>
+
+     <div class="form-group row justify-content-end">
+      <div class="col-sm-8">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
     </div>
 
-    <div class="form-group row justify-content-end">
-     <div class="col-sm-10">
-       <button type="submit" class="btn btn-primary">Edit</button>
-    </div>
- </div>
-
-</form>
+  </form>
 
 
 </div>

@@ -40,7 +40,7 @@ class Admin extends CI_Controller {
 		} else {
 			$this->db->insert('akun_role', ['role' => $this->input->post('role')]);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				New menu added! </div>');
+				Menu berhasil ditambahkan! </div>');
 			redirect('admin/role');
 		}
 	}
@@ -80,7 +80,7 @@ class Admin extends CI_Controller {
 			$this->db->delete('akun_access_menu', $data);
 		}
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Access change! </div>');
+			Akses telah diganti! </div>');
 	}
 	public function hapus($id = '')
 	{
@@ -118,7 +118,7 @@ class Admin extends CI_Controller {
 
 		$this->admin_model->simpanEditrole($input_id, $data);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-			Role Has Updated! </div>');
+			Role berhasil ditambahkan! </div>');
 		redirect('admin/role');
 	}
 

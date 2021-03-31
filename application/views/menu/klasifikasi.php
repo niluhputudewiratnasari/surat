@@ -11,7 +11,7 @@
         <?= $this->session->flashdata('message'); ?>
 
 
-        <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newKlasifikasiModal"><i class="fas fa-fw fa-plus"></i> Tambah klasidikasi</a>
+        <a href="" class="btn btn-primary  mb-3" data-toggle="modal" data-target="#newKlasifikasiModal"><i class="fas fa-fw fa-plus"></i> Tambah klasifikasi</a>
 
         <div class="card">
           <div class="card-body">

@@ -69,11 +69,11 @@
 			<form action="<?= base_url('menu/submenu'); ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="text" class="form-control" id="title" name="title" placeholder="Sub Menu Title">
+						<input type="text" class="form-control" id="title" name="title" placeholder="Sub Menu Nama">
          </div>
          <div class="form-group">
            <select name="menu_id" id="menu_id" class="form-control">
-            <option value="">Select menu</option>
+            <option value="">Pilih menu</option>
             <?php foreach ($menu as $m) : ?>
              <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
            <?php endforeach; ?>

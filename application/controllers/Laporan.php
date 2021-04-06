@@ -214,8 +214,8 @@ class Laporan extends CI_Controller {
 		$data['nomor_surat'] = $this->dis->getId($id);
 		$data['nomor_surat'] = $this->dis->getWheredis($id);
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
-		$data['tgl_disposisi'] = $this->dis->getBagian();
-		$data['id_bagian'] = $this->db->get('bagian')->result_array();
+		//$data['tgl_disposisi'] = $this->dis->getBagian();
+		// $data['id_bagian'] = $this->db->get('bagian')->result_array();
 
 		$this->load->view('templetes/headerindex', $data);
 		$this->load->view('templetes/sidebarindex', $data);
@@ -261,8 +261,8 @@ class Laporan extends CI_Controller {
 		$data['nomor_surat'] = $this->dis->getAll($id);
 		$data['nomor_surat'] = $this->dis->getId($id);
 		$data['id_suratmasuk'] = $this->db->get('surat_masuk')->result_array();
-		$data['tgl_disposisi'] = $this->dis->getBagian();
-		$data['id_bagian'] = $this->db->get('bagian')->result_array();
+		//$data['tgl_disposisi'] = $this->dis->getBagian();
+		// $data['id_bagian'] = $this->db->get('bagian')->result_array();
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templetes/headerindex', $data);

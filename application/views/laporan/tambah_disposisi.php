@@ -39,15 +39,21 @@
             <div class="col-sm-10">
               <select name="tujuan" required id="tujuan" class="form-control" >
                <option value="">--Select Tujuan Disposisi-- </option>
-               <?php foreach ($id_bagian as $bg) : ?>
-                <option value="<?= $bg['nama_bagian']; ?>"><?= $bg['nama_bagian']; ?></option>
-              <?php endforeach; ?>
-            </select>
-            <?= form_error('klasifikasi','<small class="text-danger pl-3">', '</small>');  ?>
-          </div>
-        </div>
+               <option value="Kepala Dinas">Kepala Dinas</option>
+               <option value="Sekertaris">Sekertaris</option>
+               <option value="Kepala Bidang Kesmas">Kepala Bidang Kesmas</option>
+               <option value="Kepala Bidang Yankes">Kepala Bidang Yankes</option>
+               <option value="Kepala Bidang P3KL">Kepala Bidang P3KL</option>
+               <option value="Kepala Bidang SDK">Kepala Bidang SDK</option>
+               <option value="Ka. UPT Balpelkes">Ka. UPT Balpelkes</option>
+               <option value="Ka. UPT BKMM">Ka. UPT BKMM</option>
+               <option value="Ka. UPT BLKPK">Ka. UPT BLKPK</option>
+               <option value="Ka. UPT AKPER">Ka. UPT AKPER</option>
+             </select>
+           </div>
+         </div>
 
-        <div class="row mb-3">
+         <div class="row mb-3">
           <label for="keterangan" class="col-sm-2 col-form-label">Isi Disposisi </label>
           <div class="col-sm-10">
             <input type="text" class="form-control" required id="keterangan" name="keterangan" placeholder="Masukkan Isi Disposisi">

@@ -11,7 +11,7 @@ class Akun extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'My Profile';
+		$data['title'] = 'Profile';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 		$this->load->view('templetes/headerindex', $data);
 		$this->load->view('templetes/sidebarindex', $data);
@@ -72,7 +72,7 @@ class Akun extends CI_Controller {
 
 	public function changePassword()
 	{
-		$data['title'] = 'Change Password';
+		$data['title'] = 'Ganti Password';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
 		$this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');

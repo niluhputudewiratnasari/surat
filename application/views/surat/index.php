@@ -142,7 +142,6 @@
     <label class="custom-file-label" for="file">Choose file</label>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
     <button type="submit" class="btn btn-primary">Tambah</button>
   </div>
 

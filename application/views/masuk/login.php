@@ -44,6 +44,9 @@
                                     <div class="text-center">
                                         <a class="small" href="<?= base_url('masukcontroller/registration'); ?>">Buat akun!</a>
                                     </div>
+                                    <div class="text-center">
+                                        <a class="small" href="<?= base_url('home'); ?>">Home</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

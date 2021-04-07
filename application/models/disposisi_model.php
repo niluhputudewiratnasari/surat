@@ -8,7 +8,7 @@ class Disposisi_model extends CI_Model
 	
 	public function getAll()
 	{
-		$query = "SELECT `tabel_disposisi`.*, `surat_masuk`.`nomor_surat`
+		$query = "SELECT `tabel_disposisi`.*, `surat_masuk`.`nomor_surat`,`surat_masuk`.`perihal`
 		FROM `tabel_disposisi` JOIN `surat_masuk`
 		ON  `tabel_disposisi`.`id_suratmasuk` = `surat_masuk`.`id_suratmasuk`
 		";

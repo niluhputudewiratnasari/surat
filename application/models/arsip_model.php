@@ -8,7 +8,7 @@ class Arsip_model extends CI_Model
 	
 	public function getArsip()
 	{
-		$query = "SELECT `arsip_masuk`.*, `surat_masuk`.`nomor_surat`,`surat_masuk`.`perihal`
+		$query = "SELECT `arsip_masuk`.*, `surat_masuk`.`nomor_surat`,`surat_masuk`.`perihal`,`surat_masuk`.`pengirim`,`surat_masuk`.`tgl_surat`
 		FROM `arsip_masuk` JOIN `surat_masuk`
 		ON  `arsip_masuk`.`id_suratmasuk` = `surat_masuk`.`id_suratmasuk`
 		";
@@ -19,7 +19,8 @@ class Arsip_model extends CI_Model
 
 	public function getAll()
 	{
-		$query = "SELECT `arsip_masuk`.*, `surat_masuk`.`nomor_surat`,`surat_masuk`.`perihal`
+		$query = "SELECT `arsip_masuk`.*, `surat_masuk`.`nomor_surat`,`surat_masuk`.`perihal`,`surat_masuk`.`pengirim`,`surat_masuk`.`tgl_surat`
+
 		FROM `arsip_masuk` JOIN `surat_masuk`
 		ON  `arsip_masuk`.`id_suratmasuk` = `surat_masuk`.`id_suratmasuk`
 		";
@@ -92,7 +93,7 @@ class Arsip_model extends CI_Model
 
 		public function getArsipK()
 		{
-			$query = "SELECT `arsip_keluar`.*, `surat_keluar`.`nomor_surat`,`surat_keluar`.`perihal`
+			$query = "SELECT `arsip_keluar`.*, `surat_keluar`.`nomor_surat`,`surat_keluar`.`perihal`,`surat_keluar`.`kepada`,`surat_keluar`.`tgl_surat`
 			FROM `arsip_keluar` JOIN `surat_keluar`
 			ON  `arsip_keluar`.`id_suratkeluar` = `surat_keluar`.`id_suratkeluar`
 			";

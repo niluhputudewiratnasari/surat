@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Name : <?= $akun['name']; ?></h5>
+            <h5 class="card-title">Nama : <?= $akun['name']; ?></h5>
             <h6 class="card-text mb-5">Email  : <?= $akun['email']; ?></h6>
             <p class="card-text text-right"><small class="text-mute">Member since <?= date('d F Y', $akun['date_create']); ?></small></p>
           </div>

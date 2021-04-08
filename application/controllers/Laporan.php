@@ -78,7 +78,7 @@ class Laporan extends CI_Controller {
 
 		}elseif ($nilaifilter == 2) {
 			$data['judul'] = "Laporan Surat Masuk Berdasarkan Bulan";
-			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal : '.$bulanakhir.'Tahun : '.$tahun1;
+			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Bulan : '.$bulanakhir.'Tahun : '.$tahun1;
 			$data['nomor_surat'] = $this->laporan_model->filterbybulans($tahun1,$bulanawal, $bulanakhir);
 
 
@@ -123,7 +123,7 @@ class Laporan extends CI_Controller {
 
 
 		if ($nilaifilter == 1) {
-			$data['judul'] = "Laporan Surat Keluar By Tanggal";
+			$data['judul'] = "Laporan Surat Keluar Berdasarkan Tanggal";
 			$data['subjudul'] = "Dari Tanggal : ".$tanggalawal.' Sampai Tanggal : '.$tanggalakhir;
 			$data['nomor_surat'] = $this->laporan_model->filterbytanggal($tanggalawal, $tanggalakhir);
 
@@ -131,15 +131,15 @@ class Laporan extends CI_Controller {
 			$this->load->view('laporan/print_keluar', $data);
 
 		}elseif ($nilaifilter == 2) {
-			$data['judul'] = "Laporan Surat Keluar By Bulan";
-			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Tanggal : '.$bulanakhir.'Tahun : '.$tahun1;
+			$data['judul'] = "Laporan Surat Keluar Berdasarkan Bulan";
+			$data['subjudul'] = "Dari Bulan : ".$bulanawal.' Sampai Bulan : '.$bulanakhir.'Tahun : '.$tahun1;
 			$data['nomor_surat'] = $this->laporan_model->filterbybulan($tahun1,$bulanawal, $bulanakhir);
 
 
 			$this->load->view('laporan/print_keluar', $data);
 
 		}elseif ($nilaifilter == 3) {
-			$data['judul'] = "Laporan Surat Keluar By Tahun";
+			$data['judul'] = "Laporan Surat Keluar Berdasarkan Tahun";
 			$data['subjudul'] = 'Tahun : '.$tahun2;
 			$data['nomor_surat'] = $this->laporan_model->filterbytahun($tahun2);
 			// var_dump($data);

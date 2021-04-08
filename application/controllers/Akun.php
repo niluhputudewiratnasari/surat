@@ -75,9 +75,9 @@ class Akun extends CI_Controller {
 		$data['title'] = 'Ganti Password';
 		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
-		$this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[3]|matches[new_password2]');
-		$this->form_validation->set_rules('new_password2', 'Confirm New Password', 'required|trim|min_length[3]|matches[new_password1]');
+		$this->form_validation->set_rules('current_password', 'Kata sandi saat ini', 'required|trim');
+		$this->form_validation->set_rules('new_password1', 'Kata sandi baru', 'required|trim|min_length[3]|matches[new_password2]');
+		$this->form_validation->set_rules('new_password2', 'Kata sandi baru sekali lagi', 'required|trim|min_length[3]|matches[new_password1]');
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templetes/headerindex', $data);

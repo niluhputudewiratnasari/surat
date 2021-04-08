@@ -240,7 +240,7 @@ class Surat extends CI_Controller {
 			$this->index();
 		} else {
 			$config['upload_path']          = './assets/photo/';
-			$config['allowed_types']        = 'gif|jpg|png|pdf|doc|docx';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
 			$config['encrypt_name']            = false;
 			$config['overwrite']			= false;
 			$config['max_size']             = 1024;

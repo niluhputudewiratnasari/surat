@@ -37,7 +37,6 @@ class Surat extends CI_Controller {
 		$this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
 		$this->form_validation->set_rules('pengirim', 'Pengirim', 'required');
 		$this->form_validation->set_rules('tgl_surat', 'Tanggal Surat', 'required');
-		
 		if ($this->form_validation->run() == false) {
 			$this->index();
 		} else {

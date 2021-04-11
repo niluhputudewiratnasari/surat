@@ -32,7 +32,7 @@
       <div class="col-lg-6">
 
         <div class="card">
-          <h5 class="card-header">Fillter By Tanggal</h5>
+          <h5 class="card-header">Fillter Berdasarkan Tanggal</h5>
           <div class="card-body">
             <form action="<?= base_url(); ?>laporan/filter2" method="POST" target='_blank'>
 
@@ -68,14 +68,14 @@
   <div class="col-lg-6">
 
     <div class="card">
-      <h5 class="card-header">Fillter By Bulan</h5>
+      <h5 class="card-header">Fillter Berdasarkan Bulan</h5>
       <div class="card-body">
         <form action="<?= base_url(); ?>laporan/filter2" method="POST" target='_blank'>
 
           <input type="hidden" name="nilaifilter" value="2">
 
           <div class="form-group">
-            <label for="tahun1"> Years : </label>
+            <label for="tahun1"> Tahun : </label>
             <select class="form-control ml-2" name="tahun1" required="">
              <?php foreach ($tahun as $bl) : ?>
                <option value="">--Select Years-- </option>
@@ -86,40 +86,40 @@
          </div>
 
          <div class="form-group">
-          <label for="bulanawal"> First Month : </label>
+          <label for="bulanawal"> Bulan awal : </label>
           <select class="form-control ml-2" name="bulanawal" required="">
             <option value="">--Select Month-- </option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
+            <option value="1">Januari</option>
+            <option value="2">Februari</option>
+            <option value="3">Maret</option>
             <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
+            <option value="5">Mei</option>
+            <option value="6">Juni</option>
             <option value="7">July</option>
-            <option value="8">August</option>
+            <option value="8">Agustus</option>
             <option value="9">September</option>
-            <option value="10">October</option>
+            <option value="10">Oktober</option>
             <option value="11">November</option>
-            <option value="12">December</option>
+            <option value="12">Desember</option>
           </select>
         </div>
 
         <div class="form-group mb-3">
-          <label for="bulanakhir"> Last Month : </label>
+          <label for="bulanakhir"> Bulan akhir : </label>
           <select class="form-control ml-2" name="bulanakhir" required="">
             <option value="">--Select Month-- </option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
+            <option value="1">Januari</option>
+            <option value="2">Februari</option>
+            <option value="3">Maret</option>
             <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
+            <option value="5">Mei</option>
+            <option value="6">Juni</option>
             <option value="7">July</option>
-            <option value="8">August</option>
+            <option value="8">Agustus</option>
             <option value="9">September</option>
-            <option value="10">October</option>
+            <option value="10">Oktober</option>
             <option value="11">November</option>
-            <option value="12">December</option>
+            <option value="12">Desember</option>
           </select>
         </div>
 
@@ -139,14 +139,14 @@
   <div class="col-lg-6">
 
     <div class="card">
-      <h5 class="card-header">Fillter By Tahun</h5>
+      <h5 class="card-header">Fillter Berdasarkan Tahun</h5>
       <div class="card-body">
         <form action="<?= base_url(); ?>laporan/filter2" method="POST" target='_blank'>
 
           <input type="hidden" name="nilaifilter" value="3">
 
           <div class="form-group">
-            <label for="tahun2"> Years : </label>
+            <label for="tahun2"> Tahun : </label>
             <select class="form-control ml-2" name="tahun2" required="">
              <?php foreach ($tahun as $bl) : ?>
                <option value="">--Select Years-- </option>

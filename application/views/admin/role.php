@@ -54,7 +54,7 @@
 			<form action="<?= base_url('admin/role'); ?>" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="text" class="form-control" id="role" name="role" placeholder="Role name">
+						<input type="text" class="form-control" id="role" name="role" placeholder="Role">
 					</div>
 				</div>
 				<div class="modal-footer">

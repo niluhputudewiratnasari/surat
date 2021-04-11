@@ -88,14 +88,14 @@
   <form action="<?= base_url('surat/simpan_surat_keluar'); ?>" method="post" enctype="multipart/form-data">
     <div class="modal-body">
      <div class="form-group">
-      <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" placeholder="Nomor Surat">
+      <input type="text" class="form-control" required id="nomor_surat" name="nomor_surat" placeholder="Nomor Surat">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="perihal" name="perihal" placeholder="Perihal">
+      <input type="text" class="form-control" required id="perihal" name="perihal" placeholder="Perihal">
     </div>
 
     <div class="form-group">
-      <select name="klasifikasi" id="klasifikasi" class="form-control">
+      <select name="klasifikasi" required id="klasifikasi" class="form-control">
        <option value="">Select Kode Klasifikasi</option>
        <?php foreach ($klasifikasi as $klas) : ?>
         <option value="<?= $klas['klasifikasi']; ?>"><?= $klas['klasifikasi']; ?></option>
@@ -103,17 +103,17 @@
     </select>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="lampiran" name="lampiran" placeholder="Lampiran">
+    <input type="text" class="form-control" required id="lampiran" name="lampiran" placeholder="Lampiran">
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="kepada" name="kepada" placeholder="Kepada">
+    <input type="text" class="form-control" required id="kepada" name="kepada" placeholder="Kepada">
   </div>
   <div class="form-group">
-    <input type="date" class="form-control" id="tgl_surat" name="tgl_surat">
+    <input type="date" class="form-control" required id="tgl_surat" name="tgl_surat">
   </div>
   
   <div class="custom-file">
-    <input type="file" class="custom-file-input" id="file" name="file">
+    <input type="file" class="custom-file-input" required="" id="file" name="file">
     <label class="custom-file-label" for="file">Choose file</label>
   </div>
   <div class="modal-footer">

@@ -12,7 +12,7 @@
       <div class="row g-0">
         <div class="col-md-4">
           <!-- untuk card pada bagian my profile(controller akun) -->
-          <img src="<?= base_url('assets/img/profile/') . $akun['image']; ?>" class="card-img">
+          <img src="<?= base_url('assets/img/profile/') . $akun['file']; ?>" class="card-img">
         </div>
         <div class="col-md-8">
           <div class="card-body">

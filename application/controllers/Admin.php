@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		//is_logged_in();
 		$this->load->model('admin_model');
+		
 	}
 
 	public function index()
@@ -28,7 +29,7 @@ class Admin extends CI_Controller {
 
 
 		$data['role'] = $this->db->get('akun_role')->result_array();
-		
+
 		$this->form_validation->set_rules('role', 'Role', 'required');
 
 		if ($this->form_validation->run() == false) {

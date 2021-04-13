@@ -7,6 +7,7 @@ class Akun extends CI_Controller {
 	{
 		parent::__construct();
 		//is_logged_in();
+		$this->load->model('akun_model');
 	}
 
 	public function index()
@@ -114,6 +115,97 @@ class Akun extends CI_Controller {
 			}
 		}
 
-		
 	}
+	public function dataakun()
+	{
+		$data['title'] = 'Data Akun';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+
+		$this->load->model('Akun_model', 'akun');
+		$data['akun'] = $this->akun->getAkun();
+		$data['role'] = $this->db->get('akun_role')->result_array();
+
+		$this->load->view('templetes/headerindex', $data);
+		$this->load->view('templetes/sidebarindex', $data);
+		$this->load->view('templetes/topbarindex1', $data);
+		$this->load->view('akun/dataakun', $data);
+		$this->load->view('templetes/footerindex1');	
+	}
+	public function hapus($id = '')
+	{
+		$this->akun_model->_deleteImage($id);
+		$this->akun_model->hapusdata($id);
+		$this->session->set_flashdata('flash', 'Dihapus');
+		return redirect('akun/dataakun');
+	}
+
+	public function editakun($id = '')
+	{
+		$data['title'] = 'Data Akun';
+		$data['akun'] = $this->db->get_where('akun', ['email' => $this->session->userdata('email')])->row_array();
+
+		
+		$data['akun'] = $this->akun_model->getAkun($id);
+		$data['akun'] = $this->akun_model->getId($id);
+		$data['role'] = $this->db->get('akun_role')->result_array();
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templetes/headerindex', $data);
+			$this->load->view('templetes/sidebarindex', $data);
+			$this->load->view('templetes/topbarindex1', $data);
+			$this->load->view('akun/editakun', $data);
+			$this->load->view('templetes/footerindex1');
+		} else {
+			$this->akun_model->editakun();
+			redirect('akun/dataakun');
+		}
+	}
+
+	public function proses_editakun()
+	{
+		$input_id = $this->input->post('id_akun');
+		$data = array();
+		if (empty($_FILES['file']['name']))
+		{
+			$data = array(
+				'id_akun' => $this->input->post('id_akun'),
+				'name' => $this->input->post('name'),
+				'email' => $this->input->post('email'),
+				'role_id' => $this->input->post('role_id')
+			);
+		} else {
+
+			$config['upload_path']          = './assets/photo/';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			$config['encrypt_name']            = false;
+			$config['overwrite']			= false;
+			$config['max_size']             = 1024;
+
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+
+			if (!$this->upload->do_upload('file')) {
+				var_dump($this->upload->display_errors());
+			} else {
+				$file_name = $this->upload->data('file_name');
+
+				$data = [
+					'id_akun' => $this->input->post('id_akun'),
+					'name' => $this->input->post('name'),
+					'email' => $this->input->post('email'),
+					'file' => $file_name,
+					'password' => $this->input->post('password'),
+					'role_id' => $this->input->post('role_id'),
+					'is_active' => $this->input->post('is_active'),
+					'date_create' => $this->input->post('date_create')		
+				];
+			}
+
+		}
+		$this->akun_model->simpanEditakun($input_id, $data);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Data akun berhasil diubah! </div>');
+		redirect('akun/dataakun');
+	}
+
 }
